@@ -1,29 +1,34 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-	<title>Zapily I Fast build Admin dashboard for any platform</title>
-	<meta name="description" content="Zapily is a Dashboard & Admin Site Responsive Template by hencework." />
-	<meta name="keywords" content="admin, admin dashboard, admin template, cms, crm, Zapily Admin, Zapilyadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
-	<meta name="author" content="hencework"/>
-	
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="favicon.ico">
-	<link rel="icon" href="favicon.ico" type="image/x-icon">
-	
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Zapily I Fast build Admin dashboard for any platform</title>
+    <meta name="description" content="Zapily is a Dashboard & Admin Site Responsive Template by hencework." />
+    <meta name="keywords"
+        content="admin, admin dashboard, admin template, cms, crm, Zapily Admin, Zapilyadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
+    <meta name="author" content="hencework" />
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+
     <!-- Data table CSS -->
-    <link href="{{ asset('theame/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css') }} " rel="stylesheet" type="text/css">
-	
+    <link href="{{ asset('theame/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css') }} "
+        rel="stylesheet" type="text/css">
+
     <!-- Toast CSS -->
-    <link href="{{ asset('theame/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css') }}" rel="stylesheet" type="text/css">
-	
+    <link href="{{ asset('theame/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.css') }}"
+        rel="stylesheet" type="text/css">
+
     <!-- Custom CSS -->
     <link href="{{ asset('theame/dist/css/style.css') }} " rel="stylesheet" type="text/css">
 </head>
+
 <body>
     <!-- Preloader -->
-<div class="preloader-it">
+    <div class="preloader-it">
         <div class="la-anim-1"></div>
     </div>
     <!-- /Preloader -->
@@ -49,8 +54,9 @@
                     <div class="input-group">
                         <input type="text" name="example-input1-group2" class="form-control" placeholder="Search">
                         <span class="input-group-btn">
-                            <button type="button" class="btn  btn-default" data-target="#search_form" data-toggle="collapse"
-                                aria-label="Close" aria-expanded="true"><i class="zmdi zmdi-search"></i></button>
+                            <button type="button" class="btn  btn-default" data-target="#search_form"
+                                data-toggle="collapse" aria-label="Close" aria-expanded="true"><i
+                                    class="zmdi zmdi-search"></i></button>
                         </span>
                     </div>
                 </form>
@@ -63,7 +69,8 @@
                     <li class="dropdown app-drp">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                 class="zmdi zmdi-apps top-nav-icon"></i></a>
-                        <ul class="dropdown-menu app-dropdown" data-dropdown-in="slideInRight" data-dropdown-out="flipOutX">
+                        <ul class="dropdown-menu app-dropdown" data-dropdown-in="slideInRight"
+                            data-dropdown-out="flipOutX">
                             <li>
                                 <div class="app-nicescroll-bar">
                                     <ul class="app-icon-wrap pa-10">
@@ -118,14 +125,15 @@
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                 class="zmdi zmdi-more-vert top-nav-icon"></i></a>
                         <ul class="dropdown-menu mega-menu pa-0" data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
-                            
+
                         </ul>
                     </li>
                     <li class="dropdown alert-drp">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                 class="zmdi zmdi-notifications top-nav-icon"></i><span
                                 class="top-nav-icon-badge">5</span></a>
-                        <ul class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn" data-dropdown-out="bounceOut">
+                        <ul class="dropdown-menu alert-dropdown" data-dropdown-in="bounceIn"
+                            data-dropdown-out="bounceOut">
                             <li>
                                 <div class="notification-box-head-wrap">
                                     <span class="notification-box-head pull-left inline-block">notifications</span>
@@ -146,7 +154,8 @@
                                                 <span
                                                     class="inline-block capitalize-font  pull-left truncate head-notifications">
                                                     New subscription created</span>
-                                                <span class="inline-block font-11  pull-right notifications-time">2pm</span>
+                                                <span
+                                                    class="inline-block font-11  pull-right notifications-time">2pm</span>
                                                 <div class="clearfix"></div>
                                                 <p class="truncate">Your customer subscribed for the basic plan. The
                                                     customer will pay $25 per month.</p>
@@ -163,9 +172,11 @@
                                                 <span
                                                     class="inline-block capitalize-font  pull-left truncate head-notifications txt-warning">Server
                                                     #2 not responding</span>
-                                                <span class="inline-block font-11 pull-right notifications-time">1pm</span>
+                                                <span
+                                                    class="inline-block font-11 pull-right notifications-time">1pm</span>
                                                 <div class="clearfix"></div>
-                                                <p class="truncate">Some technical error occurred needs to be resolved.</p>
+                                                <p class="truncate">Some technical error occurred needs to be resolved.
+                                                </p>
                                             </div>
                                         </a>
                                     </div>
@@ -179,9 +190,11 @@
                                                 <span
                                                     class="inline-block capitalize-font  pull-left truncate head-notifications">2
                                                     new messages</span>
-                                                <span class="inline-block font-11  pull-right notifications-time">4pm</span>
+                                                <span
+                                                    class="inline-block font-11  pull-right notifications-time">4pm</span>
                                                 <div class="clearfix"></div>
-                                                <p class="truncate"> The last payment for your G Suite Basic subscription
+                                                <p class="truncate"> The last payment for your G Suite Basic
+                                                    subscription
                                                     failed.</p>
                                             </div>
                                         </a>
@@ -196,9 +209,11 @@
                                                 <span
                                                     class="inline-block capitalize-font  pull-left truncate head-notifications">Sandy
                                                     Doe</span>
-                                                <span class="inline-block font-11  pull-right notifications-time">1pm</span>
+                                                <span
+                                                    class="inline-block font-11  pull-right notifications-time">1pm</span>
                                                 <div class="clearfix"></div>
-                                                <p class="truncate">Neque porro quisquam est qui dolorem ipsum quia dolor
+                                                <p class="truncate">Neque porro quisquam est qui dolorem ipsum quia
+                                                    dolor
                                                     sit amet, consectetur, adipisci velit</p>
                                             </div>
                                         </a>
@@ -213,7 +228,8 @@
                                                 <span
                                                     class="inline-block capitalize-font  pull-left truncate head-notifications txt-danger">99%
                                                     server space occupied.</span>
-                                                <span class="inline-block font-11  pull-right notifications-time">1pm</span>
+                                                <span
+                                                    class="inline-block font-11  pull-right notifications-time">1pm</span>
                                                 <div class="clearfix"></div>
                                                 <p class="truncate">consectetur, adipisci velit.</p>
                                             </div>
@@ -254,7 +270,8 @@
                                         class="zmdi zmdi-check text-success"></i> available</a>
                                 <ul class="dropdown-menu open-left-side">
                                     <li>
-                                        <a href="#"><i class="zmdi zmdi-check text-success"></i><span>available</span></a>
+                                        <a href="#"><i
+                                                class="zmdi zmdi-check text-success"></i><span>available</span></a>
                                     </li>
                                     <li>
                                         <a href="#"><i class="zmdi zmdi-circle-o text-warning"></i><span>busy</span></a>
@@ -271,10 +288,11 @@
                                         document.getElementById('logout-form').submit();">
                            {{ __('Logout') }}
                                 </a> --}}
-    
+
                                 <a href="/admin/logout" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();"><i class="zmdi zmdi-power"></i><span>Log Out</span></a>
-    
+                                    document.getElementById('logout-form').submit();"><i
+                                        class="zmdi zmdi-power"></i><span>Log Out</span></a>
+
                                 <form id="logout-form" action="{{ route('admin.logout') }}" method="POST"
                                     style="display: none;">
                                     @csrf
@@ -286,7 +304,7 @@
             </div>
         </nav>
         <!-- /Top Menu Items -->
-    
+
         <!-- Left Sidebar Menu -->
         <div class="fixed-sidebar-left">
             <ul class="nav navbar-nav side-nav nicescroll-bar">
@@ -301,24 +319,54 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
-    
+
                 <li>
-                        <a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr">
-                            <div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">Users </span>
-                            </div>
-                            <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
-                            <div class="clearfix"></div>
-                        </a>
-                        <ul id="app_dr" class="collapse collapse-level-1">
-                            <li>
-                                <a href="register">Add Users</a>
-                            </li>
-                            <li>
-                                <a href="calendar.html">Manage Users</a>
-                            </li>
-                        </ul>
-                    </li>
-    
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#users">
+                        <div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">Users
+                            </span>
+                        </div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="users" class="collapse collapse-level-1">
+                        <li>
+                            <a href="register">Add Users</a>
+                        </li>
+                        <li>
+                            <a href="calendar.html">Manage Users</a>
+                        </li>
+                    </ul>
+                </li>
+
+                <li>
+                    <a href="routes">
+                        <div class="pull-left"><i class="zmdi zmdi-map mr-20"></i><span
+                                class="right-nav-text">Routes</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#customers">
+                        <div class="pull-left"><i class="zmdi zmdi-assignment-account mr-20"></i><span
+                                class="right-nav-text">Customers </span>
+                        </div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="customers" class="collapse collapse-level-1">
+                        <li>
+                            <a href="addcustomer">Add Customers</a>
+                        </li>
+                        <li>
+                            <a href="calendar.html">Manage Coustomers</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#ecom_dr">
                         <div class="pull-left"><i class="zmdi zmdi-shopping-basket mr-20"></i><span
@@ -352,7 +400,8 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#app_dr">
-                        <div class="pull-left"><i class="zmdi zmdi-apps mr-20"></i><span class="right-nav-text">Apps </span>
+                        <div class="pull-left"><i class="zmdi zmdi-apps mr-20"></i><span class="right-nav-text">Apps
+                            </span>
                         </div>
                         <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                         <div class="clearfix"></div>
@@ -484,7 +533,8 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#form_dr">
-                        <div class="pull-left"><i class="zmdi zmdi-edit mr-20"></i><span class="right-nav-text">Forms</span>
+                        <div class="pull-left"><i class="zmdi zmdi-edit mr-20"></i><span
+                                class="right-nav-text">Forms</span>
                         </div>
                         <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                         <div class="clearfix"></div>
@@ -638,7 +688,8 @@
                 </li>
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#maps_dr">
-                        <div class="pull-left"><i class="zmdi zmdi-map mr-20"></i><span class="right-nav-text">maps</span>
+                        <div class="pull-left"><i class="zmdi zmdi-map mr-20"></i><span
+                                class="right-nav-text">maps</span>
                         </div>
                         <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                         <div class="clearfix"></div>
@@ -671,7 +722,8 @@
                             <a href="blank.html">Blank Page</a>
                         </li>
                         <li>
-                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#auth_dr">Authantication pages
+                            <a href="javascript:void(0);" data-toggle="collapse" data-target="#auth_dr">Authantication
+                                pages
                                 <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
                                 <div class="clearfix"></div>
                             </a>
@@ -771,69 +823,74 @@
         <!-- /Left Sidebar Menu -->
 
 
-@yield('content')
+        @yield('content')
 
 
-<footer class="footer container-fluid pl-30 pr-30">
-    <div class="row">
-        <div class="col-sm-12">
-            <p>2018 &copy; Zapily. Pampered by Hencework</p>
-        </div>
+        <footer class="footer container-fluid pl-30 pr-30">
+            <div class="row">
+                <div class="col-sm-12">
+                    <p>201 &copy; KC Daily Collections. Powerd By : <a href="http://inovora.uk">Inovora Technologies</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+        <!-- /Footer -->
+
     </div>
-</footer>
-<!-- /Footer -->
+    <!-- /Main Content -->
 
-</div>
-<!-- /Main Content -->
+    </div>
+    <!-- /#wrapper -->
 
-</div>
-<!-- /#wrapper -->
+    <!-- JavaScript -->
 
-<!-- JavaScript -->
+    <!-- jQuery -->
+    <script src="{{ asset('theame/vendors/bower_components/jquery/dist/jquery.min.js') }}" defer></script>
 
-<!-- jQuery -->
-<script src="{{ asset('theame/vendors/bower_components/jquery/dist/jquery.min.js') }}" defer></script>
+    <!-- Bootstrap Core JavaScript -->
+    <script src="{{ asset('theame/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
 
-<!-- Bootstrap Core JavaScript -->
-<script src="{{ asset('theame/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
+    <!-- Data table JavaScript -->
+    <script src="{{ asset('theame/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js') }}" defer>
+    </script>
 
-<!-- Data table JavaScript -->
-<script src="{{ asset('theame/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js') }}" defer></script>
+    <!-- Slimscroll JavaScript -->
+    <script src="{{ asset('theame/dist/js/jquery.slimscroll.js') }}" defer></script>
 
-<!-- Slimscroll JavaScript -->
-<script src="{{ asset('theame/dist/js/jquery.slimscroll.js') }}" defer></script>
+    <!-- simpleWeather JavaScript -->
+    <script src="{{ asset('theame/vendors/bower_components/moment/min/moment.min.js') }}" defer></script>
+    <script src="{{ asset('theame/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js') }}" defer>
+    </script>
+    <script src="{{ asset('theame/dist/js/simpleweather-data.js') }}" defer></script>
 
-<!-- simpleWeather JavaScript -->
-<script src="{{ asset('theame/vendors/bower_components/moment/min/moment.min.js') }}" defer></script>
-<script src="{{ asset('theame/vendors/bower_components/simpleWeather/jquery.simpleWeather.min.js') }}" defer></script>
-<script src="{{ asset('theame/dist/js/simpleweather-data.js') }}" defer></script>
+    <!-- Progressbar Animation JavaScript -->
+    <script src="{{ asset('theame/vendors/bower_components/waypoints/lib/jquery.waypoints.min.js') }}" defer></script>
+    <script src="{{ asset('theame/vendors/bower_components/jquery.counterup/jquery.counterup.min.js') }}" defer>
+    </script>
 
-<!-- Progressbar Animation JavaScript -->
-<script src="{{ asset('theame/vendors/bower_components/waypoints/lib/jquery.waypoints.min.js') }}" defer></script>
-<script src="{{ asset('theame/vendors/bower_components/jquery.counterup/jquery.counterup.min.js') }}" defer></script>
+    <!-- Fancy Dropdown JS -->
+    <script src="{{ asset('theame/dist/js/dropdown-bootstrap-extended.js') }}" defer></script>
 
-<!-- Fancy Dropdown JS -->
-<script src="{{ asset('theame/dist/js/dropdown-bootstrap-extended.js') }}" defer></script>
+    <!-- Sparkline JavaScript -->
+    <script src="{{ asset('theame/vendors/jquery.sparkline/dist/jquery.sparkline.min.js') }}" defer></script>
 
-<!-- Sparkline JavaScript -->
-<script src="{{ asset('theame/vendors/jquery.sparkline/dist/jquery.sparkline.min.js') }}" defer></script>
+    <!-- Owl JavaScript -->
+    <script src="{{ asset('theame/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js') }}" defer></script>
 
-<!-- Owl JavaScript -->
-<script src="{{ asset('theame/vendors/bower_components/owl.carousel/dist/owl.carousel.min.js') }}" defer></script>
+    <!-- Toast JavaScript -->
+    {{-- <script src="{{ asset('theame/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js') }}"
+    defer></script> --}}
 
-<!-- Toast JavaScript -->
-{{-- <script src="{{ asset('theame/vendors/bower_components/jquery-toast-plugin/dist/jquery.toast.min.js') }}" defer></script> --}}
+    <!-- EChartJS JavaScript -->
+    <script src="{{ asset('theame/vendors/bower_components/echarts/dist/echarts-en.min.js') }}" defer></script>
+    <script src="{{ asset('theame/vendors/echarts-liquidfill.min.js') }}" defer></script>
 
-<!-- EChartJS JavaScript -->
-<script src="{{ asset('theame/vendors/bower_components/echarts/dist/echarts-en.min.js') }}" defer></script>
-<script src="{{ asset('theame/vendors/echarts-liquidfill.min.js') }}" defer></script>
+    <!-- Switchery JavaScript -->
+    <script src="{{ asset('theame/vendors/bower_components/switchery/dist/switchery.min.js') }}" defer></script>
 
-<!-- Switchery JavaScript -->
-<script src="{{ asset('theame/vendors/bower_components/switchery/dist/switchery.min.js') }}" defer></script>
-
-<!-- Init JavaScript -->
-<script src="{{ asset('theame/dist/js/init.js') }}" defer></script>
-<script src="{{ asset('theame/dist/js/dashboard5-data.js') }}" defer></script>
+    <!-- Init JavaScript -->
+    <script src="{{ asset('theame/dist/js/init.js') }}" defer></script>
+    <script src="{{ asset('theame/dist/js/dashboard5-data.js') }}" defer></script>
 </body>
 
 </html>

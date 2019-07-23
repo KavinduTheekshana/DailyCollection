@@ -41,8 +41,11 @@
     });
 
 
-    Route::get('/adduser', function () {
-        return view('vendor.multiauth.admin.adduser');
+    Route::get('/addcustomer', function () {
+        return view('vendor.multiauth.admin.addcustomers');
     });
 
-    Route::post('/addusers','UserController@addusers');
+
+    Route::get('/routes', function () {
+        return view('vendor.multiauth.admin.routes');
+    });
