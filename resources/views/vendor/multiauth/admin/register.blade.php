@@ -1,104 +1,150 @@
-@extends('multiauth::layouts.app') 
+@extends('multiauth::layouts.header')
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Register New {{ ucfirst(config('multiauth.prefix')) }}</div>
-                <div class="card-body">
-    @include('multiauth::message')
-                    <form method="POST" action="{{ route('admin.register') }}">
-                        @csrf
-                        <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
 
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}"
-                                    required autofocus>
+
+<div class="page-wrapper">
+    <div class="container">
+        <!-- Title -->
+        <div class="row heading-bg">
+            <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                <h5 class="txt-dark">Add User</h5>
+            </div>
+            <!-- Breadcrumb -->
+            <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                <ol class="breadcrumb">
+                    <li><a href="index.html">Dashboard</a></li>
+                    <li><a href="#"><span>Uses</span></a></li>
+                    <li class="active"><span>Add User</span></li>
+                </ol>
+            </div>
+            <!-- /Breadcrumb -->
+        </div>
+        <!-- /Title -->
+
+        <!-- Row -->
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="panel panel-default card-view">
+                    <div class="panel-heading">
+                        <div class="pull-left">
+                            <h6 class="panel-title txt-dark">Add Users Form</h6>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="panel-wrapper collapse in">
+                        <div class="panel-body">
+                            <div class="form-wrap">
+
+                                <form method="POST" action="{{ route('admin.register') }}" enctype="multipart/form-data">
+
+                                    @csrf
+
+
+                                    @if (count($errors) > 0)
+                                    <div style="padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:.25rem;
+                                      color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;">
+                                    <strong>Whoops!</strong> There were some problems with your input.<br>
+                                      <ul>
+                                        @foreach ($errors->all() as $error)
+                                          <li>{{ $error }}</li>
+                                        @endforeach
+                                      </ul>
+                                    </div>
+                                  @endif
+
+                                  
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Name</label>
+                                        <div class="input-group">
+                                        <div class="input-group-addon"><i class="icon-user"></i></div>
+                                        <input id="name" type="text"
+                                            class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                            name="name" value="{{ old('name') }}" required autofocus>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left" for="example-email">Email</label>
+                                        <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
+                                        <input id="email" type="email"
+                                            class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
+                                            name="email" value="{{ old('email') }}" required>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left" for="example-email">Phone</label>
+                                        <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-phone"></i></div>
+                                        <input id="phone" type="phone"
+                                            class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
+                                            name="phone" value="{{ old('phone') }}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left" for="example-email">NIC</label>
+                                        <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-layers"></i></div>
+                                        <input id="nic" type="nic"
+                                            class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
+                                            name="nic" value="{{ old('nic') }}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left" for="example-email">Address</label>
+                                        <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-location-pin"></i></div>
+                                        <input id="address" type="address"
+                                            class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
+                                            name="address" value="{{ old('address') }}" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group mt-30 mb-30">
+                                        <label class="control-label mb-10 text-left">Assign Role</label>
+                                        <select name="role_id[]" id="role_id"
+                                            class="form-control {{ $errors->has('role_id') ? ' is-invalid' : '' }}"
+                                            >
+                                            <option selected disabled>Select Role</option>
+                                            @foreach ($roles as $role)
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Password</label>
+                                        <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-options"></i></div>
+                                        <input id="password" type="password"
+                                            class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
+                                            name="password" required>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label mb-10 text-left">Re Enter Password</label>
+                                        <div class="input-group">
+                                                <div class="input-group-addon"><i class="icon-options"></i></div>
+                                        <input id="password-confirm" type="password" class="form-control"
+                                            name="password_confirmation" required>
+                                        </div>
+                                    </div>
+
+                                    <button type="submit" class="btn btn-success mr-10">Submit</button>
+                                    <button type="reset" class="btn btn-default">Reset</button>
+
+
+                                </form>
+
                             </div>
                         </div>
-
-                        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} row">
-                            <label for="email" class="col-md-4 col-form-label text-md-right">E-Mail Address</label>
-
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}" name="email" value="{{ old('email') }}"
-                                    required>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('phone') ? ' has-error' : '' }} row">
-                            <label for="phone" class="col-md-4 col-form-label text-md-right">Phone</label>
-
-                            <div class="col-md-6">
-                                <input id="phone" type="phone" class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}" name="phone" value="{{ old('phone') }}"
-                                    required>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('nic') ? ' has-error' : '' }} row">
-                            <label for="nic" class="col-md-4 col-form-label text-md-right">NIC</label>
-
-                            <div class="col-md-6">
-                                <input id="nic" type="nic" class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="nic" value="{{ old('nic') }}"
-                                    required>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('address') ? ' has-error' : '' }} row">
-                            <label for="address" class="col-md-4 col-form-label text-md-right">Address</label>
-
-                            <div class="col-md-6">
-                                <input id="address" type="address" class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}" name="address" value="{{ old('address') }}"
-                                    required>
-                            </div>
-                        </div>
-
-                        <div class="form-group{{ $errors->has('password') ? ' text-danger' : '' }} row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" name="password"
-                                    required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">Confirm Password</label>
-
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            <label for="role_id" class="col-md-4 col-form-label text-md-right">Assign Role</label>
-
-                            <div class="col-md-6">
-                                <select name="role_id[]" id="role_id" class="form-control {{ $errors->has('role_id') ? ' is-invalid' : '' }}" multiple>
-                                    <option selected disabled>Select Role</option>
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary btn-sm">
-                                    Register
-                                </button>
-
-                                <a href="{{ route('admin.show') }}" class="btn btn-danger btn-sm float-right">
-                                    Back
-                                </a>
-                            </div>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
+            <!-- /Row -->
         </div>
     </div>
-</div>
-@endsection
+
+    @endsection

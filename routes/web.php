@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('vendor.multiauth.admin.login');
 });
+
+
+Route::post('/addusers','UserController@addusers');

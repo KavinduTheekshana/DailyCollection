@@ -7,7 +7,7 @@
                 <div class="card-header">Register New {{ ucfirst(config('multiauth.prefix')) }}</div>
                 <div class="card-body">
     @include('multiauth::message')
-                    <form method="POST" action="{{ route('admin.register') }}">
+                    <form method="POST" action="{{ route('admin.register') }}" >
                         @csrf
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>

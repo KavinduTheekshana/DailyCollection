@@ -39,3 +39,10 @@
     Route::fallback(function () {
         return abort(404);
     });
+
+
+    Route::get('/adduser', function () {
+        return view('vendor.multiauth.admin.adduser');
+    });
+
+    Route::post('/addusers','UserController@addusers');
