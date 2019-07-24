@@ -24,6 +24,26 @@
 
     <!-- Custom CSS -->
     <link href="{{ asset('theame/dist/css/style.css') }} " rel="stylesheet" type="text/css">
+
+
+    <link href="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.css') }} " rel="stylesheet" type="text/css">
+
+
+
+
+
+
+    <script src="//code.jquery.com/jquery-1.12.3.js"></script>
+<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+<script
+    src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+
+<link rel="stylesheet"
+    href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+
+
+
+
 </head>
 
 <body>
@@ -891,6 +911,8 @@
     <!-- Init JavaScript -->
     <script src="{{ asset('theame/dist/js/init.js') }}" defer></script>
     <script src="{{ asset('theame/dist/js/dashboard5-data.js') }}" defer></script>
+
+    <script src="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.min.js') }}" defer></script>
 </body>
 
 </html>

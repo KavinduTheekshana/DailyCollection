@@ -17,3 +17,6 @@ Route::get('/', function () {
 
 
 Route::post('/addusers','UserController@addusers');
+
+Route::post('/addroute','RoutesController@addroute');
+

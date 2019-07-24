@@ -9,7 +9,7 @@ return [
     | After creating another multiauth apart from admin, and you don't want to have admin
     | backend then you can simply turn if off by makeing admin_active as false here.
     |
- */
+     */
     'admin_active' => true,
 
     /*
@@ -19,10 +19,11 @@ return [
     |
     | Apply your own validations for new columns of Admin registration.
     |
- */
+     */
     'admin' => [
         'validations' => [
-            'phone'=>'required|min:10'
+            'phone' => 'required|min:10|max:10',
+            'nic' => 'required|min:9|max:12'
         ],
     ],
 
@@ -34,7 +35,7 @@ return [
     | Use prefix to before the routes of multiauth package.
     | This way you can keep your admin page secure.
     | Default : admin
-    */
+     */
     'prefix' => 'admin',
 
     /*
@@ -47,7 +48,7 @@ return [
     | If you make it 'true' then it will send email otherwise
     | It will not going to send any email to the admin
     | Default : false
-    */
+     */
     'registration_notification_email' => false,
 
     /*
@@ -59,6 +60,6 @@ return [
     | You can change it to where ever you want to
     | redirect the admin after login.
     | Default : /admin/home
-    */
+     */
     'redirect_after_login' => '/admin/home',
 ];

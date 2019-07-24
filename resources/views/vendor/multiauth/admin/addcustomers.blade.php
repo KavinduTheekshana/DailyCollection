@@ -254,6 +254,83 @@
 					</div>
 					<br>
 
+					<div class="panel-heading">
+							<div class="pull-left">
+								<h6 class="panel-title txt-dark">Add Payment Details</h6>
+							</div>
+							<div class="clearfix"></div>
+						</div>
+	
+						<br>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6">
+									<label class="control-label mb-10 text-left">Amount</label>
+									<div class="input-group">
+											<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
+											<input id="name" placeholder="10,000 LKR" type="text"
+												class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+												name="name" value="{{ old('name') }}" required autofocus>
+											</div>
+								</div>
+	
+								<div class="col-sm-6">
+									<label class="control-label mb-10 text-left">Installment</label>
+									<div class="input-group">
+											<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
+											<input id="name" placeholder="10,000 LKR" type="text"
+												class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+												name="name" value="{{ old('name') }}" required autofocus>
+											</div>
+								</div>
+							</div>
+						</div>
+	
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-6">
+											<div class="form-group">
+													<label class="control-label mb-10 text-left">Select</label>
+												
+														<select class="form-control">
+															<option>Daily</option>
+															<option>Weekly</option>
+														</select>
+													
+												</div>
+									</div>
+	
+							
+							</div>
+						</div>
+
+						
+						<div class="form-group">
+								<div class="row">
+										<div class="col-sm-6">
+												<label class="control-label mb-10 text-left">Date Purchased</label>
+												<div class="input-group">
+														<div class="input-group-addon"><i class="icon-calender"></i></div>
+														<input id="name" type="date"
+															class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+															name="name" value="{{ old('name') }}" required autofocus>
+														</div>
+											</div>
+		
+									<div class="col-sm-6">
+										<label class="control-label mb-10 text-left">Due Date</label>
+										<div class="input-group">
+												<div class="input-group-addon"><i class="icon-calender"></i></div>
+												<input id="name" type="date"
+													class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+													name="name" value="{{ old('name') }}" required autofocus>
+												</div>
+									</div>
+								</div>
+							</div>
+							<br>
+
+
 					<button type="submit" class="btn btn-success mr-10">Submit</button>
 					<button type="reset" class="btn btn-default">Reset</button>
 					</form>

@@ -46,6 +46,5 @@
     });
 
 
-    Route::get('/routes', function () {
-        return view('vendor.multiauth.admin.routes');
-    });
+
+    Route::get('/routes', 'RoleController@show');
