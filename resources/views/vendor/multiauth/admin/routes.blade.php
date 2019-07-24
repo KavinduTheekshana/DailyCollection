@@ -118,7 +118,7 @@
 											<td>{{$item->id}}</td>
 											<td>{{$item->route}}</td>
 											<td><button style="padding: 6px 12px" class="btn btn-warning">Update</button>
-												<button style="padding: 6px 12px" class="btn btn-danger" id="params">Delete</button>
+												<button style="padding: 6px 12px" class="btn btn-danger" id="deletebtn">Delete</button>
 												</td>
 										</tr>
 										@endforeach
@@ -143,44 +143,33 @@
 </div>
 </div>
 
-{{-- <script>
-	$('#params').click(function(){
-		const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false,
-})
+<script>
+	$('#deletebtn').click(function(){
 
-swalWithBootstrapButtons.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  reverseButtons: true
-}).then((result) => {
-  if (result.value) {
-    swalWithBootstrapButtons.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelled',
-      'Your imaginary file is safe :)',
-      'error'
-    )
-  }
-})
+		swal({
+        title: "Are you sure?",
+        text: "You will not be able to recover this imaginary file!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#DD6B55",
+        confirmButtonText: "Yes, delete it!",
+        cancelButtonText: "No, cancel",
+        closeOnConfirm: false,
+        closeOnCancel: false 
+    },
+    function(isConfirm) {
+        if (isConfirm) {
+		
+            swal("Deleted!", "Your imaginary file has been deleted.", "success");
+        } else {
+            swal("Cancelled", "Your imaginary file is safe 🙂", "error");
+        }
+    }
+);
+		
+
 	});
-	</script> --}}
+	</script>
 
 
 <script>

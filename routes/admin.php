@@ -47,4 +47,10 @@
 
 
 
+
+
     Route::get('/routes', 'RoleController@show');
+
+    Route::get('/holidays', 'HolidaysController@add');
+
+    Route::get('/viewuser', 'UserController@viewuser');

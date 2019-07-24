@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 
 Route::post('/addusers','UserController@addusers');
+Route::post('/viewusers','UserController@viewusers');
 
 Route::post('/addroute','RoutesController@addroute');
+Route::post('/addcoustomer','CustomerController@addcoustomer');
+
+
 

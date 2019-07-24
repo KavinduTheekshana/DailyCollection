@@ -35,7 +35,8 @@ class RegisterController extends Controller
      */
     public function redirectTo()
     {
-        return $this->redirectTo = route('admin.show');
+        return back()->with('status', 'Route Added Sucessfully');
+        // return $this->redirectTo = route('admin.show');
     }
 
     /**

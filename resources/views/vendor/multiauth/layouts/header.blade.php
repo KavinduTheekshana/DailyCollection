@@ -353,7 +353,7 @@
                             <a href="register">Add Users</a>
                         </li>
                         <li>
-                            <a href="calendar.html">Manage Users</a>
+                            <a href="viewuser">Manage Users</a>
                         </li>
                     </ul>
                 </li>
@@ -383,6 +383,18 @@
                         </li>
                     </ul>
                 </li>
+
+                <li>
+                        <a href="holidays">
+                            <div class="pull-left"><i class="zmdi zmdi-calendar mr-20"></i><span
+                                    class="right-nav-text">Holidays</span></div>
+                            <div class="clearfix"></div>
+                        </a>
+                    </li>
+
+
+
+               
 
 
 

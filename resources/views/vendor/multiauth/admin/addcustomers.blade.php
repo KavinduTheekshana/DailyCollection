@@ -36,7 +36,7 @@
 						<div class="panel-body">
 							<div class="form-wrap">
 
-								<form role="form" action="{{action('UserController@addusers')}}" method="POST"
+								<form role="form" action="{{action('CustomerController@addcoustomer')}}" method="POST"
 									enctype="multipart/form-data">
 
 									@csrf
