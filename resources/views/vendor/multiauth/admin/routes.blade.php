@@ -143,7 +143,7 @@
 </div>
 </div>
 
-<script>
+{{-- <script>
 	$('#params').click(function(){
 		const swalWithBootstrapButtons = Swal.mixin({
   customClass: {
@@ -180,15 +180,12 @@ swalWithBootstrapButtons.fire({
   }
 })
 	});
-	</script>
+	</script> --}}
 
 
 <script>
 	$(document).ready(function() {
-	  $('#table').DataTable({
-		   "columnDefs": [
-			{ "width": "30%", "targets": [2] }
-  ]});
+	  $('#table').DataTable();
   } );
    </script>
 
