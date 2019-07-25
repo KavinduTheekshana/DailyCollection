@@ -24,3 +24,5 @@ Route::post('/addcoustomer','CustomerController@addcoustomer');
 
 
 
+
+Route::get('deleteroute/{id}','RoutesController@deleteroute');

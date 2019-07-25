@@ -34,23 +34,23 @@
 					<div class="panel-wrapper collapse in">
 						<div class="panel-body">
 
-								@if (count($errors) > 0)
-								<div style="padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:.25rem;
+							@if (count($errors) > 0)
+							<div style="padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:.25rem;
 								  color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;">
 								<strong>Whoops!</strong> There were some problems with your input.<br>
-								  <ul>
+								<ul>
 									@foreach ($errors->all() as $error)
-									  <li>{{ $error }}</li>
+									<li>{{ $error }}</li>
 									@endforeach
-								  </ul>
-								</div>
-							  @endif
+								</ul>
+							</div>
+							@endif
 
-								@if (session('status'))
-								<div class="alert alert-success">
-								  {{ session('status') }}
-								</div>
-							  @endif
+							@if (session('status'))
+							<div class="alert alert-success">
+								{{ session('status') }}
+							</div>
+							@endif
 
 
 							<div class="form-wrap">
@@ -64,16 +64,15 @@
 										<div class="row">
 											<div class="col-sm-12">
 												<div class="input-group mb-15">
-													<input type="text" id="example-input2-group2"
-														name="route" class="form-control"
-														placeholder="Route">
+													<input type="text" id="example-input2-group2" name="route"
+														class="form-control" placeholder="Route">
 													<span class="input-group-btn">
 														<button type="submit" class="btn btn-success"><i
 																class="btn-text">submit</span></button>
 													</span>
 												</div>
 											</div>
-										</form>
+								</form>
 							</div>
 
 						</div>
@@ -88,94 +87,185 @@
 
 
 		<div class="row">
-				<div class="col-sm-12">
-					<div class="panel panel-default card-view">
-						<div class="panel-heading">
-							<div class="pull-left">
-								<h6 class="panel-title txt-dark">Route List</h6>
-							</div>
-							<div class="clearfix"></div>
+			<div class="col-sm-12">
+				<div class="panel panel-default card-view">
+					<div class="panel-heading">
+						<div class="pull-left">
+							<h6 class="panel-title txt-dark">Route List</h6>
 						</div>
-						
-						
-
-						<div class="panel-wrapper collapse in">
-							<div class="panel-body">
-							
-
-
-								<table class="table" id="table">
-									<thead>
-										<tr>
-											<th class="text-center">ID</th>
-											<th class="text-center">Name</th>
-											<th class="text-center">Actions</th>
-										</tr>
-									</thead>
-									<tbody  style="text-align: center">
-										@foreach($data as $item)	
-										<tr>
-											<td>{{$item->id}}</td>
-											<td>{{$item->route}}</td>
-											<td><button style="padding: 6px 12px" class="btn btn-warning">Update</button>
-												<button style="padding: 6px 12px" class="btn btn-danger" id="deletebtn">Delete</button>
-												</td>
-										</tr>
-										@endforeach
-									</tbody>
-								</table>
+						<div class="clearfix"></div>
+					</div>
 
 
 
-	
-							</div>
+					<div class="panel-wrapper collapse in">
+						<div class="panel-body">
+
+
+
+							<table class="table" id="table">
+								<thead>
+									<tr>
+										<th class="text-center">ID</th>
+										<th class="text-center">Name</th>
+										<th class="text-center">Actions</th>
+									</tr>
+								</thead>
+								<tbody style="text-align: center">
+									@foreach($data as $item)
+									<tr class="item{{$item->id}}">
+										<td>{{$item->id}}</td>
+										<td>{{$item->route}}</td>
+										<td>
+											{{-- <a href="deleteroute/{{$item->id}}" type="button" style="padding: 6px
+											12px" class="btn btn-danger">Delete</a> --}}
+											<button style="padding: 6px 12px" class="btn btn-danger"
+												Onclick="deleteData({{$item->id}})">Delete</button>
+										</td>
+									</tr>
+									@endforeach
+								</tbody>
+							</table>
 						</div>
 					</div>
 				</div>
-	
 			</div>
-	
-
-
-
+		</div>
 	</div>
 	<!-- /Row -->
 </div>
 </div>
 
 <script>
-	$('#deletebtn').click(function(){
 
-		swal({
-        title: "Are you sure?",
-        text: "You will not be able to recover this imaginary file!",
-        type: "warning",
-        showCancelButton: true,
-        confirmButtonColor: "#DD6B55",
-        confirmButtonText: "Yes, delete it!",
-        cancelButtonText: "No, cancel",
-        closeOnConfirm: false,
-        closeOnCancel: false 
-    },
-    function(isConfirm) {
-        if (isConfirm) {
-		
-            swal("Deleted!", "Your imaginary file has been deleted.", "success");
-        } else {
-            swal("Cancelled", "Your imaginary file is safe 🙂", "error");
-        }
-    }
-);
-		
+$.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+        // function deleteData(id){
+        //     swal({
+        //         title: "Are you sure?",
+        //         text: "Once deleted, you will not be able to recover this imaginary file!",
+        //         icon: "warning",
+        //         buttons: true,
+        //         dangerMode: true,
+        //     })
+        //     .function((isConfirm) => {
+        //         if (isConfirm) {
+        //             $.ajax({
+        //                 url : "{{ url('deleteroute')}}" + '/' + id,
+        //                 type : "GET",
+        //                 data : {'_method' : 'DELETE'},
+        //                 success: function(){
+        //                     swal({
+        //                         title: "Success!",
+        //                         text : "Post has been deleted \n Click OK to refresh the page",
+        //                         icon : "success",
+        //                     },
+        //                     function(){ 
+        //                         location.reload();
+        //                     });
+        //                 },
+        //                 error : function(){
+        //                     swal({
+        //                         title: 'Opps...',
+        //                         text : data.message,
+        //                         type : 'error',
+        //                         timer : '1500'
+        //                     })
+        //                 }
+        //             })
+        //         } else {
+        //         swal("Your imaginary file is safe!");
+        //         }
+        //     });
+        // }
 
+
+
+
+
+
+	function deleteData(id){
+swal({
+		title: "Are you sure?",
+		text: "You will not be able to recover this imaginary file!",
+		type: "warning",
+		showCancelButton: true,
+		confirmButtonColor: "#DD6B55",
+		confirmButtonText: "Yes, delete it!",
+		cancelButtonText: "No, cancel",
+		closeOnConfirm: false,
+		closeOnCancel: false
+	},
+	function(isConfirm) {
+		if (isConfirm) {
+			$.ajax({
+                        url : "{{ url('deleteroute')}}" + '/' + id,
+                        type : "GET",
+                        success: function(){
+                            swal({
+                                title: "Success!",
+                                text : "Post has been deleted \n Click OK to refresh the page",
+                                type : "success",
+                            },
+                            function(isConfirm){ 
+                                location.reload();
+                            });
+                        },
+                        error : function(){
+                            swal({
+                                title: 'Opps...',
+                                text : 'data.message',
+                                type : 'error',
+                                timer : '1500'
+                            })
+                        }
+                    })
+		} else {
+			swal("Cancelled", "Your imaginary file is safe 🙂", "error");
+		}
 	});
-	</script>
+}
+
+
+
+
+           
+
+
+// 	function newjsfunction(id){
+// swal({
+// 		title: "Are you sure?",
+// 		text: "You will not be able to recover this imaginary file!",
+// 		type: "warning",
+// 		showCancelButton: true,
+// 		confirmButtonColor: "#DD6B55",
+// 		confirmButtonText: "Yes, delete it!",
+// 		cancelButtonText: "No, cancel",
+// 		closeOnConfirm: false,
+// 		closeOnCancel: false
+// 	},
+// 	function(isConfirm) {
+// 		if (isConfirm) {
+// 			$.ajax({
+// 				url:"{{url('deleteroute')}}"+'/'+id,
+// 				type:"GET"
+// 			});
+// 			swal("Deleted!", "Your imaginary file has been deleted.", "success");
+// 		} else {
+// 			swal("Cancelled", "Your imaginary file is safe 🙂", "error");
+// 		}
+// 	});
+// }
+</script>
 
 
 <script>
 	$(document).ready(function() {
 	  $('#table').DataTable();
   } );
-   </script>
+</script>
 
 @endsection

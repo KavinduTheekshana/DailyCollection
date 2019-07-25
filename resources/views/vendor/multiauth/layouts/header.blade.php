@@ -32,7 +32,6 @@
 
 
 
-
     <script src="//code.jquery.com/jquery-1.12.3.js"></script>
 <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
 <script
@@ -925,6 +924,8 @@
     <script src="{{ asset('theame/dist/js/dashboard5-data.js') }}" defer></script>
 
     <script src="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.min.js') }}" defer></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </body>
 
 </html>

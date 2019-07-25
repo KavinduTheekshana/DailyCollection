@@ -63,27 +63,30 @@
 								<tbody style="text-align: center">
 									@foreach($data as $item)
 									<tr>
-										<td>{{$item->roles->name}}</td>
-										{{-- <td>{{$item->name}}</td>
-										<td>{{$item->email}}</td>
-										<td>{{$item->phone}}</td>
-										<td>{{$item->nic}}</td> --}}
+										<td>{{$item->adminid}}</td>
+										<td>{{$item->adminname}}</td>
+										<td>{{$item->adminemail}}</td>
+										<td>{{$item->adminphone}}</td>
+										<td>{{$item->adminnic}}</td>
 										<td>
-											{{-- @if($item->job==='Admin')
-											<span class="label label-primary">{{$row->job}}</span>
-											@elseif($row->job==='Captain')
-											<span class="label label-danger">{{$row->job}}</span>
-											@elseif($row->job==='Volunteer')
-											<span class="label label-success">{{$row->job}}</span>
-											@elseif($row->job==='Staff')
-											<span class="label label-warning">{{$row->job}}</span>
-											@else($row->job==='blocked')
-											<span class="label label-default">{{$row->job}}</span>
-											@endif --}}
+											@if($item->rolename==='super')
+											<span style="padding: 5px 15px"
+												class="label label-success">{{$item->rolename}}</span>
+											@elseif($item->rolename==='user')
+											<span style="padding: 5px 15px"
+												class="label label-primary">{{$item->rolename}}</span>
+											@endif
 										</td>
-										<td><button style="padding: 6px 12px" class="btn btn-warning">Update</button>
+										<td>
+											@if($item->rolename==='super')
+											<a href="deleteroute/{{$item->adminid}}" type="button" style="padding: 6px 12px" class="btn btn-success">View
+												Profile</a>
+											@elseif($item->rolename==='user')
+											<a href="updateuser/{{$item->adminid}}" type="button" style="padding: 6px 12px" class="btn btn-warning">Update</a>
 											<button style="padding: 6px 12px" class="btn btn-danger"
 												id="deletebtn">Delete</button>
+											@endif
+
 										</td>
 									</tr>
 									@endforeach
