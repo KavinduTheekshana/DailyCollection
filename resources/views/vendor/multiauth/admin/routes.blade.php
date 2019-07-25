@@ -137,56 +137,11 @@
 </div>
 
 <script>
-
-$.ajaxSetup({
+	$.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
-        // function deleteData(id){
-        //     swal({
-        //         title: "Are you sure?",
-        //         text: "Once deleted, you will not be able to recover this imaginary file!",
-        //         icon: "warning",
-        //         buttons: true,
-        //         dangerMode: true,
-        //     })
-        //     .function((isConfirm) => {
-        //         if (isConfirm) {
-        //             $.ajax({
-        //                 url : "{{ url('deleteroute')}}" + '/' + id,
-        //                 type : "GET",
-        //                 data : {'_method' : 'DELETE'},
-        //                 success: function(){
-        //                     swal({
-        //                         title: "Success!",
-        //                         text : "Post has been deleted \n Click OK to refresh the page",
-        //                         icon : "success",
-        //                     },
-        //                     function(){ 
-        //                         location.reload();
-        //                     });
-        //                 },
-        //                 error : function(){
-        //                     swal({
-        //                         title: 'Opps...',
-        //                         text : data.message,
-        //                         type : 'error',
-        //                         timer : '1500'
-        //                     })
-        //                 }
-        //             })
-        //         } else {
-        //         swal("Your imaginary file is safe!");
-        //         }
-        //     });
-        // }
-
-
-
-
-
-
 	function deleteData(id){
 swal({
 		title: "Are you sure?",

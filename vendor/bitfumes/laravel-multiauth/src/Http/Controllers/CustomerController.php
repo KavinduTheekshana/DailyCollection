@@ -9,13 +9,13 @@ use App\Route;
 use Illuminate\Routing\Controller;
 use DB;
 
-class RoutesController extends Controller
+class CustomerController extends Controller
 {
 
-    public function show()
+    public function addcustomers()
     {
         $data = Route::all();
-        return view('vendor.multiauth.admin.routes',['data'=>$data]);
+        return view('vendor.multiauth.admin.addcustomer',['data'=>$data]);
     }
 
     

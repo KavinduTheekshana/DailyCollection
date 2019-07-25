@@ -35,7 +35,9 @@ class AdminRequest extends FormRequest
         $rules = $this->mergeClientRules($rules);
         $rules = $this->checkForUpdate($rules);
 
+
         return $rules;
+
     }
 
     protected function mergeClientRules($rules)

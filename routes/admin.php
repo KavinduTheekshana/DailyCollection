@@ -40,16 +40,17 @@ Route::fallback(function () {
     return abort(404);
 });
 
-Route::get('/addcustomer', function () {
-    return view('vendor.multiauth.admin.addcustomers');
-});
+// Route::get('/addcustomer', function () {
+//     return view('vendor.multiauth.admin.addcustomers');
+// });
+Route::get('/addcustomers', 'CustomerController@addcustomers')->name('admin.addcustomers');
 
-Route::get('/routes', 'RoutesController@show');
+Route::get('/routes', 'RoutesController@show')->name('admin.routes');
 
-Route::get('/holidays', 'HolidaysController@add');
+Route::get('/holidays', 'HolidaysController@add')->name('admin.holidays');
 
-Route::get('/viewuser', 'UserController@viewuser');
+Route::get('/viewuser', 'UserController@viewuser')->name('viewuser');
 
-Route::get('deleteroute/{id}', 'RoutesController@deleteroute');
+Route::get('/updateuser/{id}','UserController@updateuser');
 
-// Route::get('updateuser/{id}', 'UserController@updateuser');
+

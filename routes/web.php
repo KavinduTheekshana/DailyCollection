@@ -17,12 +17,15 @@ Route::get('/', function () {
 
 
 Route::post('/addusers','UserController@addusers');
-Route::post('/viewusers','UserController@viewusers');
+Route::get('/viewuser', 'UserController@viewuser')->name('viewuser');
+Route::get('/updateuser/{id}','UserController@updateuser');
+
 
 Route::post('/addroute','RoutesController@addroute');
-Route::post('/addcoustomer','CustomerController@addcoustomer');
+Route::post('/editcoustomer','CustomerController@editcoustomer');
 
 
 
 
 Route::get('deleteroute/{id}','RoutesController@deleteroute');
+Route::get('deleteuser/{id}','UserController@deleteuser');

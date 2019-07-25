@@ -46,7 +46,11 @@
 					<div class="panel-wrapper collapse in">
 						<div class="panel-body">
 
-
+								@if (session('status'))
+								<div class="alert alert-success">
+									{{ session('status') }}
+								</div>
+								@endif
 
 							<table class="table" id="table">
 								<thead>
@@ -84,7 +88,7 @@
 											@elseif($item->rolename==='user')
 											<a href="updateuser/{{$item->adminid}}" type="button" style="padding: 6px 12px" class="btn btn-warning">Update</a>
 											<button style="padding: 6px 12px" class="btn btn-danger"
-												id="deletebtn">Delete</button>
+											Onclick="deleteData({{$item->adminid}})">Delete</button>
 											@endif
 
 										</td>
@@ -115,50 +119,61 @@
 
 	</div>
 
-	{{-- <script>
-	$('#params').click(function(){
-		const swalWithBootstrapButtons = Swal.mixin({
-  customClass: {
-    confirmButton: 'btn btn-success',
-    cancelButton: 'btn btn-danger'
-  },
-  buttonsStyling: false,
-})
-
-swalWithBootstrapButtons.fire({
-  title: 'Are you sure?',
-  text: "You won't be able to revert this!",
-  type: 'warning',
-  showCancelButton: true,
-  confirmButtonText: 'Yes, delete it!',
-  cancelButtonText: 'No, cancel!',
-  reverseButtons: true
-}).then((result) => {
-  if (result.value) {
-    swalWithBootstrapButtons.fire(
-      'Deleted!',
-      'Your file has been deleted.',
-      'success'
-    )
-  } else if (
-    // Read more about handling dismissals
-    result.dismiss === Swal.DismissReason.cancel
-  ) {
-    swalWithBootstrapButtons.fire(
-      'Cancelled',
-      'Your imaginary file is safe :)',
-      'error'
-    )
-  }
-})
-	});
-	</script> --}}
-
-
 	<script>
+			$.ajaxSetup({
+					headers: {
+						'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+					}
+				});
+			function deleteData(id){
+		swal({
+				title: "Are you sure?",
+				text: "You will not be able to recover this imaginary file!",
+				type: "warning",
+				showCancelButton: true,
+				confirmButtonColor: "#DD6B55",
+				confirmButtonText: "Yes, delete it!",
+				cancelButtonText: "No, cancel",
+				closeOnConfirm: false,
+				closeOnCancel: false
+			},
+			function(isConfirm) {
+				if (isConfirm) {
+					$.ajax({
+								url : "{{ url('deleteuser')}}" + '/' + id,
+								type : "GET",
+								success: function(){
+									swal({
+										title: "Success!",
+										text : "Post has been deleted \n Click OK to refresh the page",
+										type : "success",
+									},
+									function(isConfirm){ 
+										location.reload();
+									});
+								},
+								error : function(){
+									swal({
+										title: 'Opps...',
+										text : 'data.message',
+										type : 'error',
+										timer : '1500'
+									})
+								}
+							})
+				} else {
+					swal("Cancelled", "Your imaginary file is safe 🙂", "error");
+				}
+			});
+		}
+
+		</script>
+
+
+<script>
 		$(document).ready(function() {
-	  $('#table').DataTable();
-  } );
+		  $('#table').DataTable();
+	  } );
 	</script>
 
 	@endsection

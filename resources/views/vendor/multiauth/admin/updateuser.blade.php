@@ -7,14 +7,14 @@
         <!-- Title -->
         <div class="row heading-bg">
             <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                <h5 class="txt-dark">Add User</h5>
+                <h5 class="txt-dark">Update User</h5>
             </div>
             <!-- Breadcrumb -->
             <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                 <ol class="breadcrumb">
                     <li><a href="index.html">Dashboard</a></li>
                     <li><a href="#"><span>Uses</span></a></li>
-                    <li class="active"><span>Add User</span></li>
+                    <li class="active"><span>Update User</span></li>
                 </ol>
             </div>
             <!-- /Breadcrumb -->
@@ -27,7 +27,7 @@
                 <div class="panel panel-default card-view">
                     <div class="panel-heading">
                         <div class="pull-left">
-                            <h6 class="panel-title txt-dark">Add Users Details</h6>
+                            <h6 class="panel-title txt-dark">Update Users Details</h6>
                         </div>
                         <div class="clearfix"></div>
                     </div>
@@ -35,7 +35,7 @@
                         <div class="panel-body">
                             <div class="form-wrap">
 
-                                <form method="POST" action="{{ route('admin.register') }}"
+                                <form method="POST" action="{{action('CustomerController@editcoustomer')}}"
                                     enctype="multipart/form-data">
 
                                     @csrf
@@ -55,21 +55,39 @@
 
 
                                     <div class="form-group">
-                                        <label class="control-label mb-10 text-left">Name</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="icon-user"></i></div>
-                                            <input id="name" type="text"
-                                                class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-                                                name="name" value="{{ old('name') }}" required autofocus>
-                                        </div>
-                                    </div>
+											<div class="row">
+												<div class="col-sm-3">
+                                                        <label class="control-label mb-10 text-left">ID</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"><i class="icon-pin"></i></div>
+                                                            <input id="id" type="text"
+                                                                class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+                                                        name="id" value="{{$data->adminid}}" required autofocus readonly>
+                                                        </div>
+															
+												</div>
+
+												<div class="col-sm-9">
+                                                        <label class="control-label mb-10 text-left">Name</label>
+                                                        <div class="input-group">
+                                                            <div class="input-group-addon"><i class="icon-user"></i></div>
+                                                            <input  type="text"
+                                                                class="form-control"
+                                                        name="name" value="{{$data->adminname}}" required autofocus>
+                                                        </div>
+													
+															
+												</div>
+											</div>
+										</div>
+
                                     <div class="form-group">
                                         <label class="control-label mb-10 text-left" for="example-email">Email</label>
                                         <div class="input-group">
                                             <div class="input-group-addon"><i class="icon-envelope-open"></i></div>
                                             <input id="email" type="email"
                                                 class="form-control{{ $errors->has('email') ? ' is-invalid' : '' }}"
-                                                name="email" value="{{ old('email') }}" required>
+                                                name="email" value="{{$data->adminemail}}" required>
                                         </div>
                                     </div>
                                     <div class="form-group">
@@ -78,7 +96,7 @@
                                             <div class="input-group-addon"><i class="icon-phone"></i></div>
                                             <input id="phone" type="phone"
                                                 class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
-                                                name="phone" value="{{ old('phone') }}" required>
+                                                name="phone" value="{{$data->adminphone}}" required>
                                         </div>
                                     </div>
 
@@ -88,7 +106,7 @@
                                             <div class="input-group-addon"><i class="icon-layers"></i></div>
                                             <input id="nic" type="nic"
                                                 class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
-                                                name="nic" value="{{ old('nic') }}" required>
+                                                name="nic" value="{{$data->adminnic}}" required>
                                         </div>
                                     </div>
 
@@ -98,7 +116,7 @@
                                             <div class="input-group-addon"><i class="icon-location-pin"></i></div>
                                             <input id="address" type="address"
                                                 class="form-control{{ $errors->has('address') ? ' is-invalid' : '' }}"
-                                                name="address" value="{{ old('address') }}" required>
+                                                name="address" value="{{$data->adminaddress}}" required>
                                         </div>
                                     </div>
 
@@ -119,7 +137,7 @@
 															
 															<input type="text"
 																class="form-control"
-																name="name" required value="User" readonly>
+																required value="User" readonly>
 															
 												</div>
 											</div>
@@ -139,27 +157,11 @@
                                         </select>
                                     </div> --}}
 
-                                    <div class="form-group">
-                                        <label class="control-label mb-10 text-left">Password</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="icon-options"></i></div>
-                                            <input id="password" type="password"
-                                                class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}"
-                                                name="password" required>
-                                        </div>
-                                    </div>
+                            
 
-                                    <div class="form-group">
-                                        <label class="control-label mb-10 text-left">Re Enter Password</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="icon-options"></i></div>
-                                            <input id="password-confirm" type="password" class="form-control"
-                                                name="password_confirmation" required>
-                                        </div>
-                                    </div>
+                            
 
-                                    <button type="submit" class="btn btn-success mr-10">Submit</button>
-                                    <button type="reset" class="btn btn-default">Reset</button>
+                                    <button type="submit" class="btn btn-success mr-10">Update</button>
 
 
                                 </form>

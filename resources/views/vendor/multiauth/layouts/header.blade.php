@@ -332,7 +332,7 @@
                     <i class="zmdi zmdi-more"></i>
                 </li>
                 <li>
-                    <a href="home">
+                    <a href="{{route('admin.home')}}">
                         <div class="pull-left"><i class="zmdi zmdi-landscape mr-20"></i><span
                                 class="right-nav-text">Dashboard</span></div>
                         <div class="clearfix"></div>
@@ -349,16 +349,16 @@
                     </a>
                     <ul id="users" class="collapse collapse-level-1">
                         <li>
-                            <a href="register">Add Users</a>
+                            <a href="{{route('admin.register')}}">Add Users</a>
                         </li>
                         <li>
-                            <a href="viewuser">Manage Users</a>
+                            <a href="{{route('viewuser')}}">Manage Users</a>
                         </li>
                     </ul>
                 </li>
 
                 <li>
-                    <a href="routes">
+                    <a href="{{route('admin.routes')}}">
                         <div class="pull-left"><i class="zmdi zmdi-map mr-20"></i><span
                                 class="right-nav-text">Routes</span></div>
                         <div class="clearfix"></div>
@@ -375,7 +375,7 @@
                     </a>
                     <ul id="customers" class="collapse collapse-level-1">
                         <li>
-                            <a href="addcustomer">Add Customers</a>
+                            <a href="{{route('admin.addcustomers')}}">Add Customers</a>
                         </li>
                         <li>
                             <a href="calendar.html">Manage Coustomers</a>
