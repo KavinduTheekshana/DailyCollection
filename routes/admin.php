@@ -47,7 +47,7 @@ Route::get('/addcustomers', 'CustomerController@addcustomers')->name('admin.addc
 
 Route::get('/routes', 'RoutesController@show')->name('admin.routes');
 
-Route::get('/holidays', 'HolidaysController@add')->name('admin.holidays');
+Route::get('/holidays', 'HolidaysController@show')->name('admin.holidays');
 
 Route::get('/viewuser', 'UserController@viewuser')->name('viewuser');
 

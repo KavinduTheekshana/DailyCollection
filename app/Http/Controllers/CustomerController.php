@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Admin;
+use App\Route;
 
 class CustomerController extends Controller
 {
@@ -28,5 +29,11 @@ class CustomerController extends Controller
         //  dd($admin);
          $admin->save();
          return redirect('viewuser')->with('status', 'User Details Update Sucessfully');
+      }
+
+      public function addcustomers()
+      {
+          $data = Route::all();
+          return view('vendor.multiauth.admin.addcustomer',['data'=>$data]);
       }
 }

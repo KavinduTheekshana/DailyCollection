@@ -4,16 +4,16 @@ namespace Bitfumes\Multiauth\Http\Controllers;
 
 use Bitfumes\Multiauth\Model\Admin;
 use Illuminate\Http\Request;
-// use App\Admin;
 use Illuminate\Routing\Controller;
+use App\Holiday;
 
 class HolidaysController extends Controller
 {
     
-    public function add()
+    public function show()
     {
-        $data = Admin::all();
-        return view('vendor.multiauth.admin.usersview',['data'=>$data]);
+        $data = Holiday::all();
+        return view('vendor.multiauth.admin.holiday',['data'=>$data]);
     }
 
 }

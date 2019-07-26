@@ -384,7 +384,7 @@
                 </li>
 
                 <li>
-                        <a href="holidays">
+                        <a href="{{route('admin.holidays')}}">
                             <div class="pull-left"><i class="zmdi zmdi-calendar mr-20"></i><span
                                     class="right-nav-text">Holidays</span></div>
                             <div class="clearfix"></div>

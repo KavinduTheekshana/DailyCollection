@@ -19,9 +19,11 @@ Route::get('/', function () {
 Route::post('/addusers','UserController@addusers');
 Route::get('/viewuser', 'UserController@viewuser')->name('viewuser');
 Route::get('/updateuser/{id}','UserController@updateuser');
+Route::get('/addcustomers', 'CustomerController@addcustomers')->name('admin.addcustomers');
 
 
 Route::post('/addroute','RoutesController@addroute');
+Route::post('/addholiday','HolidaysController@addholiday');
 Route::post('/editcoustomer','CustomerController@editcoustomer');
 
 
@@ -29,3 +31,4 @@ Route::post('/editcoustomer','CustomerController@editcoustomer');
 
 Route::get('deleteroute/{id}','RoutesController@deleteroute');
 Route::get('deleteuser/{id}','UserController@deleteuser');
+Route::get('deleteholidaty/{id}','HolidaysController@deleteholidaty');
