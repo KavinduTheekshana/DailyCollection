@@ -20,11 +20,12 @@ Route::post('/addusers','UserController@addusers');
 Route::get('/viewuser', 'UserController@viewuser')->name('viewuser');
 Route::get('/updateuser/{id}','UserController@updateuser');
 Route::get('/addcustomers', 'CustomerController@addcustomers')->name('admin.addcustomers');
+Route::post('/edituser','UserController@edituser');
 
 
 Route::post('/addroute','RoutesController@addroute');
 Route::post('/addholiday','HolidaysController@addholiday');
-Route::post('/editcoustomer','CustomerController@editcoustomer');
+Route::post('/submitcustomers','CustomerController@submitcustomers');
 
 
 

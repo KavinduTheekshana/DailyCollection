@@ -35,7 +35,7 @@
                         <div class="panel-body">
                             <div class="form-wrap">
 
-                                <form method="POST" action="{{action('CustomerController@editcoustomer')}}"
+                                <form method="POST" action="{{action('UserController@edituser')}}"
                                     enctype="multipart/form-data">
 
                                     @csrf

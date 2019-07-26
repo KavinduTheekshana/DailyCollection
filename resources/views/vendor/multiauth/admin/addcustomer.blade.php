@@ -36,8 +36,7 @@
 						<div class="panel-body">
 							<div class="form-wrap">
 
-								<form role="form" method="POST"
-									enctype="multipart/form-data">
+								<form role="form" method="POST" action="{{action('RoutesController@addroute')}}" enctype="multipart/form-data">
 
 									@csrf
 
@@ -49,17 +48,17 @@
 													<div class="input-group-addon"><i class="icon-user"></i></div>
 													<input id="name" type="text"
 														class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-														name="name" value="{{ old('name') }}" required autofocus>
+														name="cname" value="{{ old('name') }}" required autofocus>
 												</div>
 											</div>
 
 											<div class="col-sm-6">
 												<label class="control-label mb-10 text-left">NIC</label>
 												<div class="input-group">
-													<div class="input-group-addon"><i class="icon-user"></i></div>
+													<div class="input-group-addon"><i class="icon-layers"></i></div>
 													<input id="name" type="text"
 														class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-														name="name" value="{{ old('name') }}" required autofocus>
+														name="cnic" value="{{ old('name') }}" required autofocus>
 												</div>
 											</div>
 										</div>
@@ -68,10 +67,10 @@
 											<label class="control-label mb-10 text-left"
 												for="example-email">Address</label>
 											<div class="input-group">
-												<div class="input-group-addon"><i class="icon-user"></i></div>
+												<div class="input-group-addon"><i class="icon-location-pin"></i></div>
 												<input id="name" type="text"
 													class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-													name="name" value="{{ old('name') }}" required autofocus>
+													name="caddress" value="{{ old('name') }}" required autofocus>
 											</div>
 										</div>
 										<div class="form-group">
@@ -79,20 +78,22 @@
 												<div class="col-sm-6">
 													<label class="control-label mb-10 text-left">Mobile</label>
 													<div class="input-group">
-														<div class="input-group-addon"><i class="icon-user"></i></div>
+														<div class="input-group-addon"><i
+																class="icon-screen-smartphone"></i></div>
 														<input id="name" type="text"
 															class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-															name="name" value="{{ old('name') }}" required autofocus>
+															name="cmobile" value="{{ old('name') }}" required autofocus>
 													</div>
 												</div>
 
 												<div class="col-sm-6">
 													<label class="control-label mb-10 text-left">Lan Line</label>
 													<div class="input-group">
-														<div class="input-group-addon"><i class="icon-user"></i></div>
+														<div class="input-group-addon"><i class="icon-phone"></i></div>
 														<input id="name" type="text"
 															class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-															name="name" value="{{ old('name') }}" required autofocus>
+															name="clanline" value="{{ old('name') }}" required
+															autofocus>
 													</div>
 												</div>
 											</div>
@@ -101,7 +102,7 @@
 										<div class="form-group">
 											<label class="control-label mb-10 text-left"
 												for="example-email">Route</label>
-											<select class="form-control">
+											<select name="croute" class="form-control">
 												@foreach ($data as $item)
 												<option>{{$item->route}}</option>
 
@@ -110,21 +111,6 @@
 											</select>
 										</div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 									</div>
 							</div>
 						</div>
@@ -132,7 +118,7 @@
 
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Add First Guarator Details</h6>
+							<h6 class="panel-title txt-dark">Add First Guarantor Details</h6>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -145,18 +131,18 @@
 								<div class="input-group">
 									<div class="input-group-addon"><i class="icon-user"></i></div>
 									<input id="name" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="g1name" value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 
 							<div class="col-sm-6">
 								<label class="control-label mb-10 text-left">NIC</label>
 								<div class="input-group">
-									<div class="input-group-addon"><i class="icon-user"></i></div>
+									<div class="input-group-addon"><i class="icon-layers"></i></div>
 									<input id="name" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="g1nic" value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 						</div>
@@ -167,20 +153,20 @@
 							<div class="col-sm-6">
 								<label class="control-label mb-10 text-left">Mobile</label>
 								<div class="input-group">
-									<div class="input-group-addon"><i class="icon-user"></i></div>
+									<div class="input-group-addon"><i class="icon-screen-smartphone"></i></div>
 									<input id="name" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="g1mobile" value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 
 							<div class="col-sm-6">
 								<label class="control-label mb-10 text-left">Lan Line</label>
 								<div class="input-group">
-									<div class="input-group-addon"><i class="icon-user"></i></div>
+									<div class="input-group-addon"><i class="icon-phone"></i></div>
 									<input id="name" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="g1lanline" value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 						</div>
@@ -188,7 +174,7 @@
 					<br>
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Add Second Guarator Details</h6>
+							<h6 class="panel-title txt-dark">Add Second Guarantor Details</h6>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -201,18 +187,18 @@
 								<div class="input-group">
 									<div class="input-group-addon"><i class="icon-user"></i></div>
 									<input id="name" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="g2name" value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 
 							<div class="col-sm-6">
 								<label class="control-label mb-10 text-left">NIC</label>
 								<div class="input-group">
-									<div class="input-group-addon"><i class="icon-user"></i></div>
+									<div class="input-group-addon"><i class="icon-layers"></i></div>
 									<input id="name" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="g2nic" value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 						</div>
@@ -223,20 +209,20 @@
 							<div class="col-sm-6">
 								<label class="control-label mb-10 text-left">Mobile</label>
 								<div class="input-group">
-									<div class="input-group-addon"><i class="icon-user"></i></div>
+									<div class="input-group-addon"><i class="icon-screen-smartphone"></i></div>
 									<input id="name" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="g2mobile" value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 
 							<div class="col-sm-6">
 								<label class="control-label mb-10 text-left">Lan Line</label>
 								<div class="input-group">
-									<div class="input-group-addon"><i class="icon-user"></i></div>
+									<div class="input-group-addon"><i class="icon-phone"></i></div>
 									<input id="name" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="g2lanline" value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 						</div>
@@ -273,23 +259,33 @@
 
 					<div class="form-group">
 						<div class="row">
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<label class="control-label mb-10 text-left">Amount</label>
 								<div class="input-group">
 									<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
-									<input id="amount" placeholder="10,000 LKR"
-										type="number"
+									<input id="amount" placeholder="10,000 LKR" type="number"
 										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
 										value="{{ old('name') }}" required autofocus>
 								</div>
 							</div>
 
-							<div class="col-sm-6">
+							<div class="col-sm-4">
 								<label class="control-label mb-10 text-left">Installment</label>
 								<div class="input-group">
 									<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
 
 									<input id="installment" placeholder="10,000 LKR" type="number"
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
+										value="{{ old('name') }}" required autofocus>
+								</div>
+							</div>
+
+							<div class="col-sm-4">
+								<label class="control-label mb-10 text-left">Total Income</label>
+								<div class="input-group">
+									<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
+
+									<input id="totalincome" placeholder="10,000 LKR" type="number"
 										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
 										value="{{ old('name') }}" required autofocus>
 								</div>
@@ -308,7 +304,7 @@
 									<div class="input-group-addon"><i class="icon-calender"></i></div>
 									<input id="name" type="date"
 										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										value="{{ old('name') }}" autofocus>
 								</div>
 							</div>
 
@@ -318,7 +314,7 @@
 									<div class="input-group-addon"><i class="icon-calender"></i></div>
 									<input id="name" type="date"
 										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" required autofocus>
+										value="{{ old('name') }}" autofocus>
 								</div>
 							</div>
 						</div>
@@ -358,6 +354,7 @@
   var select=$( "#select" ).val();
   var texInputValue = $('#amount').val();
   var amount = parseInt(texInputValue) + parseInt((texInputValue*10)/100);
+  $('#totalincome').val(amount.toFixed(2));
   if (select=='daily') {
 	
 	var dailyamount = amount/60;

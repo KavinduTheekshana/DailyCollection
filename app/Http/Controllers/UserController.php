@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Admin;
+use App\Route;
 
 class UserController extends Controller
 {
@@ -51,6 +53,29 @@ class UserController extends Controller
       // $user = DB::table('users')->join('cities','users.city','=','cities.city_id')->where(['id'=>$ids])->first();
       // dd($data);
       return view('vendor.multiauth.admin.updateuser', ['data' => $data]);
+    }
+
+    public function edituser(Request $request){
+      $this->validate($request, [
+        'name' => ['required', 'string', 'max:255'],
+        'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+        'phone' => ['required','min:10','max:10'],
+        'nic' => ['required','min:9','max:12'],
+        'address' => ['required']
+        
+       ]);
+       $admin = new Admin();
+       $id=$request->input('id');
+       $admin = Admin::find($id);
+       $admin ->name= $request->input('name');
+       $admin->email = $request->input('email');
+       $admin->phone = $request->input('phone');
+       $admin->nic = $request->input('nic');
+       $admin->address = $request->input('address');
+       
+      //  dd($admin);
+       $admin->save();
+       return redirect('viewuser')->with('status', 'User Details Update Sucessfully');
     }
 
 }

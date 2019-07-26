@@ -8,13 +8,22 @@ use App\Route;
 
 class CustomerController extends Controller
 {
-    public function editcoustomer(Request $request){
+    public function submitcustomers(Request $request){
         $this->validate($request, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'phone' => ['required','min:10','max:10'],
-            'nic' => ['required','min:9','max:12'],
-            'address' => ['required']
+            'cname' => ['required', 'string', 'max:255'],
+            'g1name' => ['required', 'string', 'max:255'],
+            'g2name' => ['required', 'string', 'max:255'],
+            'cnic' => ['required','min:9','max:12'],
+            'g1nic' => ['required','min:9','max:12'],
+            'g2nic' => ['required','min:9','max:12'],
+            'address' => ['required'],
+            'cmobile' => ['required','min:10','max:10'],
+            'g1mobile' => ['required','min:10','max:10'],
+            'g2mobile' => ['required','min:10','max:10'],
+            'clanline' => ['required','min:10','max:10'],
+            'g1lanline' => ['required','min:10','max:10'],
+            'g2lanline' => ['required','min:10','max:10'],
+            'croute' => ['required']
           
          ]);
          $admin = new Admin();
