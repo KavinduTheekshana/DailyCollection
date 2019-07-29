@@ -20,12 +20,18 @@ Route::post('/addusers','UserController@addusers');
 Route::get('/viewuser', 'UserController@viewuser')->name('viewuser');
 Route::get('/updateuser/{id}','UserController@updateuser');
 Route::get('/addcustomers', 'CustomerController@addcustomers')->name('admin.addcustomers');
+Route::get('/managecustomers', 'CustomerController@managecustomers')->name('admin.managecustomers');
+Route::get('/blockcustomer/{id}','CustomerController@blockcustomer');
+Route::get('/unblockcustomer/{id}','CustomerController@unblockcustomer');
+Route::get('/deletecustomer/{id}','CustomerController@deletecustomer');
 Route::post('/edituser','UserController@edituser');
 
 
 Route::post('/addroute','RoutesController@addroute');
 Route::post('/addholiday','HolidaysController@addholiday');
+
 Route::post('/submitcustomers','CustomerController@submitcustomers');
+Route::post('/editcustomers','CustomerController@editcustomers');
 
 
 

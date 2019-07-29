@@ -35,7 +35,7 @@ class RegisterController extends Controller
      */
     public function redirectTo()
     {
-        return $this->redirectTo = route('viewuser');
+        return $this->redirectTo = route('admin.viewuser');
     }
 
     /**

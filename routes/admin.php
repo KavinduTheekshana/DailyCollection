@@ -49,7 +49,7 @@ Route::get('/routes', 'RoutesController@show')->name('admin.routes');
 
 Route::get('/holidays', 'HolidaysController@show')->name('admin.holidays');
 
-Route::get('/viewuser', 'UserController@viewuser')->name('viewuser');
+Route::get('/viewuser', 'UserController@viewuser')->name('admin.viewuser');
 
 Route::get('/updateuser/{id}','UserController@updateuser');
 

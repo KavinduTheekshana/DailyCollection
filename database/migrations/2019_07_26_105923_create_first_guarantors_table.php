@@ -16,10 +16,11 @@ class CreateFirstGuarantorsTable extends Migration
         Schema::create('first_guarantors', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
-            $table->string('nic')->unique();
+            $table->integer('nic');
             $table->string('mobile');
             $table->string('lanline');
             $table->integer('customerid');
+            $table->integer('customernic');
             $table->timestamps();
         });
     }

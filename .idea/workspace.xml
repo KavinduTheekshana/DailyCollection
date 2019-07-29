@@ -2,19 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="479826f1-7020-41ed-a48f-3f9c14262300" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/UserController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/CustomerController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/config/multiauth.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/multiauth.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_26_093932_create_customers_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_26_093932_create_customers_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_26_105923_create_first_guarantors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_26_105923_create_first_guarantors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_07_26_105944_create_second_guarantors_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_07_26_105944_create_second_guarantors_table.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/addcustomer.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/addcustomer.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/register.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/register.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/routes.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/routes.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/usersview.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/usersview.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/updateuser.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/updateuser.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/RegisterController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/RegisterController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/RoleController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/RoleController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/RoutesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/RoutesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/UserController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/UserController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Requests/AdminRequest.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Requests/AdminRequest.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -29,29 +26,46 @@
     </execution>
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/RegisterController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="799">
+            <state relative-caret-position="901">
               <caret line="60" selection-start-line="60" selection-end-line="60" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Requests/AdminRequest.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="444">
-              <caret line="37" selection-start-line="37" selection-end-line="37" />
+            <state relative-caret-position="121">
+              <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/fzaninotto/faker/src/Faker/Provider/PhoneNumber.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-867" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/vendor/symfony/http-kernel/EventListener/ValidateRequestListener.php">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/resources/views/vendor/multiauth/admin/register.blade.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="122">
+            <state relative-caret-position="612">
               <caret line="36" selection-start-line="36" selection-end-line="36" />
             </state>
           </provider>
@@ -279,6 +293,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
@@ -312,16 +327,17 @@
       <updated>1563932220523</updated>
       <workItem from="1563932223893" duration="2808000" />
       <workItem from="1564032766552" duration="1527000" />
+      <workItem from="1564210557981" duration="792000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4335000" />
+    <option name="totallyTimeSpent" value="5127000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22818792" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.23154363" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="npm" order="2" side_tool="true" />
       <window_info id="Favorites" order="3" side_tool="true" />
@@ -371,13 +387,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/vendor/multiauth/admin/register.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="122">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/helpers.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
@@ -394,17 +403,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/RegisterController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="799">
+        <state relative-caret-position="901">
           <caret line="60" selection-start-line="60" selection-end-line="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/vendor/multiauth/admin/register.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="612">
+          <caret line="36" selection-start-line="36" selection-end-line="36" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Requests/AdminRequest.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="444">
-          <caret line="37" selection-start-line="37" selection-end-line="37" />
+        <state relative-caret-position="121">
+          <caret line="18" column="5" selection-start-line="18" selection-start-column="5" selection-end-line="18" selection-end-column="5" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/fzaninotto/faker/src/Faker/Provider/PhoneNumber.php">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/laravel/framework/src/Illuminate/Foundation/Validation/ValidatesRequests.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-867" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/vendor/symfony/http-kernel/EventListener/ValidateRequestListener.php">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>

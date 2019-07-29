@@ -104,9 +104,10 @@
                                         <label class="control-label mb-10 text-left" for="example-email">NIC</label>
                                         <div class="input-group">
                                             <div class="input-group-addon"><i class="icon-layers"></i></div>
-                                            <input id="nic" type="nic"
+                                            <input id="nic" type="number"
                                                 class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
                                                 name="nic" value="{{$data->adminnic}}" required>
+                                                <span class="input-group-addon">V</span> 
                                         </div>
                                     </div>
 

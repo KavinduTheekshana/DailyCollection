@@ -76,7 +76,7 @@
                                         <label class="control-label mb-10 text-left" for="example-email">Phone</label>
                                         <div class="input-group">
                                             <div class="input-group-addon"><i class="icon-phone"></i></div>
-                                            <input id="phone" type="phone"
+                                            <input type="number"
                                                 class="form-control{{ $errors->has('phone') ? ' is-invalid' : '' }}"
                                                 name="phone" value="{{ old('phone') }}" required>
                                         </div>
@@ -84,12 +84,13 @@
 
                                     <div class="form-group">
                                         <label class="control-label mb-10 text-left" for="example-email">NIC</label>
-                                        <div class="input-group">
-                                            <div class="input-group-addon"><i class="icon-layers"></i></div>
-                                            <input id="nic" type="nic"
+                                        <div class="input-group"> <span class="input-group-addon"><i class="icon-layers"></i></span>
+                                            <input id="nic" type="number"
                                                 class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
                                                 name="nic" value="{{ old('nic') }}" required>
+                                            <span class="input-group-addon">V</span> 
                                         </div>
+                                        
                                     </div>
 
                                     <div class="form-group">

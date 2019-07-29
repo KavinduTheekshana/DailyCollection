@@ -378,7 +378,7 @@
                             <a href="{{route('admin.addcustomers')}}">Add Customers</a>
                         </li>
                         <li>
-                            <a href="calendar.html">Manage Coustomers</a>
+                            <a href="{{route('admin.managecustomers')}}">Manage Coustomers</a>
                         </li>
                     </ul>
                 </li>
