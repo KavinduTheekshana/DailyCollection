@@ -391,6 +391,14 @@
                         </a>
                     </li>
 
+                    <li>
+                            <a href="{{route('admin.transactions')}}">
+                                <div class="pull-left"><i class="zmdi zmdi-money mr-20"></i><span
+                                        class="right-nav-text">Transactions</span></div>
+                                <div class="clearfix"></div>
+                            </a>
+                        </li>
+
 
 
                
