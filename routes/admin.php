@@ -49,6 +49,8 @@ Route::get('/routes', 'RoutesController@show')->name('admin.routes');
 
 Route::get('/holidays', 'HolidaysController@show')->name('admin.holidays');
 
+Route::get('/transactions', 'TransactionsController@show')->name('admin.transactions');
+
 Route::get('/viewuser', 'UserController@viewuser')->name('admin.viewuser');
 
 Route::get('/updateuser/{id}','UserController@updateuser');

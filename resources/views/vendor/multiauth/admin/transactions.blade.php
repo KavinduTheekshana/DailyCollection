@@ -7,14 +7,14 @@
 		<!-- Title -->
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-				<h5 class="txt-dark">Add Customers</h5>
+				<h5 class="txt-dark">Add Transactions</h5>
 			</div>
 			<!-- Breadcrumb -->
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 				<ol class="breadcrumb">
 					<li><a href="index.html">Dashboard</a></li>
 					<li><a href="#"><span>Customers</span></a></li>
-					<li class="active"><span>Add Customers</span></li>
+					<li class="active"><span>Add Transactions</span></li>
 				</ol>
 			</div>
 			<!-- /Breadcrumb -->
@@ -27,7 +27,7 @@
 				<div class="panel panel-default card-view">
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Add Customers Details</h6>
+							<h6 class="panel-title txt-dark">Add Transactions Details</h6>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -44,25 +44,37 @@
 
 									<div class="form-group">
 										<div class="row">
+											<div class="col-sm-4">
+												<label class="control-label mb-10 text-left">NIC</label>
+												<div class="input-group"> <span class="input-group-addon"><i
+															class="icon-layers"></i></span>
+													<input id="nic" type="number"
+														class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
+														name="cnic" value="{{ old('nic') }}" required>
+													<span class="input-group-addon">V</span>
+												</div>
+											</div>
+											<div class="col-sm-2">
+												<label class="control-label mb-10 text-left">ID</label>
+												<div class="input-group"> <span class="input-group-addon"><i
+															class="icon-pin"></i></span>
+													<input id="nic" type="number"
+														class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
+														name="cnic" value="{{ old('nic') }}" readonly required>
+
+												</div>
+											</div>
 											<div class="col-sm-6">
 												<label class="control-label mb-10 text-left">Name</label>
 												<div class="input-group">
 													<div class="input-group-addon"><i class="icon-user"></i></div>
 													<input id="name" type="text"
 														class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-														name="cname" value="{{ old('name') }}" autofocus>
+														name="cname" value="{{ old('name') }}" readonly autofocus>
 												</div>
 											</div>
 
-											<div class="col-sm-6">
-												<label class="control-label mb-10 text-left">NIC</label>
-												<div class="input-group"> <span class="input-group-addon"><i class="icon-layers"></i></span>
-													<input id="nic" type="number"
-														class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
-														name="cnic" value="{{ old('nic') }}" required>
-													<span class="input-group-addon">V</span> 
-												</div>
-											</div>
+
 										</div>
 										<br>
 										<div class="form-group">
@@ -72,7 +84,7 @@
 												<div class="input-group-addon"><i class="icon-location-pin"></i></div>
 												<input id="name" type="text"
 													class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-													name="caddress" value="{{ old('name') }}" autofocus>
+													name="caddress" value="{{ old('name') }}" autofocus readonly>
 											</div>
 										</div>
 										<div class="form-group">
@@ -84,7 +96,7 @@
 																class="icon-screen-smartphone"></i></div>
 														<input id="name" type="text"
 															class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-															name="cmobile" value="{{ old('name') }}" autofocus>
+															name="cmobile" value="{{ old('name') }}" autofocus readonly>
 													</div>
 												</div>
 
@@ -94,7 +106,8 @@
 														<div class="input-group-addon"><i class="icon-phone"></i></div>
 														<input id="name" type="text"
 															class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-															name="clanline" value="{{ old('name') }}" autofocus>
+															name="clanline" value="{{ old('name') }}" autofocus
+															readonly>
 													</div>
 												</div>
 											</div>
@@ -103,7 +116,9 @@
 										<div class="form-group">
 											<label class="control-label mb-10 text-left"
 												for="example-email">Route</label>
-											<select name="croute" class="form-control">
+										
+											<select  class="form-control select2">
+													
 												@foreach ($data as $item)
 												<option>{{$item->route}}</option>
 
@@ -139,11 +154,12 @@
 
 							<div class="col-sm-6">
 								<label class="control-label mb-10 text-left">NIC</label>
-								<div class="input-group"> <span class="input-group-addon"><i class="icon-layers"></i></span>
+								<div class="input-group"> <span class="input-group-addon"><i
+											class="icon-layers"></i></span>
 									<input id="nic" type="number"
-										class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
-										name="g1nic" value="{{ old('nic') }}" required>
-									<span class="input-group-addon">V</span> 
+										class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="g1nic"
+										value="{{ old('nic') }}" required>
+									<span class="input-group-addon">V</span>
 								</div>
 							</div>
 						</div>
@@ -195,11 +211,12 @@
 
 							<div class="col-sm-6">
 								<label class="control-label mb-10 text-left">NIC</label>
-								<div class="input-group"> <span class="input-group-addon"><i class="icon-layers"></i></span>
+								<div class="input-group"> <span class="input-group-addon"><i
+											class="icon-layers"></i></span>
 									<input id="nic" type="number"
-										class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
-										name="g2nic" value="{{ old('nic') }}" required>
-									<span class="input-group-addon">V</span> 
+										class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="g2nic"
+										value="{{ old('nic') }}" required>
+									<span class="input-group-addon">V</span>
 								</div>
 							</div>
 						</div>
