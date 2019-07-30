@@ -16,19 +16,7 @@ $(document).ready(function(){
 /*****Ready function end*****/
 
 /*****Load function start*****/
-$(window).on("load",function(){
-	window.setTimeout(function(){
-		$.toast({
-			heading: 'Welcome to zapily',
-			text: 'Use the predefined ones, or specify a custom position object.',
-			position: 'bottom-left',
-			loaderBg:'#f8b32d',
-			icon: '',
-			hideAfter: 3500, 
-			stack: 6
-		});
-	}, 3000);
-});
+
 /*****Load function* end*****/
 
 /*****E-Charts function start*****/

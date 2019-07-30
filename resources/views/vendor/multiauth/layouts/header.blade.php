@@ -28,7 +28,7 @@
 
     <link href="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.css') }} " rel="stylesheet" type="text/css">
 
-    <link href="{{ asset('theame/vendors/bower_components/select2new/select2.min.css') }} " rel="stylesheet" type="text/css">
+    <link href="{{ asset('theame/vendors/bower_components/select2/dist/css/select2.min.css') }} " rel="stylesheet" type="text/css">
 
 
 
@@ -889,7 +889,7 @@
     <script src="{{ asset('theame/vendors/bower_components/jquery/dist/jquery.min.js') }}" defer></script>
 
     <!-- Bootstrap Core JavaScript -->
-    <script src="{{ asset('theame/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}" defer></script>
+    {{-- <script src="{{ asset('theame/vendors/bower_components/bootstrap/dist/js/bootstrap.min.js') }}" defer></script> --}}
 
     <!-- Data table JavaScript -->
     <script src="{{ asset('theame/vendors/bower_components/datatables/media/js/jquery.dataTables.min.js') }}" defer>
@@ -906,8 +906,8 @@
 
     <!-- Progressbar Animation JavaScript -->
     <script src="{{ asset('theame/vendors/bower_components/waypoints/lib/jquery.waypoints.min.js') }}" defer></script>
-    <script src="{{ asset('theame/vendors/bower_components/jquery.counterup/jquery.counterup.min.js') }}" defer>
-    </script>
+    {{-- <script src="{{ asset('theame/vendors/bower_components/jquery.counterup/jquery.counterup.min.js') }}" defer>
+    </script> --}}
 
     <!-- Fancy Dropdown JS -->
     <script src="{{ asset('theame/dist/js/dropdown-bootstrap-extended.js') }}" defer></script>
@@ -923,11 +923,11 @@
     defer></script> --}}
 
     <!-- EChartJS JavaScript -->
-    <script src="{{ asset('theame/vendors/bower_components/echarts/dist/echarts-en.min.js') }}" defer></script>
-    <script src="{{ asset('theame/vendors/echarts-liquidfill.min.js') }}" defer></script>
+    {{-- <script src="{{ asset('theame/vendors/bower_components/echarts/dist/echarts-en.min.js') }}" defer></script> --}}
+    {{-- <script src="{{ asset('theame/vendors/echarts-liquidfill.min.js') }}" defer></script> --}}
 
     <!-- Switchery JavaScript -->
-    <script src="{{ asset('theame/vendors/bower_components/switchery/dist/switchery.min.js') }}" defer></script>
+    {{-- <script src="{{ asset('theame/vendors/bower_components/switchery/dist/switchery.min.js') }}" defer></script> --}}
 
     <!-- Init JavaScript -->
     <script src="{{ asset('theame/dist/js/init.js') }}" defer></script>
@@ -935,9 +935,13 @@
 
     <script src="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.min.js') }}" defer></script>
 
-    <script src="{{ asset('theame/vendors/bower_components/select2new/select2.min.js') }}" defer></script>
+    <script src="{{ asset('theame/vendors/bower_components/select2/select2.min.js') }}" defer></script>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <script src="{{ asset('theame/vendors/bower_components/select2/dist/js/select2.full.min.js') }}" defer></script>
+
+    <script src="{{ asset('theame/dist/js/form-advance-data.js') }}" defer></script>
 
 
 </script>
