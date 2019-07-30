@@ -36,8 +36,12 @@
 						<div class="panel-body">
 							<div class="form-wrap">
 
-								<form role="form" method="POST"
+								{{-- <form role="form" method="POST"
 									action="{{action('CustomerController@submitcustomers')}}"
+									enctype="multipart/form-data"> --}}
+
+									<form role="form" method="POST"
+									action="{{action('CustomerController@valid_nic')}}"
 									enctype="multipart/form-data">
 
 									@csrf
@@ -48,12 +52,28 @@
 												<label class="control-label mb-10 text-left">NIC</label>
 												<div class="input-group"> <span class="input-group-addon"><i
 															class="icon-layers"></i></span>
-													<input id="nic" type="number"
+
+													{{-- <select class="form-control select2">
+														@foreach ($customer as $item)
+														<option>{{$item->nic}}</option>
+													@endforeach
+													</select> --}}
+
+													
+												
+
+													<input id="nic" type="text"
 														class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
-														name="cnic" value="{{ old('nic') }}" required>
+														name="nic" value="{{ old('nic') }}" required>
+
 													<span class="input-group-addon">V</span>
+													<span id="message" style="color:red"></span>
 												</div>
 											</div>
+											<button type="submit" class="btn btn-success mr-10">Submit</button>
+
+										</form>
+										<form>
 											<div class="col-sm-2">
 												<label class="control-label mb-10 text-left">ID</label>
 												<div class="input-group"> <span class="input-group-addon"><i
@@ -116,10 +136,10 @@
 										<div class="form-group">
 											<label class="control-label mb-10 text-left"
 												for="example-email">Route</label>
-										
-											<select  class="form-control select2">
-													
-												@foreach ($data as $item)
+
+											<select class="form-control select2">
+
+												@foreach ($route as $item)
 												<option>{{$item->route}}</option>
 
 												@endforeach
@@ -283,7 +303,7 @@
 									<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
 									<input id="amount" placeholder="10,000 LKR" type="number"
 										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" autofocus>
+										value="{{ old('name') }}" autofocus required>
 								</div>
 							</div>
 
@@ -384,5 +404,45 @@
   
 });
 
+	</script>
+
+	<script>
+		$.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         }
+});
+
+const xCsrfToken = "{{ csrf_token() }}";
+
+jQuery(document).ready(function($) {
+//   const xCsrfToken = "{{ csrf_token() }}";
+$("#inputNic").change(function() {
+  
+    $.ajax({
+        type: "POST",
+        url: 'customer/valid_nic',
+        data: {nic:$('#cnic').val()},
+        headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+         },
+        success:function(data){
+          if(data=="Blocked User"){
+          document.getElementById("cnic").style.borderColor = "red";
+          document.getElementById('message').innerHTML=data;
+          }
+
+          else{
+          document.getElementById("cnic").style.borderColor = "green";
+          document.getElementById('message').innerHTML="Valid User";
+          document.getElementById('message').style.color="green";
+          }
+          
+        },
+        error:function(data){
+          alert('Error Loading');
+        }
+    });
+});
 	</script>
 	@endsection
