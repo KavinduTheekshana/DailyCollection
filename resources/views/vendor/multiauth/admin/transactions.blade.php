@@ -137,7 +137,7 @@
 											<label class="control-label mb-10 text-left"
 												for="example-email">Route</label>
 
-											<select class="form-control select2">
+											<select id="country" class="form-control">
 
 												@foreach ($route as $item)
 												<option>{{$item->route}}</option>
@@ -445,4 +445,16 @@ $("#inputNic").change(function() {
     });
 });
 	</script>
+
+
+
+
+<script>
+$("#country").select2( {
+ placeholder: "Select Country",
+ allowClear: true
+ } );
+</script>
+
+
 	@endsection

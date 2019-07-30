@@ -28,6 +28,8 @@
 
     <link href="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.css') }} " rel="stylesheet" type="text/css">
 
+    <link href="{{ asset('theame/vendors/bower_components/select2new/select2.min.css') }} " rel="stylesheet" type="text/css">
+
 
 
 
@@ -933,7 +935,12 @@
 
     <script src="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.min.js') }}" defer></script>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="{{ asset('theame/vendors/bower_components/select2new/select2.min.js') }}" defer></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+
+</script>
 </body>
 
 </html>
