@@ -40,5 +40,7 @@ Route::get('deleteroute/{id}','RoutesController@deleteroute');
 Route::get('deleteuser/{id}','UserController@deleteuser');
 Route::get('deleteholidaty/{id}','HolidaysController@deleteholidaty');
 
-Route::post('customer/valid_nic','CustomerController@valid_nic')->name('valid_nic');
-// Route::post('valid_nic','CustomerController@valid_nic')->name('valid_nic');
+// Route::post('customer/valid_nic','CustomerController@valid_nic')->name('valid_nic');
+// Route::POST('valid_nic','CustomerController@valid_nic')->name('valid_nic');
+
+Route::get('/routes', 'RoutesController@show')->name('admin.routes');

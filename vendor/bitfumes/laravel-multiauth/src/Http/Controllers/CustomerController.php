@@ -18,6 +18,29 @@ class CustomerController extends Controller
         return view('vendor.multiauth.admin.addcustomer',['data'=>$data]);
     }
 
+
+
+    public function valid_nic($nic){
+        // $nic=$request->nic;
+        // $status;
+        // $isavalible=DB::table('customers')->where('nic',$nic)->first();
+        // $checkstatus=DB::table('customers')->where('nic',$nic)->first();
+
+        // if(!empty($isavalible)){
+        //     if($checkstatus->status){
+        //         $status='1';   
+        //     }else{
+        //         $status='0';  
+        //     }
+            
+        // }else{
+        //     $status="3";
+        // }
+        // return $status;
+
+        return "1";
+     }
+
     
     
 

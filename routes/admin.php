@@ -55,4 +55,6 @@ Route::get('/viewuser', 'UserController@viewuser')->name('admin.viewuser');
 
 Route::get('/updateuser/{id}','UserController@updateuser');
 
+// Route::POST('valid_nic','CustomerController@valid_nic')->name('valid_nic');
+
 

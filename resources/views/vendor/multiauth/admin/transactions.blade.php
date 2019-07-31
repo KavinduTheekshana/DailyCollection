@@ -48,37 +48,46 @@
 
 									<div class="form-group">
 										<div class="row">
-											<div class="col-sm-4">
+											<div class="col-sm-5">
 												<label class="control-label mb-10 text-left">NIC</label>
 												<div class="input-group"> <span class="input-group-addon"><i
 															class="icon-layers"></i></span>
 
 													<select name="cnic" id="cnic" class="form-control select2"
 														onchange="myFunction()">
-														<option>Select NIC</option>
+														<option value="none">Select NIC</option>
 														@foreach ($customer as $item)
-														<option>{{$item->nic}}</option>
+														<option value="{{$item->nic}}">{{$item->nic}}</option>
 														@endforeach
 													</select>
 
-													<script>
-														function myFunction() {
-															  var x = document.getElementById("cnic").value;
-														}
-													</script>
+
 
 
 													{{-- <input id="cnic" type="text"
 														class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
-													name="cnic" value="{{ old('nic') }}" required> --}}
+													name="cnic" value="{{ old('nic') }}" onkeydown="myFunction()" required> --}}
 
 													<span class="input-group-addon">V</span>
-													<span id="message" style="color:red"></span>
+													 
 												</div>
 											</div>
 
 
-											<div class="col-sm-2">
+											
+										
+
+
+										</div>
+										<span id="message" class="help-block"></span>
+
+<br>
+
+										<div class="row">
+										
+
+
+											<div class="col-sm-3">
 												<label class="control-label mb-10 text-left">ID</label>
 												<div class="input-group"> <span class="input-group-addon"><i
 															class="icon-pin"></i></span>
@@ -88,7 +97,7 @@
 
 												</div>
 											</div>
-											<div class="col-sm-6">
+											<div class="col-sm-9">
 												<label class="control-label mb-10 text-left">Name</label>
 												<div class="input-group">
 													<div class="input-group-addon"><i class="icon-user"></i></div>
@@ -100,6 +109,9 @@
 
 
 										</div>
+
+
+
 										<br>
 										<div class="form-group">
 											<label class="control-label mb-10 text-left"
@@ -407,89 +419,86 @@
   
 });
 
-	</script>
+// 	</script>
+
+// 	<script>
+// 		$.ajaxSetup({
+//       headers: {
+//           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+//          }
+// });
+
+// const xCsrfToken = "{{ csrf_token() }}";
+
+// 	jQuery(document).ready(function($) {
+// 	// const xCsrfToken = "{{ csrf_token() }}";
+// 	$("#cnic").change(function() {
+
+// 	alert("AJAX request successfully completed");
+
+// 	$.ajax({
+// 	type: "POST",
+// 	url: 'valid_nic',
+// 	data: {nic:$('#cnic').val()},
+// 	headers: {
+// 	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+// 	},
+// 	success:function(data){
+// 	if(data=="0"){
+// 	alert('Error Loading');
+// 	document.getElementById("cnic").style.borderColor = "red";
+// 	document.getElementById('message').innerHTML="Blocked";
+// 	}
+
+// 	else{
+// 	alert('Error Loading');
+// 	document.getElementById("cnic").style.borderColor = "green";
+// 	document.getElementById('message').innerHTML="Valid User";
+// 	document.getElementById('message').style.color="green";
+// 	}
+
+// 	},
+// 	error:function(data){
+// 	alert('Error Loading');
+// 	}
+// 	});
+// 	});
+// 	</script>
+
 
 	<script>
 		$.ajaxSetup({
       headers: {
           'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         }
-});
-
+		 }
+		});
 const xCsrfToken = "{{ csrf_token() }}";
-
-jQuery(document).ready(function($) {
-//   const xCsrfToken = "{{ csrf_token() }}";
-$("#cnic").change(function() {
-
-	alert("AJAX request successfully completed");
-  
-    $.ajax({
-        type: "POST",
-        url: 'customer/valid_nic',
-        data: {nic:$('#cnic').val()},
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         },
-        success:function(data){
-          if(data=="0"){
-          document.getElementById("cnic").style.borderColor = "red";
-          document.getElementById('message').innerHTML="Blocked";
-          }
-
-          else{
-          document.getElementById("cnic").style.borderColor = "green";
-          document.getElementById('message').innerHTML="Valid User";
-          document.getElementById('message').style.color="green";
-          }
-          
-        },
-        error:function(data){
-          alert('Error Loading');
-        }
-    });
-});
-	</script>
-
-
-	<script>
-
-			$.ajaxSetup({
-      headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         }
-});
-
-const xCsrfToken = "{{ csrf_token() }}";
-
-
 		function myFunction() {
 			var x = document.getElementById("cnic").value;
-
 			$.ajax({
-        type: "POST",
-        url: 'customer/valid_nic',
-        data: {nic:$('#cnic').val()},
-        headers: {
-          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-         },
-        success:function(data){
-          if(data=="0"){
-          document.getElementById("cnic").style.borderColor = "red";
-          document.getElementById('message').innerHTML="Blocked";
-          }
-
-          else{
-          document.getElementById("cnic").style.borderColor = "green";
-          document.getElementById('message').innerHTML="Valid User";
-          document.getElementById('message').style.color="green";
-          }
-          
-        },
-        error:function(data){
-          alert('Error Loading');
-        }
-    });
-		}
+	type: "GET",
+	url: 'http://127.0.0.1:8000/api/valid_nic',
+	data: {nic:$('#cnic').val()},
+	headers: {
+	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+	},
+	success:function(data){
+	if(data=="1"){
+	document.getElementById("message").style.color="#28A745";
+	document.getElementById('message').innerHTML="Valied Customer";
+	}
+	else if(data=="0"){
+	document.getElementById("message").style.color = "#DC3545";
+	document.getElementById('message').innerHTML="Blocked Customer";
+	}
+	else{
+	document.getElementById('message').innerHTML="This Customer Is Not In Your Database";
+	document.getElementById('message').style.color="#FFC107";
+	}
+	},
+	error:function(data){
+	alert('Error Loading');
+	}
+	});}
 	</script>
 	@endsection

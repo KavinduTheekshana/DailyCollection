@@ -111,7 +111,7 @@
 										<th class="text-center">Actions</th>
 									</tr>
 								</thead>
-								<tbody style="text-align: center">
+								<tbody style="text-align: center" id="tableData">
 									@foreach($data as $item)
 									<tr class="item{{$item->id}}">
 										<td>{{$item->id}}</td>
@@ -124,6 +124,7 @@
 										</td>
 									</tr>
 									@endforeach
+
 								</tbody>
 							</table>
 						</div>
@@ -137,6 +138,44 @@
 </div>
 
 <script>
+	// doLoadAll();
+
+	// function doLoadAll(){
+
+	// 	document.getElementById("tableData").innerHTML="";
+
+	// 	var jsonarray=<?php echo($data)?>;
+	// for(var i=0;i<jsonarray.length;i++){
+		
+	// 	var objectData=jsonarray[i];
+		
+	// 	var maintr=document.createElement("tr");
+	// 	maintr.setAttribute("class","item"+objectData.id);
+
+	// 	var td1=document.createElement("td");
+	// 	td1.innerHTML=objectData.id;
+
+	// 	var td2=document.createElement("td");
+	// 	td2.innerHTML=objectData.route;
+
+	// 	var td3=document.createElement("td");
+
+	// 	var btn1=document.createElement("button");
+	// 	btn1.className="btn btn-danger";
+	// 	btn1.innerHTML="Delete";
+	// 	btn1.setAttribute("style","padding: 6px 12px");
+	// 	btn1.setAttribute("onclick","deleteData("+objectData.id+")");
+
+	// 	maintr.appendChild(td1);
+	// 	maintr.appendChild(td2);
+	// 	td3.appendChild(btn1);
+	// 	maintr.appendChild(td3);
+
+	// 	document.getElementById("tableData").appendChild(maintr);
+	// }
+	// }
+
+
 	$.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -166,7 +205,7 @@ swal({
                                 type : "success",
                             },
                             function(isConfirm){ 
-                                location.reload();
+								location.reload();
                             });
                         },
                         error : function(){

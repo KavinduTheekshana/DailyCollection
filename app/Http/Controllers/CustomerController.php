@@ -144,31 +144,23 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
-    public function valid_nic($nic){
-        // $nic=$request->nic;
+    public function valid_nic(Request $request){
+        $nic=$request->input('nic');
         $status;
         $isavalible=DB::table('customers')->where('nic',$nic)->first();
-        // dd($isavalible->status);
-        $checkstatus=DB::table('customers')->where('nic',$nic)->first();
 
         if(!empty($isavalible)){
-            if($checkstatus->status){
+            if($isavalible->status){
                 $status='1';   
             }else{
                 $status='0';  
             }
             
         }else{
-            $status="3";
+            $status="2";
         }
         return $status;
      }
 
-    //  function isBlockUser($nic){
-    //     $block_users=DB::select('select id from customers where nic=?',[$nic]);
-    //     if(!empty($block_users))
-    //      return "Blocked User";
-    //     else
-    //      return "";
-    // }
+
 }

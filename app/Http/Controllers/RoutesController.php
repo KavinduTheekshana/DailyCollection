@@ -26,4 +26,10 @@ class RoutesController extends Controller
         return redirect()->back();
       }
 
+      public function show()
+      {
+          $data = Route::all();
+          return view('vendor.multiauth.admin.routes',['data'=>$data]);
+      }
+
 }
