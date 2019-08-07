@@ -2,10 +2,13 @@
 
 namespace Bitfumes\Multiauth\Http\Controllers;
 
+use App\Route;
+use Auth;
 use Bitfumes\Multiauth\Http\Requests\AdminRequest;
 use Bitfumes\Multiauth\Model\Admin;
 use Bitfumes\Multiauth\Model\Role;
 use Bitfumes\Multiauth\Notifications\RegistrationNotification;
+use DB;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
@@ -22,7 +25,7 @@ class RegisterController extends Controller
     | validation and creation. By default this controller uses a trait to
     | provide this functionality without requiring any additional code.
     |
-    */
+     */
 
     use RegistersUsers;
 
@@ -52,8 +55,9 @@ class RegisterController extends Controller
     public function showRegistrationForm()
     {
         $roles = Role::all();
-
-        return view('multiauth::admin.register', compact('roles'));
+        $id = Auth::user()->id;
+        $profile = DB::table('admins')->where(['id' => $id])->first();
+        return view('multiauth::admin.register', compact('roles', 'profile'));
     }
 
     public function register(AdminRequest $request)
@@ -74,7 +78,7 @@ class RegisterController extends Controller
     {
         $admin = new Admin();
 
-        $fields           = $this->tableFields();
+        $fields = $this->tableFields();
         $data['password'] = bcrypt($data['password']);
         foreach ($fields as $field) {
             if (isset($data[$field])) {

@@ -2,7 +2,9 @@
 
 namespace Bitfumes\Multiauth\Http\Controllers;
 
+use Auth;
 use Bitfumes\Multiauth\Model\Admin;
+use DB;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -16,18 +18,24 @@ class AdminController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->middleware('role:super', ['only'=>'show']);
+        $this->middleware('role:super', ['only' => 'show']);
     }
 
     public function index()
     {
-        return view('multiauth::admin.home');
+        $id = Auth::user()->id;
+        $profile = DB::table('admins')->where(['id' => $id])->first();
+        $totalcustomers = DB::table('customers')->count();
+        return view('multiauth::admin.home', ['totalcustomers' => $totalcustomers, 'profile' => $profile]);
+        // return view('multiauth::admin.home');
     }
 
     public function show()
     {
+        // $totalcustomers = DB::table('customers')->count();
         $admins = Admin::where('id', '!=', auth()->id())->get();
         return view('multiauth::admin.show', compact('admins'));
+        // return view('multiauth::admin.show', ['admins' => $admins, 'totalcustomers' => $totalcustomers]);
     }
 
     public function showChangePasswordForm()
@@ -38,13 +46,12 @@ class AdminController extends Controller
     public function changePassword(Request $request)
     {
         $data = $request->validate([
-            'oldPassword'   => 'required',
-            'password'      => 'required|confirmed',
+            'oldPassword' => 'required',
+            'password' => 'required|confirmed',
         ]);
         auth()->user()->update(['password' => bcrypt($data['password'])]);
 
         return redirect(route('admin.home'))->with('message', 'Your password is changed successfully');
     }
 
-   
 }

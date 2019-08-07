@@ -2,13 +2,11 @@
 
 namespace Bitfumes\Multiauth\Http\Controllers;
 
-use App\Customer;
-use App\Route;
 use Auth;
 use DB;
 use Illuminate\Routing\Controller;
 
-class TransactionsController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -21,13 +19,12 @@ class TransactionsController extends Controller
         $this->middleware('role:super', ['only' => 'show']);
     }
 
-    public function show()
+    public function index()
     {
-        $route = Route::all();
-        $customer = Customer::all();
         $id = Auth::user()->id;
         $profile = DB::table('admins')->where(['id' => $id])->first();
-        return view('vendor.multiauth.admin.transactions', ['route' => $route, 'customer' => $customer, 'profile' => $profile]);
+        return view('multiauth::admin.profile', ['profile' => $profile]);
+        // return view('multiauth::admin.home');
     }
 
 }

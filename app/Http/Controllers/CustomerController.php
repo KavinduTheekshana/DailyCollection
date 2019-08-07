@@ -6,11 +6,23 @@ use App\Customer;
 use App\FirstGuarantor;
 use App\Route;
 use App\SecondGuarantor;
+use Auth;
 use DB;
 use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+        $this->middleware('role:super', ['only' => 'show']);
+    }
 
     public function submitcustomers(Request $request)
     {
@@ -92,13 +104,17 @@ class CustomerController extends Controller
     public function addcustomers()
     {
         $data = Route::all();
-        return view('vendor.multiauth.admin.addcustomer', ['data' => $data]);
+        $id = Auth::user()->id;
+        $profile = DB::table('admins')->where(['id' => $id])->first();
+        return view('vendor.multiauth.admin.addcustomer', ['data' => $data, 'profile' => $profile]);
     }
 
     public function managecustomers()
     {
         $data = Customer::all();
-        return view('vendor.multiauth.admin.viewcustomer', ['data' => $data]);
+        $id = Auth::user()->id;
+        $profile = DB::table('admins')->where(['id' => $id])->first();
+        return view('vendor.multiauth.admin.viewcustomer', ['data' => $data, 'profile' => $profile]);
     }
 
     public function blockcustomer($id)
@@ -144,25 +160,25 @@ class CustomerController extends Controller
         return redirect()->back();
     }
 
-    public function valid_nic(Request $request){
-        $nic=$request->input('nic');
+    public function valid_nic(Request $request)
+    {
+        $nic = $request->input('nic');
         $status;
-        $isavalible=DB::table('customers')->where('nic',$nic)->first();
+        $isavalible = DB::table('customers')->where('nic', $nic)->first();
 
-        if(!empty($isavalible)){
-            if($isavalible->status){
-                return response()->json($isavalible);   
-            }else{
+        if (!empty($isavalible)) {
+            if ($isavalible->status) {
+                return response()->json($isavalible);
+            } else {
                 return '0';
-                // $status='0';  
+                // $status='0';
             }
-            
-        }else{
+
+        } else {
             return '2';
             // $status="2";
         }
-        
-     }
 
+    }
 
 }

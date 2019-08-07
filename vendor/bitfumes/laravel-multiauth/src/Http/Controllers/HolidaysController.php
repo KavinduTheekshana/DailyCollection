@@ -2,18 +2,29 @@
 
 namespace Bitfumes\Multiauth\Http\Controllers;
 
-use Bitfumes\Multiauth\Model\Admin;
-use Illuminate\Http\Request;
-use Illuminate\Routing\Controller;
 use App\Holiday;
+use Auth;
+use Illuminate\Routing\Controller;
 
 class HolidaysController extends Controller
 {
-    
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+        $this->middleware('role:super', ['only' => 'show']);
+    }
+
     public function show()
     {
         $data = Holiday::all();
-        return view('vendor.multiauth.admin.holiday',['data'=>$data]);
+        $id = Auth::user()->id;
+        $profile = DB::table('admins')->where(['id' => $id])->first();
+        return view('vendor.multiauth.admin.holiday', ['data' => $data, 'profile' => $profile]);
     }
 
 }

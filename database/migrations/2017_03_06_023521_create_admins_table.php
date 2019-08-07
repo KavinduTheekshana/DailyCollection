@@ -20,6 +20,7 @@ class CreateAdminsTable extends Migration
             $table->string('phone')->unique();
             $table->string('nic')->unique();
             $table->string('address');
+            $table->string('profilepic')->default('uploads\default.jpg');
             $table->string('password');
             $table->boolean('active')->default(1);
             $table->rememberToken();

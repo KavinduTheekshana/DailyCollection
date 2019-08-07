@@ -53,8 +53,8 @@ Route::get('/transactions', 'TransactionsController@show')->name('admin.transact
 
 Route::get('/viewuser', 'UserController@viewuser')->name('admin.viewuser');
 
-Route::get('/updateuser/{id}','UserController@updateuser');
+Route::get('/updateuser/{id}', 'UserController@updateuser');
 
 // Route::POST('valid_nic','CustomerController@valid_nic')->name('valid_nic');
 
-
+Route::get('/profile', 'ProfileController@index')->name('admin.profile');

@@ -29,6 +29,9 @@
     <link href="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.css') }} " rel="stylesheet"
         type="text/css">
 
+
+    <link href="" rel="stylesheet" type="text/css">
+
     <link href="{{ asset('theame/vendors/bower_components/select2/dist/css/select2.min.css') }} " rel="stylesheet"
         type="text/css">
 
@@ -268,40 +271,26 @@
                         </ul>
                     </li> --}}
                     <li class="dropdown auth-drp">
-                        <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="../img/user1.png"
-                                alt="user_auth" class="user-auth-img img-circle" /><span
+                        <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img
+                                src="{{$profile->profilepic}}" alt="user_auth" class="user-auth-img img-circle" /><span
                                 class="user-online-status"></span></a>
                         <ul class="dropdown-menu user-auth-dropdown" data-dropdown-in="flipInX"
                             data-dropdown-out="flipOutX">
                             <li>
-                                <a href="profile.html"><i class="zmdi zmdi-account"></i><span>Profile</span></a>
+                                <a href="{{route('admin.profile')}}"><i
+                                        class="zmdi zmdi-account"></i><span>Profile</span></a>
                             </li>
                             <li>
                                 <a href="#"><i class="zmdi zmdi-card"></i><span>my balance</span></a>
                             </li>
                             <li>
-                                <a href="inbox.html"><i class="zmdi zmdi-email"></i><span>Inbox</span></a>
+                                <a href="inbox.html"><i class="zmdi zmdi-assignment"></i><span>Reports</span></a>
                             </li>
-                            <li>
-                                <a href="#"><i class="zmdi zmdi-settings"></i><span>Settings</span></a>
-                            </li>
+
                             <li class="divider"></li>
                             <li class="sub-menu show-on-hover">
                                 <a href="#" class="dropdown-toggle pr-0 level-2-drp"><i
                                         class="zmdi zmdi-check text-success"></i> available</a>
-                                <ul class="dropdown-menu open-left-side">
-                                    <li>
-                                        <a href="#"><i
-                                                class="zmdi zmdi-check text-success"></i><span>available</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i class="zmdi zmdi-circle-o text-warning"></i><span>busy</span></a>
-                                    </li>
-                                    <li>
-                                        <a href="#"><i
-                                                class="zmdi zmdi-minus-circle-outline text-danger"></i><span>offline</span></a>
-                                    </li>
-                                </ul>
                             </li>
                             <li class="divider"></li>
                             <li>
@@ -870,7 +859,8 @@
         <footer class="footer container-fluid pl-30 pr-30">
             <div class="row">
                 <div class="col-sm-12">
-                    <p>201 &copy; KC Daily Collections. Powerd By : <a href="http://inovora.uk">Inovora Technologies</a>
+                    <p>2019 &copy; KC Daily Collections. Powerd By : <a href="http://inovora.uk">Inovora
+                            Technologies</a>
                     </p>
                 </div>
             </div>
@@ -944,7 +934,9 @@
     <script src="{{ asset('theame/dist/js/form-advance-data.js') }}" defer></script>
 
 
-    </script>
+
+
+    {{-- </script> --}}
 </body>
 
 </html>
