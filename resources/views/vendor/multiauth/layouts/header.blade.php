@@ -26,21 +26,21 @@
     <link href="{{ asset('theame/dist/css/style.css') }} " rel="stylesheet" type="text/css">
 
 
-    <link href="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.css') }} " rel="stylesheet" type="text/css">
+    <link href="{{ asset('theame/vendors/bower_components/sweetalert/dist/sweetalert.css') }} " rel="stylesheet"
+        type="text/css">
 
-    <link href="{{ asset('theame/vendors/bower_components/select2/dist/css/select2.min.css') }} " rel="stylesheet" type="text/css">
+    <link href="{{ asset('theame/vendors/bower_components/select2/dist/css/select2.min.css') }} " rel="stylesheet"
+        type="text/css">
 
 
 
 
 
     <script src="//code.jquery.com/jquery-1.12.3.js"></script>
-<script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
-<script
-    src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
+    <script src="//cdn.datatables.net/1.10.12/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.12/js/dataTables.bootstrap.min.js"></script>
 
-<link rel="stylesheet"
-    href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.12/css/dataTables.bootstrap.min.css">
 
 
 
@@ -85,7 +85,7 @@
             <div id="mobile_only_nav" class="mobile-only-nav pull-right">
                 <ul class="nav navbar-right top-nav pull-right">
                     <li>
-                        <a id="open_right_sidebar" href="#"><i class="zmdi zmdi-settings top-nav-icon"></i></a>
+                        {{-- <a id="open_right_sidebar" href="#"><i class="zmdi zmdi-settings top-nav-icon"></i></a> --}}
                     </li>
                     <li class="dropdown app-drp">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
@@ -96,39 +96,39 @@
                                 <div class="app-nicescroll-bar">
                                     <ul class="app-icon-wrap pa-10">
                                         <li>
-                                            <a href="weather.html" class="connection-item">
-                                                <i class="zmdi zmdi-cloud-outline txt-info"></i>
-                                                <span class="block">weather</span>
+                                            <a href="{{route('admin.home')}}" class="connection-item">
+                                                <i class="zmdi zmdi-landscape txt-success"></i>
+                                                <span class="block">Dashboard</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="inbox.html" class="connection-item">
-                                                <i class="zmdi zmdi-email-open txt-success"></i>
-                                                <span class="block">e-mail</span>
+                                            <a href="{{route('viewuser')}}" class="connection-item">
+                                                <i class="zmdi zmdi-account txt-info"></i>
+                                                <span class="block">Users</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="calendar.html" class="connection-item">
-                                                <i class="zmdi zmdi-calendar-check txt-primary"></i>
-                                                <span class="block">calendar</span>
+                                            <a href="{{route('admin.routes')}}" class="connection-item">
+                                                <i class="zmdi zmdi-map txt-primary"></i>
+                                                <span class="block">Routes</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="vector-map.html" class="connection-item">
-                                                <i class="zmdi zmdi-map txt-danger"></i>
-                                                <span class="block">map</span>
+                                            <a href="{{route('admin.managecustomers')}}" class="connection-item">
+                                                <i class="zmdi zmdi-assignment-account txt-danger"></i>
+                                                <span class="block">Customers</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="chats.html" class="connection-item">
-                                                <i class="zmdi zmdi-comment-outline txt-warning"></i>
-                                                <span class="block">chat</span>
+                                            <a href="{{route('admin.holidays')}}" class="connection-item">
+                                                <i class="zmdi zmdi-calendar txt-warning"></i>
+                                                <span class="block">Holidays</span>
                                             </a>
                                         </li>
                                         <li>
-                                            <a href="contact-card.html" class="connection-item">
-                                                <i class="zmdi zmdi-assignment-account"></i>
-                                                <span class="block">contact</span>
+                                            <a href="" class="connection-item">
+                                                <i class="zmdi zmdi-money"></i>
+                                                <span class="block">Transactions</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -137,7 +137,7 @@
                             <li>
                                 <div class="app-box-bottom-wrap">
                                     <hr class="light-grey-hr ma-0" />
-                                    <a class="block text-center read-all" href="javascript:void(0)"> more </a>
+                                    <a class="block text-center read-all" href="javascript:void(0)"> Close </a>
                                 </div>
                             </li>
                         </ul>
@@ -149,7 +149,7 @@
 
                         </ul>
                     </li>
-                    <li class="dropdown alert-drp">
+                    {{-- <li class="dropdown alert-drp">
                         <a href="#" class="dropdown-toggle" data-toggle="dropdown"><i
                                 class="zmdi zmdi-notifications top-nav-icon"></i><span
                                 class="top-nav-icon-badge">5</span></a>
@@ -266,7 +266,7 @@
                                 </div>
                             </li>
                         </ul>
-                    </li>
+                    </li> --}}
                     <li class="dropdown auth-drp">
                         <a href="#" class="dropdown-toggle pr-0" data-toggle="dropdown"><img src="../img/user1.png"
                                 alt="user_auth" class="user-auth-img img-circle" /><span
@@ -386,24 +386,24 @@
                 </li>
 
                 <li>
-                        <a href="{{route('admin.holidays')}}">
-                            <div class="pull-left"><i class="zmdi zmdi-calendar mr-20"></i><span
-                                    class="right-nav-text">Holidays</span></div>
-                            <div class="clearfix"></div>
-                        </a>
-                    </li>
+                    <a href="{{route('admin.holidays')}}">
+                        <div class="pull-left"><i class="zmdi zmdi-calendar mr-20"></i><span
+                                class="right-nav-text">Holidays</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
 
-                    <li>
-                            <a href="{{route('admin.transactions')}}">
-                                <div class="pull-left"><i class="zmdi zmdi-money mr-20"></i><span
-                                        class="right-nav-text">Transactions</span></div>
-                                <div class="clearfix"></div>
-                            </a>
-                        </li>
+                <li>
+                    <a href="{{route('admin.transactions')}}">
+                        <div class="pull-left"><i class="zmdi zmdi-money mr-20"></i><span
+                                class="right-nav-text">Transactions</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
 
 
 
-               
+
 
 
 
@@ -944,7 +944,7 @@
     <script src="{{ asset('theame/dist/js/form-advance-data.js') }}" defer></script>
 
 
-</script>
+    </script>
 </body>
 
 </html>

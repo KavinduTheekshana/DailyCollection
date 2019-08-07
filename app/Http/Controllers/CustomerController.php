@@ -151,15 +151,17 @@ class CustomerController extends Controller
 
         if(!empty($isavalible)){
             if($isavalible->status){
-                $status='1';   
+                return response()->json($isavalible);   
             }else{
-                $status='0';  
+                return '0';
+                // $status='0';  
             }
             
         }else{
-            $status="2";
+            return '2';
+            // $status="2";
         }
-        return $status;
+        
      }
 
 
