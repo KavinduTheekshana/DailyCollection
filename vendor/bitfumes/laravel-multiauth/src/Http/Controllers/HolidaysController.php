@@ -4,6 +4,7 @@ namespace Bitfumes\Multiauth\Http\Controllers;
 
 use App\Holiday;
 use Auth;
+use DB;
 use Illuminate\Routing\Controller;
 
 class HolidaysController extends Controller

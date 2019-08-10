@@ -403,7 +403,7 @@
 									<div class="input-group-addon"><i class="icon-calender"></i></div>
 									<input id="datepurchased" type="date"
 										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
-										name="datepurchased" value="{{ old('name') }}" autofocus>
+										name="datepurchased" id="datepurchased" value="{{ old('name') }}" autofocus>
 								</div>
 							</div>
 
@@ -439,6 +439,44 @@
 
 
 	<script>
+		$("#datepurchased").change(function() {
+  $.ajax({
+      type: "GET",
+      url: '../duedate',
+      data: {date:$('#datepurchased').val()},
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+       },
+      success:function(data){
+         alert(data);
+        // document.getElementById('date_due').type = 'date';
+        // document.getElementById('date_due').value=data;
+      },
+      error:function(data){
+        alert('Error');
+      }
+  });
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 		function cleardata(){
 
 			document.getElementById("amount").value = null;

@@ -43,3 +43,5 @@ Route::get('/routes', 'RoutesController@show')->name('admin.routes');
 Route::post('/updateprofilepic', 'ProfileController@updateprofilepic');
 Route::post('/updatepassword', 'ProfileController@updatepassword');
 Route::post('/updateprofiledetails', 'ProfileController@updateprofiledetails');
+
+Route::get('/duedate', 'TransactionsController@duedate');

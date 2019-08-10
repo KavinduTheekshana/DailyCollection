@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-    <title>Zapily I Fast build Admin dashboard for any platform</title>
+    <title>KC Daily Collection</title>
     <meta name="description" content="Zapily is a Dashboard & Admin Site Responsive Template by hencework." />
     <meta name="keywords"
         content="admin, admin dashboard, admin template, cms, crm, Zapily Admin, Zapilyadmin, premium admin templates, responsive admin, sass, panel, software, ui, visualization, web app, application" />
@@ -12,7 +12,7 @@
 
     <!-- Favicon -->
     <link rel="shortcut icon" href="favicon.ico">
-    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../theame/favicon.ico" type="image/x-icon">
 
     <!-- Data table CSS -->
     <link href="{{ asset('theame/vendors/bower_components/datatables/media/css/jquery.dataTables.min.css') }} "
@@ -284,7 +284,7 @@
                                 <a href="#"><i class="zmdi zmdi-card"></i><span>my balance</span></a>
                             </li>
                             <li>
-                                <a href="inbox.html"><i class="zmdi zmdi-assignment"></i><span>Reports</span></a>
+                                <a href="#"><i class="zmdi zmdi-assignment"></i><span>Reports</span></a>
                             </li>
 
                             <li class="divider"></li>

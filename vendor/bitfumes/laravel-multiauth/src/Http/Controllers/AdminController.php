@@ -26,7 +26,10 @@ class AdminController extends Controller
         $id = Auth::user()->id;
         $profile = DB::table('admins')->where(['id' => $id])->first();
         $totalcustomers = DB::table('customers')->count();
-        return view('multiauth::admin.home', ['totalcustomers' => $totalcustomers, 'profile' => $profile]);
+        $customers = DB::table('customers')->orderBy('id', 'desc')->paginate(8);
+        $holidays = DB::table('holidays')->orderBy('id', 'desc')->paginate(8);
+        $routes = DB::table('routes')->orderBy('id', 'desc')->paginate(8);
+        return view('multiauth::admin.home', ['routes' => $routes, 'holidays' => $holidays, 'customers' => $customers, 'totalcustomers' => $totalcustomers, 'profile' => $profile]);
         // return view('multiauth::admin.home');
     }
 
