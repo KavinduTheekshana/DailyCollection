@@ -55,7 +55,7 @@
 									<div class="row">
 										<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
 											<span class="txt-dark block counter"><span
-													class="counter-anim">1200</span></span>
+													class="counter-anim">{{$transactioncount}}</span></span>
 											<span class="weight-500 uppercase-font block">Transactions</span>
 										</div>
 										<div class="col-xs-6 text-center  pl-0 pr-0 data-wrap-right">
@@ -76,7 +76,8 @@
 								<div class="container-fluid">
 									<div class="row">
 										<div class="col-xs-6 text-center pl-0 pr-0 txt-light data-wrap-left">
-											<span class="block counter"><span class="counter-anim">754,870</span></span>
+											<span class="block counter"><span
+													class="counter-anim">{{$sumoftotalout}}</span></span>
 											<span class="weight-500 uppercase-font block">Total Out</span>
 										</div>
 										<div class="col-xs-6 text-center  pl-0 pr-0 txt-light data-wrap-right">
@@ -98,11 +99,11 @@
 									<div class="row">
 										<div class="col-xs-6 text-center pl-0 pr-0 data-wrap-left">
 											<span class="txt-dark block counter"><span
-													class="counter-anim">46.43</span>%</span>
-											<span class="weight-500 uppercase-font block">growth rate</span>
+													class="counter-anim">{{$sumoftotalincome}}</span></span>
+											<span class="weight-500 uppercase-font block">Expected Income</span>
 										</div>
 										<div class="col-xs-6 text-center  pl-0 pr-0 pt-25  data-wrap-right">
-											<div id="sparkline_4" class="sp-small-chart"></div>
+											<i class="icon-credit-card data-right-rep-icon"></i>
 										</div>
 									</div>
 								</div>
@@ -184,34 +185,34 @@
 						<div class="panel-body row pa-0">
 							<div class="table-wrap">
 								<div class="table-responsive">
-									{{-- <table class="table display product-overview border-none" id="table">
+									<table class="table display product-overview border-none" id="table">
 										<thead>
 											<tr>
 												<th>ID</th>
-												<th>Name</th>
-												<th>NIC</th>
-												<th>Mobile</th>
-												<th>Status</th>
+												<th>Customer</th>
+												<th>Type</th>
+												<th>Date</th>
 											</tr>
 										</thead>
 										<tbody>
-											@foreach($data as $item)
+											@foreach($transaction as $transactions)
 											<tr>
-												<td>{{$item->id}}</td>
-									<td>{{$item->name}}</td>
-									<td>{{$item->nic}}V</td>
-									<td>{{$item->mobile}}</td>
-									<td>
-										@if($item->status===1)
-										<span style="padding: 5px 15px" class="label label-success">Active</span>
-										@elseif($item->status===0)
-										<span style="padding: 5px 15px" class="label label-warning">Blocked</span>
-										@endif
-									</td>
-									</tr>
-									@endforeach
-									</tbody>
-									</table> --}}
+												<td>{{$transactions->id}}</td>
+												<td>{{$transactions->cname}}</td>
+												<td>
+													@if($transactions->paymenttype==='weekly')
+													<span style="padding: 5px 15px"
+														class="label label-danger">Weekly</span>
+													@elseif($transactions->paymenttype==='daily')
+													<span style="padding: 5px 15px"
+														class="label label-primary">Daily</span>
+													@endif
+												</td>
+												<td>{{$transactions->datepurchased}}</td>
+											</tr>
+											@endforeach
+										</tbody>
+									</table>
 								</div>
 							</div>
 						</div>

@@ -21,6 +21,25 @@
 		</div>
 		<!-- /Title -->
 
+
+		@if (count($errors) > 0)
+		<div style="padding:.75rem 1.25rem;margin-bottom:1rem;border:1px solid transparent;border-radius:.25rem;
+								  color:#721c24;background-color:#f8d7da;border-color:#f5c6cb;">
+			<strong>Whoops!</strong> There were some problems with your input.<br>
+			<ul>
+				@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+		@endif
+
+		@if (session('status'))
+		<div class="alert alert-success">
+			{{ session('status') }}
+		</div>
+		@endif
+
 		<!-- Row -->
 		<div class="row">
 			<div class="col-sm-12">
@@ -37,7 +56,7 @@
 							<div class="form-wrap">
 
 								<form role="form" method="POST"
-									action="{{action('CustomerController@submitcustomers')}}"
+									action="{{action('TransactionsController@submitcustomers')}}"
 									enctype="multipart/form-data">
 
 									{{-- <form role="form" method="POST"
@@ -72,9 +91,9 @@
 												<label class="control-label mb-10 text-left">ID</label>
 												<div class="input-group"> <span class="input-group-addon"><i
 															class="icon-pin"></i></span>
-													<input id="cid" type="number"
+													<input id="customer_id" type="number"
 														class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
-														name="cid" value="{{ old('nic') }}" readonly required>
+														name="customer_id" value="{{ old('nic') }}" readonly required>
 												</div>
 											</div>
 											<div class="col-sm-9">
@@ -128,7 +147,7 @@
 											<label class="control-label mb-10 text-left"
 												for="example-email">Route</label>
 
-											<select class="form-control select2">
+											<select class="form-control select2" name="route">
 
 												@foreach ($route as $item)
 												<option>{{$item->route}}</option>
@@ -181,9 +200,9 @@
 								<label class="control-label mb-10 text-left">ID</label>
 								<div class="input-group"> <span class="input-group-addon"><i
 											class="icon-pin"></i></span>
-									<input id="g1id" type="number"
-										class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="g1id"
-										value="{{ old('nic') }}" readonly required>
+									<input id="first_guaranter_id" type="number"
+										class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
+										name="first_guaranter_id" value="{{ old('nic') }}" readonly required>
 								</div>
 							</div>
 							<div class="col-sm-9">
@@ -274,9 +293,9 @@
 								<label class="control-label mb-10 text-left">ID</label>
 								<div class="input-group"> <span class="input-group-addon"><i
 											class="icon-pin"></i></span>
-									<input id="g2id" type="number"
-										class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}" name="g2id"
-										value="{{ old('nic') }}" readonly required>
+									<input id="second_guaranter_id" type="number"
+										class="form-control{{ $errors->has('nic') ? ' is-invalid' : '' }}"
+										name="second_guaranter_id" value="{{ old('nic') }}" readonly required>
 								</div>
 							</div>
 							<div class="col-sm-9">
@@ -343,7 +362,7 @@
 								<div class="form-group">
 									<label class="control-label mb-10 text-left">Select</label>
 
-									<select id="select" onchange="cleardata()" class="form-control">
+									<select id="select" onchange="cleardata()" class="form-control" name="payment_type">
 										<option value="daily">Daily</option>
 										<option value="weekly">Weekly</option>
 									</select>
@@ -363,8 +382,8 @@
 								<div class="input-group">
 									<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
 									<input id="amount" placeholder="10,000 LKR" type="number"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" autofocus required>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="amount" value="{{ old('name') }}" autofocus required>
 								</div>
 							</div>
 
@@ -374,8 +393,8 @@
 									<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
 
 									<input id="installment" placeholder="10,000 LKR" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" readonly autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="installment" value="{{ old('name') }}" readonly autofocus>
 								</div>
 							</div>
 
@@ -385,8 +404,8 @@
 									<div class="input-group-addon"><i class=" icon-credit-card"></i></div>
 
 									<input id="totalincome" placeholder="10,000 LKR" type="text"
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" readonly autofocus>
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="totalincome" value="{{ old('name') }}" readonly autofocus>
 								</div>
 							</div>
 						</div>
@@ -411,9 +430,9 @@
 								<label class="control-label mb-10 text-left">Due Date</label>
 								<div class="input-group">
 									<div class="input-group-addon"><i class="icon-calender"></i></div>
-									<input id="name" type="date" readonly
-										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}" name="name"
-										value="{{ old('name') }}" autofocus>
+									<input id="duedate" type="date" readonly
+										class="form-control {{ $errors->has('name') ? ' is-invalid' : '' }}"
+										name="duedate" value="{{ old('name') }}" autofocus>
 								</div>
 							</div>
 						</div>
@@ -448,9 +467,9 @@
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
        },
       success:function(data){
-         alert(data);
-        // document.getElementById('date_due').type = 'date';
-        // document.getElementById('date_due').value=data;
+        //  alert(data);
+        // document.getElementById('duedate').type = 'date';
+        document.getElementById('duedate').value=data;
       },
       error:function(data){
         alert('Error');
@@ -530,7 +549,7 @@
 	if(data.status=="1"){
 	document.getElementById("customermessage").style.color="#28A745";
 	document.getElementById('customermessage').innerHTML="Valied Customer";
-	document.getElementById('cid').value=data.id;
+	document.getElementById('customer_id').value=data.id;
 	document.getElementById('cname').value=data.name;
 	document.getElementById('caddress').value=data.address;
 	document.getElementById('cmobile').value=data.mobile;
@@ -555,7 +574,7 @@
 
 
 	function cleardatacustomer(){
-		document.getElementById('cid').value=null;
+		document.getElementById('customer_id').value=null;
 	document.getElementById('cname').value=null;
 	document.getElementById('caddress').value=null;
 	document.getElementById('cmobile').value=null;
@@ -588,7 +607,7 @@
 	if(data.status=="1"){
 	document.getElementById("g1message").style.color="#28A745";
 	document.getElementById('g1message').innerHTML="Valied Guarantor";
-	document.getElementById('g1id').value=data.id;
+	document.getElementById('first_guaranter_id').value=data.id;
 	document.getElementById('g1name').value=data.name;
 	document.getElementById('g1address').value=data.address;
 	document.getElementById('g1mobile').value=data.mobile;
@@ -616,7 +635,7 @@
 
 
 	function cleardataguranter(){
-		document.getElementById('g1id').value=null;
+		document.getElementById('first_guaranter_id').value=null;
 	document.getElementById('g1name').value=null;
 	document.getElementById('g1address').value=null;
 	document.getElementById('g1mobile').value=null;
@@ -651,7 +670,7 @@ function myFunctionsecondguarantor() {
 	if(data.status=="1"){
 	document.getElementById("g2message").style.color="#28A745";
 	document.getElementById('g2message').innerHTML="Valied Guarantor";
-	document.getElementById('g2id').value=data.id;
+	document.getElementById('second_guaranter_id').value=data.id;
 	document.getElementById('g2name').value=data.name;
 	document.getElementById('g2address').value=data.address;
 	document.getElementById('g2mobile').value=data.mobile;
@@ -679,7 +698,7 @@ function myFunctionsecondguarantor() {
 
 
 	function cleardatasecondguranter(){
-		document.getElementById('g2id').value=null;
+		document.getElementById('second_guaranter_id').value=null;
 	document.getElementById('g2name').value=null;
 	document.getElementById('g2address').value=null;
 	document.getElementById('g2mobile').value=null;

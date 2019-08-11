@@ -382,6 +382,8 @@
                     </a>
                 </li>
 
+
+
                 <li>
                     <a href="{{route('admin.transactions')}}">
                         <div class="pull-left"><i class="zmdi zmdi-money mr-20"></i><span
@@ -389,6 +391,37 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
+
+
+
+                <li>
+                    <a href="javascript:void(0);" data-toggle="collapse" data-target="#transactions">
+                        <div class="pull-left"><i class="zmdi zmdi-view-headline mr-20"></i><span
+                                class="right-nav-text">Transactions List</span>
+                        </div>
+                        <div class="pull-right"><i class="zmdi zmdi-caret-down"></i></div>
+                        <div class="clearfix"></div>
+                    </a>
+                    <ul id="transactions" class="collapse collapse-level-1">
+                        <li>
+                            <a href="{{route('admin.transactionslistcompleted')}}">Completed</a>
+                        </li>
+                        <li>
+                            <a href="{{route('admin.transactionslistnotcompleted')}}">Not Coustomers</a>
+                        </li>
+                    </ul>
+                </li>
+
+
+
+
+                {{-- <li>
+                    <a href="{{route('admin.transactionslist')}}">
+                <div class="pull-left"><i class="zmdi zmdi-view-headline mr-20"></i><span
+                        class="right-nav-text">Transactions List</span></div>
+                <div class="clearfix"></div>
+                </a>
+                </li> --}}
 
 
 

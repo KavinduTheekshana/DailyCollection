@@ -7,17 +7,16 @@
 		<!-- Title -->
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-				<h5 class="txt-dark">Manage Customers</h5>
+				<h5 class="txt-dark">Not Completed Transactions List</h5>
 			</div>
 			<!-- Breadcrumb -->
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 				<ol class="breadcrumb">
 					<li><a href="index.html">Dashboard</a></li>
-					<li><a href="#"><span>Customers</span></a></li>
-					<li class="active"><span>Manage Customers</span></li>
+					<li><a href="index.html">Transactions List</a></li>
+					<li class="active"><span>Not Completed</span> </li>
 				</ol>
-			</div>
-			<!-- /Breadcrumb -->
+			</div> <!-- /Breadcrumb -->
 		</div>
 		<!-- /Title -->
 
@@ -36,7 +35,7 @@
 				<div class="panel panel-default card-view">
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Customers List</h6>
+							<h6 class="panel-title txt-dark">Not Completed Transactions List</h6>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -58,8 +57,11 @@
 										<th class="text-center">ID</th>
 										<th class="text-center">Name</th>
 										<th class="text-center">NIC</th>
-										<th class="text-center">Mobile</th>
-										<th class="text-center">Status</th>
+										<th class="text-center">Type</th>
+										<th class="text-center">DueDate</th>
+										<th class="text-center">Amount</th>
+										<th class="text-center">Installment</th>
+
 										<th class="text-center">Actions</th>
 									</tr>
 								</thead>
@@ -67,32 +69,53 @@
 									@foreach($data as $item)
 									<tr>
 										<td>{{$item->id}}</td>
-										<td>{{$item->name}}</td>
-										<td>{{$item->nic}}V</td>
-										<td>{{$item->mobile}}</td>
+										<td>{{$item->cname}}</td>
+										<td>{{$item->cnic}}V</td>
 										<td>
+											@if($item->paymenttype==='weekly')
+											<span style="padding: 5px 15px" class="label label-danger">Weekly</span>
+											@elseif($item->paymenttype==='daily')
+											<span style="padding: 5px 15px" class="label label-primary">Daily</span>
+											@endif
+										</td>
+										<td>{{$item->duedate}}</td>
+										<td>{{$item->amount}}</td>
+										<td>{{$item->installment}}</td>
+										{{-- <td>
 											@if($item->status===1)
 											<span style="padding: 5px 15px" class="label label-success">Active</span>
 											@elseif($item->status===0)
 											<span style="padding: 5px 15px" class="label label-warning">Blocked</span>
 											@endif
-										</td>
+										</td>  --}}
+
+
 										<td>
 											<a href="#" id="view_msg" name="view_msg" type="button"
 												style="padding: 10px"
-												class="view btn btn-primary btn-icon-anim btn-square"
+												class="view btn btn-warning btn-icon-anim btn-square"
 												data-toggle="modal" data-target="#responsive-modal"
-												data-modelid="{{$item->id}}" data-modelname="{{$item->name}}"
-												data-modeladdress="{{$item->address}}" data-modelnic="{{$item->nic}}"
-												data-modelmobile="{{$item->mobile}}"
-												data-modellanline="{{$item->lanline}}"><i class="fa fa-eye"></i></a>
+												data-modelid="{{$item->id}}" data-modelcname="{{$item->cname}}"
+												data-modelcnic="{{$item->cnic}}V"
+												data-modelcaddress="{{$item->caddress}}"
+												data-modelcmobile="{{$item->cmobile}}"
+												data-modelclanline="{{$item->clanline}}"
+												data-modelroute="{{$item->route}}" data-modelg1name="{{$item->g1name}}"
+												data-modelg1nic="{{$item->g1nic}}"
+												data-modelg1address="{{$item->g1address}}"
+												data-modelg1mobile="{{$item->g1mobile}}"
+												data-modelg1lanline="{{$item->g1lanline}}"
+												data-modelg2name="{{$item->g2name}}" data-modelg2nic="{{$item->g2nic}}"
+												data-modelg2address="{{$item->g2address}}"
+												data-modelg2mobile="{{$item->g2mobile}}"
+												data-modelg2lanline="{{$item->g2lanline}}"><i class="fa fa-eye"></i></a>
 
 
 
-											@if($item->status===1)
+											{{-- @if($item->status===1)
 											<a href="blockcustomer/{{$item->id}}" type="button" style="padding: 10px"
-												class="btn btn-warning btn-icon-anim btn-square"><i
-													class="icon-lock"></i></a>
+											class="btn btn-warning btn-icon-anim btn-square"><i
+												class="icon-lock"></i></a>
 											@elseif($item->status===0)
 											<a href="unblockcustomer/{{$item->id}}" type="button" style="padding: 10px"
 												class="btn btn-success btn-icon-anim btn-square"><i
@@ -122,7 +145,7 @@
 												style="padding: 6px 12px" class="btn btn-warning">Update</a>
 											<button style="padding: 6px 12px" class="btn btn-danger"
 												Onclick="deleteData({{$item->adminid}})">Delete</button>
-											@endif
+											@endif --}}
 
 										</td>
 									</tr>
@@ -152,11 +175,13 @@
 			<div class="modal-content">
 				<div class="modal-header">
 					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h5 class="modal-title">Member Details</h5>
+					<h5 class="modal-title">Transaction Details</h5>
 				</div>
 				<div class="modal-body">
 					<form>
 						<div class="form-group">
+							{{-- <h6 class="mb-5">Customer Details</h6>
+							<hr> --}}
 
 							<div class="row">
 								<div class="col-sm-3">
@@ -164,20 +189,25 @@
 									<input type="text" class="form-control" id="modelid" placeholder="ID" readonly>
 								</div>
 								<div class="col-sm-9">
-									<label class="control-label mb-10">Name</label>
-									<input type="text" class="form-control" id="modelname" placeholder="Name" readonly>
+									<label class="control-label mb-10"> Customer Name</label>
+									<input type="text" class="form-control" id="modelcname" placeholder="Name" readonly>
 								</div>
 
 
 							</div>
 							<br>
 							<label for="recipient-name" class="control-label mb-10">Address</label>
-							<input type="text" class="form-control" id="modeladdress" placeholder="Address" readonly>
+							<input type="text" class="form-control" id="modelcaddress" placeholder="Address" readonly>
 							<br>
 							<div class="row">
 								<div class="col-sm-6">
 									<label class="control-label mb-10">NIC</label>
-									<input type="text" class="form-control" id="modelnic" placeholder="NIC" readonly>
+									<input type="text" class="form-control" id="modelcnic" placeholder="NIC" readonly>
+								</div>
+
+								<div class="col-sm-6">
+									<label class="control-label mb-10">Route</label>
+									<input type="text" class="form-control" id="modelroute" placeholder="NIC" readonly>
 								</div>
 
 							</div>
@@ -186,13 +216,91 @@
 							<div class="row">
 								<div class="col-sm-6">
 									<label class="control-label mb-10">Mobile</label>
-									<input type="text" class="form-control" id="modelmobile" placeholder="Mobile"
+									<input type="text" class="form-control" id="modelcmobile" placeholder="Mobile"
 										readonly>
 								</div>
 
 								<div class="col-sm-6">
 									<label class="control-label mb-10">Lan Line</label>
-									<input type="text" class="form-control" id="modellanline" placeholder="Lan Line"
+									<input type="text" class="form-control" id="modelclanline" placeholder="Lan Line"
+										readonly>
+								</div>
+
+							</div>
+
+						</div>
+						<br>
+						<hr>
+
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-8">
+									<label class="control-label mb-10">First Guarater Name</label>
+									<input type="text" class="form-control" id="modelg1name" placeholder="Name"
+										readonly>
+								</div>
+
+								<div class="col-sm-4">
+									<label class="control-label mb-10">NIC</label>
+									<input type="text" class="form-control" id="modelg1nic" placeholder="NIC" readonly>
+								</div>
+
+
+							</div>
+							<br>
+							<label for="recipient-name" class="control-label mb-10">Address</label>
+							<input type="text" class="form-control" id="modelg1address" placeholder="Address" readonly>
+							<br>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<label class="control-label mb-10">Mobile</label>
+									<input type="text" class="form-control" id="modelg1mobile" placeholder="Mobile"
+										readonly>
+								</div>
+
+								<div class="col-sm-6">
+									<label class="control-label mb-10">Lan Line</label>
+									<input type="text" class="form-control" id="modelg1lanline" placeholder="Lan Line"
+										readonly>
+								</div>
+
+							</div>
+
+						</div>
+
+						<br>
+						<hr>
+						<div class="form-group">
+							<div class="row">
+								<div class="col-sm-8">
+									<label class="control-label mb-10">Second Guarater Name</label>
+									<input type="text" class="form-control" id="modelg2name" placeholder="Name"
+										readonly>
+								</div>
+
+								<div class="col-sm-4">
+									<label class="control-label mb-10">NIC</label>
+									<input type="text" class="form-control" id="modelg2nic" placeholder="NIC" readonly>
+								</div>
+
+
+							</div>
+							<br>
+							<label for="recipient-name" class="control-label mb-10">Address</label>
+							<input type="text" class="form-control" id="modelg2address" placeholder="Address" readonly>
+							<br>
+
+							<div class="row">
+								<div class="col-sm-6">
+									<label class="control-label mb-10">Mobile</label>
+									<input type="text" class="form-control" id="modelg2mobile" placeholder="Mobile"
+										readonly>
+								</div>
+
+								<div class="col-sm-6">
+									<label class="control-label mb-10">Lan Line</label>
+									<input type="text" class="form-control" id="modelg2lanline" placeholder="Lan Line"
 										readonly>
 								</div>
 
@@ -210,79 +318,7 @@
 	</div>
 
 
-	{{-- Update Model --}}
 
-
-	<div id="editmodel" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true"
-		style="display: none;">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
-					<h5 class="modal-title">Member Details</h5>
-				</div>
-				<div class="modal-body">
-					<form method="POST" action="{{action('CustomerController@editcustomers')}}"
-						enctype="multipart/form-data">
-						@csrf
-						<div class="form-group">
-
-							<div class="row">
-								<div class="col-sm-3">
-									<label class="control-label mb-10">ID</label>
-									<input type="text" class="form-control" id="modelidedit" name="modelid"
-										placeholder="ID" readonly>
-								</div>
-								<div class="col-sm-9">
-									<label class="control-label mb-10">Name</label>
-									<input type="text" class="form-control" id="modelnameedit" name="modelname"
-										placeholder="Name">
-								</div>
-
-
-							</div>
-							<br>
-							<label for="recipient-name" class="control-label mb-10">Address</label>
-							<input type="text" class="form-control" id="modeladdressedit" name="modeladdress"
-								placeholder="Address">
-							<br>
-							<div class="row">
-								<div class="col-sm-6">
-									<label class="control-label mb-10">NIC</label>
-									<input type="text" class="form-control" id="modelnicedit" name="modelnic"
-										placeholder="NIC" readonly>
-								</div>
-
-							</div>
-							<br>
-
-							<div class="row">
-								<div class="col-sm-6">
-									<label class="control-label mb-10">Mobile</label>
-									<input type="text" class="form-control" id="modelmobileedit" name="modelmobile"
-										placeholder="Mobile">
-								</div>
-
-								<div class="col-sm-6">
-									<label class="control-label mb-10">Lan Line</label>
-									<input type="text" class="form-control" name="modellanline" id="modellanlineedit"
-										placeholder="Lan Line">
-								</div>
-
-							</div>
-
-						</div>
-
-
-				</div>
-				<div class="modal-footer">
-					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					<button type="submit" class="btn btn-warning">Update Details</button>
-				</div>
-				</form>
-			</div>
-		</div>
-	</div>
 
 
 
@@ -291,52 +327,29 @@
 		$('.view').on('click',function(e){
                  e.preventDefault();
              document.getElementById('modelid').value=$(this).data('modelid');
-             document.getElementById('modelname').value=$(this).data('modelname');
-             document.getElementById('modeladdress').value=$(this).data('modeladdress');
-             document.getElementById('modelnic').value=$(this).data('modelnic');
-             document.getElementById('modelmobile').value=$(this).data('modelmobile');
-             document.getElementById('modellanline').value=$(this).data('modellanline');
+             document.getElementById('modelcname').value=$(this).data('modelcname');
+             document.getElementById('modelcaddress').value=$(this).data('modelcaddress');
+             document.getElementById('modelcnic').value=$(this).data('modelcnic');
+             document.getElementById('modelcmobile').value=$(this).data('modelcmobile');
+			 document.getElementById('modelroute').value=$(this).data('modelroute');
+             document.getElementById('modelclanline').value=$(this).data('modelclanline');
+
+             document.getElementById('modelg1name').value=$(this).data('modelg1name');
+             document.getElementById('modelg1address').value=$(this).data('modelg1address');
+             document.getElementById('modelg1nic').value=$(this).data('modelg1nic');
+             document.getElementById('modelg1mobile').value=$(this).data('modelg1mobile');
+             document.getElementById('modelg1lanline').value=$(this).data('modelg1lanline');
+
+			 document.getElementById('modelg2name').value=$(this).data('modelg2name');
+             document.getElementById('modelg2address').value=$(this).data('modelg2address');
+             document.getElementById('modelg2nic').value=$(this).data('modelg2nic');
+             document.getElementById('modelg2mobile').value=$(this).data('modelg2mobile');
+             document.getElementById('modelg2lanline').value=$(this).data('modelg2lanline');
      
              });
 
-			 $('.edit').on('click',function(e){
-                 e.preventDefault();
-             document.getElementById('modelidedit').value=$(this).data('modelid');
-             document.getElementById('modelnameedit').value=$(this).data('modelname');
-             document.getElementById('modeladdressedit').value=$(this).data('modeladdress');
-             document.getElementById('modelnicedit').value=$(this).data('modelnic');
-             document.getElementById('modelmobileedit').value=$(this).data('modelmobile');
-             document.getElementById('modellanlineedit').value=$(this).data('modellanline');
-     
-             });
+			
       
-             $('.edit').click(function(e){
-             e.preventDefault();
-             var guarantor1_name=document.getElementById('form_guarantor1Name').value=$(this).data('guarantor1_name');
-             var guarantor1_nic=document.getElementById('form_guarantor1Nic').value=$(this).data('guarantor1_nic');
-             var guarantor1_contact1=document.getElementById('form_guarantor1Contact1').value=$(this).data('guarantor1_contact1');
-             var guarantor1_contact2=document.getElementById('form_guarantor1Contact2').value=$(this).data('guarantor1_contact2');
-             var guarantor2_name=document.getElementById('form_guarantor2Name').value=$(this).data('guarantor2_name');
-             var guarantor2_nic=document.getElementById('form_guarantor2Nic').value=$(this).data('guarantor2_nic');
-             var guarantor2_contact1=document.getElementById('form_guarantor2Contact1').value=$(this).data('guarantor2_contact1');
-             var guarantor2_contact2=document.getElementById('form_guarantor2Contact2').value=$(this).data('guarantor2_contact2');
-             var name=document.getElementById('inputName').value=$(this).data('name');
-             var name=document.getElementById('inputNic').value=$(this).data('nic');
-             var address=document.getElementById('inputAddress').value=$(this).data('address');
-             var contact1=document.getElementById('inputContact1').value=$(this).data('contact1');
-             var contact2=document.getElementById('inputContact2').value=$(this).data('contact2');
-             var amount=document.getElementById('amount').value=$(this).data('amount');
-             var installment=document.getElementById('installment').value=$(this).data('installment');
-             var date=document.getElementById('date_purchased').value=$(this).data('date');
-             var selection=$(this).data('selection');
-     
-             // if(selection=='weekly')
-             // $("#weekly").prop("checked", true);
-     
-             // else if(selection=='daily')
-             // $("#daily").prop("checked", true);
-             
-             });
    
    
 	</script>

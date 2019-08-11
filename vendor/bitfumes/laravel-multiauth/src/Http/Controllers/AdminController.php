@@ -29,7 +29,20 @@ class AdminController extends Controller
         $customers = DB::table('customers')->orderBy('id', 'desc')->paginate(8);
         $holidays = DB::table('holidays')->orderBy('id', 'desc')->paginate(8);
         $routes = DB::table('routes')->orderBy('id', 'desc')->paginate(8);
-        return view('multiauth::admin.home', ['routes' => $routes, 'holidays' => $holidays, 'customers' => $customers, 'totalcustomers' => $totalcustomers, 'profile' => $profile]);
+        // $transaction = DB::table('transactions')->orderBy('id', 'desc')->paginate(8);
+        $transactioncount = DB::table('transactions')->count();
+        $transaction = DB::table('transactions')->join('customers as c', 'c.id', '=', 'transactions.customer')
+            ->join('customers as g1', 'g1.id', '=', 'transactions.firstguarantor')
+            ->join('customers as g2', 'g2.id', '=', 'transactions.secondguarantor')
+            ->select('c.name as cname', 'g1.name as g1name', 'g2.name as g2name', 'transactions.id as id',
+                'transactions.paymenttype as paymenttype', 'transactions.datepurchased as datepurchased')
+            ->orderBy('id', 'desc')->paginate(8);
+
+        $sumoftotalout = DB::table('transactions')->sum('amount');
+        $sumoftotalincome = DB::table('transactions')->sum('totalincome');
+        return view('multiauth::admin.home', ['routes' => $routes, 'holidays' => $holidays, 'customers' => $customers,
+            'totalcustomers' => $totalcustomers, 'profile' => $profile, 'transaction' => $transaction,
+            'transactioncount' => $transactioncount, 'sumoftotalout' => $sumoftotalout, 'sumoftotalincome' => $sumoftotalincome]);
         // return view('multiauth::admin.home');
     }
 

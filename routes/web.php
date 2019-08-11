@@ -28,7 +28,7 @@ Route::post('/edituser', 'UserController@edituser');
 Route::post('/addroute', 'RoutesController@addroute');
 Route::post('/addholiday', 'HolidaysController@addholiday');
 
-Route::post('/submitcustomers', 'CustomerController@submitcustomers');
+Route::post('/submitcustomers', 'TransactionsController@submitcustomers');
 Route::post('/editcustomers', 'CustomerController@editcustomers');
 
 Route::get('deleteroute/{id}', 'RoutesController@deleteroute');
@@ -45,3 +45,6 @@ Route::post('/updatepassword', 'ProfileController@updatepassword');
 Route::post('/updateprofiledetails', 'ProfileController@updateprofiledetails');
 
 Route::get('/duedate', 'TransactionsController@duedate');
+
+Route::get('/transactionslistcompleted', 'TransactionsController@transactionslistcompleted')->name('admin.transactionslistcompleted');
+Route::get('/transactionslistnotcompleted', 'TransactionsController@transactionslistnotcompleted')->name('admin.transactionslistnotcompleted');

@@ -2,15 +2,156 @@
 
 namespace App\Http\Controllers;
 
+use App\Customer;
+use App\Transaction;
+use Auth;
 use Carbon\carbon;
-// use DB;
+use DB;
 use Illuminate\Http\Request;
 
 class TransactionsController extends Controller
 {
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth:admin');
+        $this->middleware('role:super', ['only' => 'show']);
+    }
+
+    public function submitcustomers(Request $request)
+    {
+
+        $this->validate($request, [
+            'customer_id' => ['required'],
+            'route' => ['required', 'string'],
+            'first_guaranter_id' => ['required'],
+            'second_guaranter_id' => ['required'],
+            'payment_type' => ['required'],
+            'amount' => ['required'],
+            'installment' => ['required'],
+            'totalincome' => ['required'],
+            'datepurchased' => ['required'],
+            'duedate' => ['required'],
+        ]);
+
+        $transaction = new Transaction();
+        $transaction->customer = $request->input('customer_id');
+        $transaction->route = $request->input('route');
+        $transaction->firstguarantor = $request->input('first_guaranter_id');
+        $transaction->secondguarantor = $request->input('second_guaranter_id');
+        $transaction->paymenttype = $request->input('payment_type');
+        $transaction->amount = $request->input('amount');
+        $transaction->installment = $request->input('installment');
+        $transaction->totalincome = $request->input('totalincome');
+        $transaction->datepurchased = $request->input('datepurchased');
+        $transaction->duedate = $request->input('duedate');
+
+        $transaction->save();
+        return back()->with('status', 'New Transaction Details Added Sucessfully');
+
+    }
+
+    public function transactionslistcompleted()
+    {
+        $data = DB::table('transactions')->join('customers as c', 'c.id', '=', 'transactions.customer')
+            ->join('customers as g1', 'g1.id', '=', 'transactions.firstguarantor')
+            ->join('customers as g2', 'g2.id', '=', 'transactions.secondguarantor')
+            ->select('c.name as cname', 'c.nic as cnic', 'c.address as caddress', 'c.mobile as cmobile',
+                'c.lanline as clanline', 'transactions.route as route',
+                'g1.name as g1name', 'g1.nic as g1nic', 'g1.address as g1address', 'g1.mobile as g1mobile',
+                'g1.lanline as g1lanline',
+                'g2.name as g2name', 'g2.nic as g2nic', 'g2.address as g2address', 'g2.mobile as g2mobile',
+                'g2.lanline as g2lanline',
+                'transactions.id as id', 'transactions.paymenttype as paymenttype', 'transactions.amount as amount',
+                'transactions.installment as installment', 'transactions.totalincome as totalincome',
+                'transactions.datepurchased as datepurchased', 'transactions.duedate as duedate'
+            )->where(['transactions.status' => 1])
+            ->orderBy('id', 'desc')->get();
+        $id = Auth::user()->id;
+        $profile = DB::table('admins')->where(['id' => $id])->first();
+        return view('vendor.multiauth.admin.transactionslistcompleted', ['data' => $data, 'profile' => $profile]);
+    }
+
+    public function transactionslistnotcompleted()
+    {
+        $data = DB::table('transactions')->join('customers as c', 'c.id', '=', 'transactions.customer')
+            ->join('customers as g1', 'g1.id', '=', 'transactions.firstguarantor')
+            ->join('customers as g2', 'g2.id', '=', 'transactions.secondguarantor')
+            ->select('c.name as cname', 'c.nic as cnic', 'c.address as caddress', 'c.mobile as cmobile',
+                'c.lanline as clanline', 'transactions.route as route',
+                'g1.name as g1name', 'g1.nic as g1nic', 'g1.address as g1address', 'g1.mobile as g1mobile',
+                'g1.lanline as g1lanline',
+                'g2.name as g2name', 'g2.nic as g2nic', 'g2.address as g2address', 'g2.mobile as g2mobile',
+                'g2.lanline as g2lanline',
+                'transactions.id as id', 'transactions.paymenttype as paymenttype', 'transactions.amount as amount',
+                'transactions.installment as installment', 'transactions.totalincome as totalincome',
+                'transactions.datepurchased as datepurchased', 'transactions.duedate as duedate'
+            )->where(['transactions.status' => 0])
+            ->orderBy('id', 'desc')->get();
+        $id = Auth::user()->id;
+        $profile = DB::table('admins')->where(['id' => $id])->first();
+        return view('vendor.multiauth.admin.transactionslistnotcompleted', ['data' => $data, 'profile' => $profile]);
+    }
+
     public function duedate(Request $request)
     {
+        // $datepurchased = $request->date;
+
         $datepurchased = $request->date;
+        $holidays = DB::table('holidays')->get();
+
+        $now = new Carbon($datepurchased);
+        $x = 0;
+        $b = 0;
+        while ($x < 60) {
+            $date1 = Carbon::parse($now);
+            $string = $date1->englishDayOfWeek;
+            if ($string != "Sunday") {
+                foreach ($holidays as $holiday) {
+                    $holidayDate = new Carbon($holiday->date);
+                    $date2 = Carbon::parse($holidayDate)->toDateString();
+                    $now2 = Carbon::parse($now)->toDateString();
+                    if ($now2 == $date2) {
+                        $now->addDays(1);
+                    }
+                }
+                $now->addDays(1);
+                $x = $x + 1;
+
+            } else {
+                $now->addDays(1);
+            }
+        }
+        return $now->toDateString();
+
+        // $now = new Carbon();
+        // $holidays = DB::table('holidays')->get();
+        // $x = 0;
+        // $b = 0;
+        // while ($x < 10) {
+        //     $date1 = Carbon::parse($now);
+        //     $string = $date1->englishDayOfWeek;
+        //     if ($string != "Sunday") {
+        //         foreach ($holidays as $holiday) {
+        //             $holidayDate = new Carbon($holiday->date);
+        //             $date2 = Carbon::parse($holidayDate)->toDateString();
+        //             $now2 = Carbon::parse($now)->toDateString();
+        //             if ($now2 == $date2) {
+        //                 $now->addDays(1);
+        //             }
+        //         }
+        //         $now->addDays(1);
+        //         $x = $x + 1;
+
+        //     } else {
+        //         $now->addDays(1);
+        //     }
+        // }
+        // return $now->toDateString();
 
         // $holidays = DB::table('holidays')->get();
         // foreach ($holidays as $holiday) {
@@ -21,21 +162,21 @@ class TransactionsController extends Controller
         // if ($date1->lt($date2)) {
         // }
 
-        $now = new Carbon();
-        $x = 0;
+        // $now = new Carbon();
+        // $x = 0;
 
-        while ($x < 60) {
-            $date1 = Carbon::parse($now);
-            $string = $date1->englishDayOfWeek;
-            if ($string != "Sunday") {
-                $now->addDays(1);
-                $x = $x + 1;
+        // while ($x < 60) {
+        //     $date1 = Carbon::parse($now);
+        //     $string = $date1->englishDayOfWeek;
+        //     if ($string != "Sunday") {
+        //         $now->addDays(1);
+        //         $x = $x + 1;
 
-            } else {
-                $now->addDays(1);
-            }
-        }
-        return $now->toDateString();
+        //     } else {
+        //         $now->addDays(1);
+        //     }
+        // }
+        // return $now->toDateString();
 
         //     if($selection=="option1"){
         //     $due_date=date('Y-m-d', strtotime($date_purchased. ' + 70days'));
@@ -67,4 +208,5 @@ class TransactionsController extends Controller
         //    }
 
     }
+
 }
