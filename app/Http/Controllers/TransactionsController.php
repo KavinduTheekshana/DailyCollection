@@ -38,20 +38,80 @@ class TransactionsController extends Controller
             'duedate' => ['required'],
         ]);
 
-        $transaction = new Transaction();
-        $transaction->customer = $request->input('customer_id');
-        $transaction->route = $request->input('route');
-        $transaction->firstguarantor = $request->input('first_guaranter_id');
-        $transaction->secondguarantor = $request->input('second_guaranter_id');
-        $transaction->paymenttype = $request->input('payment_type');
-        $transaction->amount = $request->input('amount');
-        $transaction->installment = $request->input('installment');
-        $transaction->totalincome = $request->input('totalincome');
-        $transaction->datepurchased = $request->input('datepurchased');
-        $transaction->duedate = $request->input('duedate');
+        $firstguarantor = $request->input('first_guaranter_id');
+        $secondguarantor = $request->input('second_guaranter_id');
+        $customer = $request->input('customer_id');
+        // $firstguarantor = 5;
 
-        $transaction->save();
-        return back()->with('status', 'New Transaction Details Added Sucessfully');
+        $customercount1 = DB::table('transactions')
+            ->where('firstguarantor', $firstguarantor)
+            ->where('status', false)
+            ->orwhere(['secondguarantor' => $firstguarantor, 'status' => false])
+            ->orWhere(function ($query) use ($firstguarantor) {
+                $query->where('secondguarantor', '=', $firstguarantor)
+                    ->where('status', '=', false);
+            })
+            ->count();
+
+        $customercount2 = DB::table('transactions')
+            ->where('firstguarantor', $secondguarantor)
+            ->where('status', false)
+            ->orwhere(['secondguarantor' => $secondguarantor, 'status' => false])
+            ->orWhere(function ($query) use ($secondguarantor) {
+                $query->where('secondguarantor', '=', $secondguarantor)
+                    ->where('status', '=', false);
+            })
+            ->count();
+
+        // dd($customercount1);
+        // $secondguarantor = 2;
+        // $customer = 1;
+
+        // $firstguarantorcountfirst = DB::table('transactions')->where(['firstguarantor' => $firstguarantor])->count();
+        // $secondguarantorcountfirst = DB::table('transactions')->where(['secondguarantor' => $firstguarantor])->count();
+
+        // $firstguarantorcountsecond = DB::table('transactions')->where(['firstguarantor' => $secondguarantor])->count();
+        // $secondguarantorcountsecond = DB::table('transactions')->where(['secondguarantor' => $secondguarantor])->count();
+
+        // $guarantorcountsumfirst = $firstguarantorcountfirst + $secondguarantorcountfirst;
+        // $guarantorcountsumsecond = $firstguarantorcountsecond + $secondguarantorcountsecond;
+
+        // $customercount1 = DB::table('transactions')->where(['firstguarantor' => $firstguarantor])->orwhere(['secondguarantor' => $firstguarantor])->count();
+        // $customercount2 = DB::table('transactions')->where(['firstguarantor' => $secondguarantor])->orwhere(['secondguarantor' => $secondguarantor])->count();
+
+        // if ($customercount1 >= 2 || $customercount2 >= 2) {
+        //     dd('if');
+        // } else {
+        //     dd('else');
+        // }
+
+        $customercount = DB::table('transactions')->where(['customer' => $customer, 'status' => false])->count();
+
+        if ($customercount >= 1) {
+            return back()->with('statusdanger', 'This Customeris Already Excist And Not Complete');
+        } else {
+
+            if ($customercount1 >= 2 || $customercount2 >= 2) {
+                return back()->with('statusdanger', 'This Guranteers Are Already Guranterd 2 Customers');
+            } else {
+                $transaction = new Transaction();
+                $transaction->customer = $request->input('customer_id');
+                $transaction->route = $request->input('route');
+                $transaction->firstguarantor = $request->input('first_guaranter_id');
+                $transaction->secondguarantor = $request->input('second_guaranter_id');
+                $transaction->paymenttype = $request->input('payment_type');
+                $transaction->amount = $request->input('amount');
+                $transaction->remain = $request->input('amount');
+                $transaction->installment = $request->input('installment');
+                $transaction->totalincome = $request->input('totalincome');
+                $transaction->datepurchased = $request->input('datepurchased');
+                $transaction->duedate = $request->input('duedate');
+
+                $transaction->save();
+                return back()->with('status', 'New Transaction Details Added Sucessfully');
+            }
+
+        }
 
     }
 
@@ -89,7 +149,8 @@ class TransactionsController extends Controller
                 'g2.lanline as g2lanline',
                 'transactions.id as id', 'transactions.paymenttype as paymenttype', 'transactions.amount as amount',
                 'transactions.installment as installment', 'transactions.totalincome as totalincome',
-                'transactions.datepurchased as datepurchased', 'transactions.duedate as duedate'
+                'transactions.datepurchased as datepurchased', 'transactions.duedate as duedate',
+                'transactions.remain as remain'
             )->where(['transactions.status' => 0])
             ->orderBy('id', 'desc')->get();
         $id = Auth::user()->id;

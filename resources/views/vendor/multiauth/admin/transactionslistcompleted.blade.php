@@ -112,6 +112,8 @@
 
 
 
+
+
 											{{-- @if($item->status===1)
 											<a href="blockcustomer/{{$item->id}}" type="button" style="padding: 10px"
 											class="btn btn-warning btn-icon-anim btn-square"><i
@@ -316,6 +318,10 @@
 			</div>
 		</div>
 	</div>
+
+
+
+
 
 
 

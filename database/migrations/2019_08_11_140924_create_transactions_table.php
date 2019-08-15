@@ -21,6 +21,7 @@ class CreateTransactionsTable extends Migration
             $table->bigInteger('secondguarantor');
             $table->string('paymenttype');
             $table->double('amount', 8, 2);
+            $table->double('remain', 8, 2);
             $table->double('installment', 8, 2);
             $table->double('totalincome', 8, 2);
             $table->date('datepurchased');

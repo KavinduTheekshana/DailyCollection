@@ -7,14 +7,14 @@
 		<!-- Title -->
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-				<h5 class="txt-dark">Not Completed Transactions List</h5>
+				<h5 class="txt-dark">Reports</h5>
 			</div>
 			<!-- Breadcrumb -->
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 				<ol class="breadcrumb">
 					<li><a href="index.html">Dashboard</a></li>
 					<li><a href="index.html">Transactions List</a></li>
-					<li class="active"><span>Not Completed</span> </li>
+					<li class="active"><span>Reports</span> </li>
 				</ol>
 			</div> <!-- /Breadcrumb -->
 		</div>
@@ -35,7 +35,7 @@
 				<div class="panel panel-default card-view">
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Not Completed Transactions List</h6>
+							<h6 class="panel-title txt-dark">Not Completed Transactions List For Reports</h6>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -59,7 +59,7 @@
 										<th class="text-center">NIC</th>
 										<th class="text-center">Type</th>
 										<th class="text-center">DueDate</th>
-										<th class="text-center">Amount</th>
+										<th class="text-center">Remain</th>
 										<th class="text-center">Installment</th>
 
 										<th class="text-center">Actions</th>
@@ -79,7 +79,7 @@
 											@endif
 										</td>
 										<td>{{$item->duedate}}</td>
-										<td>{{$item->amount}}</td>
+										<td>{{$item->remain}}</td>
 										<td>{{$item->installment}}</td>
 										{{-- <td>
 											@if($item->status===1)

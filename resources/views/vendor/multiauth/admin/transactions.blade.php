@@ -40,6 +40,12 @@
 		</div>
 		@endif
 
+		@if (session('statusdanger'))
+		<div class="alert alert-danger">
+			{{ session('statusdanger') }}
+		</div>
+		@endif
+
 		<!-- Row -->
 		<div class="row">
 			<div class="col-sm-12">

@@ -58,3 +58,5 @@ Route::get('/updateuser/{id}', 'UserController@updateuser');
 // Route::POST('valid_nic','CustomerController@valid_nic')->name('valid_nic');
 
 Route::get('/profile', 'ProfileController@index')->name('admin.profile');
+
+Route::get('/reports', 'ReportController@show')->name('admin.reports');
