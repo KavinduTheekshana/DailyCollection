@@ -41,12 +41,14 @@ class TransactionsController extends Controller
         $firstguarantor = $request->input('first_guaranter_id');
         $secondguarantor = $request->input('second_guaranter_id');
         $customer = $request->input('customer_id');
-        // $firstguarantor = 5;
+
+        // $firstguarantor = 0;
+        // $secondguarantor = 2;
+        // $customer = 1;
 
         $customercount1 = DB::table('transactions')
             ->where('firstguarantor', $firstguarantor)
             ->where('status', false)
-            ->orwhere(['secondguarantor' => $firstguarantor, 'status' => false])
             ->orWhere(function ($query) use ($firstguarantor) {
                 $query->where('secondguarantor', '=', $firstguarantor)
                     ->where('status', '=', false);
@@ -56,16 +58,23 @@ class TransactionsController extends Controller
         $customercount2 = DB::table('transactions')
             ->where('firstguarantor', $secondguarantor)
             ->where('status', false)
-            ->orwhere(['secondguarantor' => $secondguarantor, 'status' => false])
             ->orWhere(function ($query) use ($secondguarantor) {
                 $query->where('secondguarantor', '=', $secondguarantor)
                     ->where('status', '=', false);
             })
             ->count();
 
+        // $customercount1 = DB::table('transactions')
+        //     ->where('firstguarantor', $firstguarantor)
+        //     ->where('status', false)
+        //     ->orwhere(['secondguarantor' => $firstguarantor, 'status' => false])
+        //     ->orWhere(function ($query) use ($firstguarantor) {
+        //         $query->where('secondguarantor', '=', $firstguarantor)
+        //             ->where('status', '=', false);
+        //     })
+        //     ->count();
+
         // dd($customercount1);
-        // $secondguarantor = 2;
-        // $customer = 1;
 
         // $firstguarantorcountfirst = DB::table('transactions')->where(['firstguarantor' => $firstguarantor])->count();
         // $secondguarantorcountfirst = DB::table('transactions')->where(['secondguarantor' => $firstguarantor])->count();
