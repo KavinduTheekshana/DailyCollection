@@ -3,11 +3,13 @@
 namespace Bitfumes\Multiauth\Http\Controllers;
 
 use App\Holiday;
+use App\Report;
 use App\Transaction;
 use Auth;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DB;
+use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
 class ReportController extends Controller
@@ -29,7 +31,7 @@ class ReportController extends Controller
         $customer = $transaction->transaction_customer;
         $today = Carbon::now()->toDateString();
         $purchased_date = Carbon::parse($transaction->datepurchased);
-        $days = $this->daysBetween($purchased_date);
+        $days = array_reverse($this->daysBetween($purchased_date));
 
         return view('vendor.multiauth.admin.viewtransactions', compact('profile', 'transaction','customer','days'));
     }
@@ -54,6 +56,15 @@ class ReportController extends Controller
         $id = Auth::user()->id;
         $profile = DB::table('admins')->where(['id' => $id])->first();
         return view('vendor.multiauth.admin.reports', ['data' => $data, 'profile' => $profile]);
+    }
+
+    public function makeInstallment(Request $request){
+        $installment = new Report();
+        $installment->nic ='1';
+        $installment->date ='2019-08-30';
+        $installment->amount ='1';
+        $installment->save();
+        dd($installment);
     }
 
     private function daysBetween(Carbon $start_date, Carbon $end_date = null)

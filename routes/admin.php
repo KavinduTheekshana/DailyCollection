@@ -62,3 +62,4 @@ Route::get('/profile', 'ProfileController@index')->name('admin.profile');
 Route::get('/reports', 'ReportController@show')->name('admin.reports');
 
 Route::get('viewtransactions/{transaction}', 'ReportController@viewtransactions');
+Route::post('make-installment', 'ReportController@makeInstallment')->name('report.payment');

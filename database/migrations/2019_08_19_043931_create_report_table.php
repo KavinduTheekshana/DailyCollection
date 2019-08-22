@@ -13,11 +13,12 @@ class CreateReportTable extends Migration
      */
     public function up()
     {
-        Schema::create('report', function (Blueprint $table) {
+        Schema::create('reports', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nic');
+            $table->string('transaction_id');
             $table->date('date');
-            $table->string('amount');
+            $table->double('amount');
+            $table->double('remain');
             $table->timestamps();
         });
     }

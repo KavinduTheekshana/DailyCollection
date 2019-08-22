@@ -3,8 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="479826f1-7020-41ed-a48f-3f9c14262300" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Holiday.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Holiday.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/migrations/2019_08_19_043931_create_report_table.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/migrations/2019_08_19_043931_create_report_table.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/viewtransactions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/viewtransactions.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/ReportController.php" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -155,7 +156,7 @@
       <workItem from="1563932223893" duration="2808000" />
       <workItem from="1564032766552" duration="1527000" />
       <workItem from="1564210557981" duration="792000" />
-      <workItem from="1566494646287" duration="7559000" />
+      <workItem from="1566494646287" duration="9435000" />
     </task>
     <servers />
   </component>
