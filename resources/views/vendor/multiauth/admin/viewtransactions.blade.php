@@ -64,13 +64,17 @@
 								</thead>
 								<tbody style="text-align: center">
 
+								@foreach($days as $day)
 									<tr>
-
-
-
-
+										<td>{{$day->format('d-m-Y')}}</td>
+										<td>status</td>
+										<td>remain</td>
+										<td>{{$transaction->installment}}</td>
+										<td>
+											<input type="text" class="form-control" name="amount" {{($day != \Carbon\Carbon::today())?'disabled':null}}>
+										</td>
 									</tr>
-
+								@endforeach
 								</tbody>
 							</table>
 
@@ -122,18 +126,18 @@
 
 			 document.getElementById('modelremainbalance').value=$(this).data('modelremainbalance');
 
-     
+
              });
 
 
 			//  $('.edit').on('click',function(e){
             //      e.preventDefault();
             //  document.getElementById('modelremain2').value=$(this).data('modelremain');
-     
+
             //  });
-      
-   
-   
+
+
+
 	</script>
 
 
@@ -167,7 +171,7 @@
 										text : "Post has been deleted \n Click OK to refresh the page",
 										type : "success",
 									},
-									function(isConfirm){ 
+									function(isConfirm){
 										location.reload();
 									});
 								},

@@ -2,9 +2,11 @@
 
 namespace Bitfumes\Multiauth\Http\Controllers;
 
-use App\Customer;
+use App\Holiday;
 use App\Transaction;
 use Auth;
+use Carbon\Carbon;
+use Carbon\CarbonPeriod;
 use DB;
 use Illuminate\Routing\Controller;
 
@@ -23,9 +25,13 @@ class ReportController extends Controller
 
     public function viewTransactions(Transaction $transaction)
     {
-        $profile =  Auth::user();
+        $profile = Auth::user();
         $customer = $transaction->transaction_customer;
-        return view('vendor.multiauth.admin.viewtransactions', compact('profile','customer'));
+        $today = Carbon::now()->toDateString();
+        $purchased_date = Carbon::parse($transaction->datepurchased);
+        $days = $this->daysBetween($purchased_date);
+
+        return view('vendor.multiauth.admin.viewtransactions', compact('profile', 'transaction','customer','days'));
     }
 
     public function show(Transaction $transaction)
@@ -48,6 +54,27 @@ class ReportController extends Controller
         $id = Auth::user()->id;
         $profile = DB::table('admins')->where(['id' => $id])->first();
         return view('vendor.multiauth.admin.reports', ['data' => $data, 'profile' => $profile]);
+    }
+
+    private function daysBetween(Carbon $start_date, Carbon $end_date = null)
+    {
+        $end_date = (!empty($end_date) ? $end_date : Carbon::now());
+        $holidays = Holiday::all()->pluck('date')->toArray();
+        $days = CarbonPeriod::create($start_date, 'P1D', $end_date)
+            ->filter(function ($date) use ($holidays) {
+                return $date->dayOfWeek != Carbon::SATURDAY && !in_array($date, $holidays);
+            });
+        return $days->toArray();
+    }
+
+    private function dayCountFromPurchased(Carbon $purchased_date, Carbon $toDate = null)
+    {
+        $toDate = (!empty($toDate) ? $toDate : Carbon::now());
+        $holidays = Holiday::all()->pluck('date')->toArray();
+        $difference = $purchased_date->diffInDaysFiltered(function ($date) use ($holidays) {
+            return $date->dayOfWeek != Carbon::SATURDAY && !in_array($date, $holidays);
+        }, $toDate);
+        return $difference;
     }
 
 }
