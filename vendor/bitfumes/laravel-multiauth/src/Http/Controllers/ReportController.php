@@ -2,6 +2,8 @@
 
 namespace Bitfumes\Multiauth\Http\Controllers;
 
+use App\Customer;
+use App\Transaction;
 use Auth;
 use DB;
 use Illuminate\Routing\Controller;
@@ -19,15 +21,14 @@ class ReportController extends Controller
         $this->middleware('role:super', ['only' => 'show']);
     }
 
-    public function viewtransactions($cnic)
+    public function viewTransactions(Transaction $transaction)
     {
-        $id = Auth::user()->id;
-        $profile = DB::table('admins')->where(['id' => $id])->first();
-        $customer = DB::table('customers')->where(['nic' => $cnic])->first();
-        return view('vendor.multiauth.admin.viewtransactions', ['profile' => $profile, 'customer' => $customer]);
+        $profile =  Auth::user();
+        $customer = $transaction->transaction_customer;
+        return view('vendor.multiauth.admin.viewtransactions', compact('profile','customer'));
     }
 
-    public function show()
+    public function show(Transaction $transaction)
     {
         $data = DB::table('transactions')->join('customers as c', 'c.id', '=', 'transactions.customer')
             ->join('customers as g1', 'g1.id', '=', 'transactions.firstguarantor')
