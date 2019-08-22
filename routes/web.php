@@ -48,3 +48,5 @@ Route::get('/duedate', 'TransactionsController@duedate');
 
 Route::get('/transactionslistcompleted', 'TransactionsController@transactionslistcompleted')->name('admin.transactionslistcompleted');
 Route::get('/transactionslistnotcompleted', 'TransactionsController@transactionslistnotcompleted')->name('admin.transactionslistnotcompleted');
+
+// Route::get('viewtransactions', 'ReportController@viewtransactions');

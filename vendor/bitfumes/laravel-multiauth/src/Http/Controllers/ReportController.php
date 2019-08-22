@@ -19,6 +19,14 @@ class ReportController extends Controller
         $this->middleware('role:super', ['only' => 'show']);
     }
 
+    public function viewtransactions($cnic)
+    {
+        $id = Auth::user()->id;
+        $profile = DB::table('admins')->where(['id' => $id])->first();
+        $customer = DB::table('customers')->where(['nic' => $cnic])->first();
+        return view('vendor.multiauth.admin.viewtransactions', ['profile' => $profile, 'customer' => $customer]);
+    }
+
     public function show()
     {
         $data = DB::table('transactions')->join('customers as c', 'c.id', '=', 'transactions.customer')

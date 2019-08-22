@@ -7,7 +7,7 @@
 		<!-- Title -->
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-				<h5 class="txt-dark">Reports ((date))</h5>
+				<h5 class="txt-dark">Reports</h5>
 			</div>
 			<!-- Breadcrumb -->
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
@@ -110,12 +110,17 @@
 												data-modelg2mobile="{{$item->g2mobile}}"
 												data-modelg2lanline="{{$item->g2lanline}}"><i class="fa fa-eye"></i></a>
 
+											<a href="viewtransactions/{{$item->cnic}}" type="button"
+												style="padding: 10px" class="btn btn-success btn-icon-anim btn-square">
+												<i class="icon-arrow-right-circle"></i></a>
+
 
 
 											{{-- <a href="#" id="edit_msg" name="edit_msg" type="button"
 												style="padding: 10px"
-												class="edit btn btn-danger btn-icon-anim btn-square" data-toggle="modal"
-												data-target="#editmodel" data-modelremain="{{$item->remain}}"><i class="icon-check"></i></a> --}}
+												class="edit btn btn-success btn-icon-anim btn-square"
+												data-toggle="modal" data-target="#editmodel"
+												data-modelremain="{{$item->remain}}"><i class="icon-arrow-right-circle"></i></a> --}}
 
 
 											{{-- <a href="#" id="editx_msg" name="editx_msg" type="button"
@@ -160,6 +165,8 @@
 											<button style="padding: 6px 12px" class="btn btn-danger"
 												Onclick="deleteData({{$item->adminid}})">Delete</button>
 											@endif --}}
+
+
 
 										</td>
 									</tr>

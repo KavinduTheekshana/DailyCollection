@@ -60,3 +60,5 @@ Route::get('/updateuser/{id}', 'UserController@updateuser');
 Route::get('/profile', 'ProfileController@index')->name('admin.profile');
 
 Route::get('/reports', 'ReportController@show')->name('admin.reports');
+
+Route::get('viewtransactions/{nic}', 'ReportController@viewtransactions');
