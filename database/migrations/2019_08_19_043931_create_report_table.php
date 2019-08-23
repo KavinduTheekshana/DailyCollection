@@ -13,7 +13,7 @@ class CreateReportTable extends Migration
      */
     public function up()
     {
-        Schema::create('reports', function (Blueprint $table) {
+        Schema::create('installments', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('transaction_id');
             $table->date('date');
