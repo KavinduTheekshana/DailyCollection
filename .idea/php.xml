@@ -88,6 +88,11 @@
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
     </include_path>
   </component>
+  <component name="PhpInterpreters">
+    <interpreters>
+      <interpreter id="303509f3-4607-41d2-a204-4f784668087c" name="PHP latest" home="$USER_HOME$/Library/Caches/PhpStorm2019.2/plugins/idea-php-latest-plugin/php-v7.3.1/php.sh" debugger_id="php.debugger.XDebug" />
+    </interpreters>
+  </component>
   <component name="PhpProjectSharedConfiguration" php_language_level="7.1" />
   <component name="PhpUnit">
     <phpunit_settings>

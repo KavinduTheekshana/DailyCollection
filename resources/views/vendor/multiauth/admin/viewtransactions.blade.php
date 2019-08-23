@@ -54,7 +54,7 @@
                                     <thead>
                                     <tr>
                                         <th class="text-center">Date</th>
-                                        <th class="text-center">Ststus</th>
+                                        <th class="text-center">Status</th>
                                         <th class="text-center">Remain</th>
                                         <th class="text-center">Installment</th>
                                         <th class="text-center">Payment</th>
@@ -64,15 +64,15 @@
                                     <form role="form" method="POST" action="{{route('report.payment')}}">
                                         @csrf
 										<input type="hidden" name="transaction_id" value="{{$transaction->id}}">
-                                        @foreach($days as $day)
+                                        @foreach($data as $day)
                                             <tr>
-                                                <td>{{$day->format('d-m-Y')}}</td>
-                                                <input type="hidden" name="date" value="{{$day->format('d-m-Y')}}">
+                                                <td>{{(empty($day->id))?$day->format('d-m-Y'):$day->date}}</td>
+                                                <input type="hidden" name="date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                                                 <td>status</td>
-                                                <td>remain</td>
+                                                <td>{{(empty($day->id))?$transaction->remain:$day->remain}}</td>
                                                 <td>{{$transaction->installment}}</td>
                                                 <td>
-                                                    <input type="text" class="form-control" required name="amount" {{($day != \Carbon\Carbon::today())?'disabled':null}}>
+                                                    <input type="text" class="form-control" value="{{ (!empty($day->id))?$day->amount:null }}" required name="amount" {{ ($day != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty($day->id))?'disabled':null}}>
                                                 </td>
                                                 <td>
                                                     <input type="submit" value="make payement" style="padding: 10px" class="btn btn-success " {{($day != \Carbon\Carbon::today())?'disabled':null}}>

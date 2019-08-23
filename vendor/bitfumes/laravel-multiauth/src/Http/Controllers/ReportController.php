@@ -3,12 +3,13 @@
 namespace Bitfumes\Multiauth\Http\Controllers;
 
 use App\Holiday;
-use App\Report;
+use App\Installment;
 use App\Transaction;
 use Auth;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DB;
+use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
 
@@ -29,11 +30,24 @@ class ReportController extends Controller
     {
         $profile = Auth::user();
         $customer = $transaction->transaction_customer;
-        $today = Carbon::now()->toDateString();
         $purchased_date = Carbon::parse($transaction->datepurchased);
         $days = array_reverse($this->daysBetween($purchased_date));
+        $installments = $transaction->installments;
 
-        return view('vendor.multiauth.admin.viewtransactions', compact('profile', 'transaction','customer','days'));
+        $data=new Collection();
+        foreach ($days as $day){
+            $flag=true;
+            foreach ($installments as $installment){
+                if ($day == Carbon::parse($installment->date)){
+                   $data->add($installment);
+                   $flag=false;
+                }
+            }
+            if ($flag){
+                $data->add($day);
+            }
+        }
+        return view('vendor.multiauth.admin.viewtransactions', compact('profile', 'transaction','customer','data'));
     }
 
     public function show(Transaction $transaction)
@@ -58,19 +72,23 @@ class ReportController extends Controller
         return view('vendor.multiauth.admin.reports', ['data' => $data, 'profile' => $profile]);
     }
 
-    public function makeInstallment(Request $request){
-        $installment = new Report();
-        $installment->nic ='1';
-        $installment->date ='2019-08-30';
-        $installment->amount ='1';
-        $installment->save();
-        dd($installment);
+    public function makeInstallment(Request $request)
+    {
+        $installment = new Installment();
+        $installment->date = Carbon::parse($request->date)->format('Y-m-d');
+        $installment->amount = $request->amount;
+
+        $transaction=Transaction::find($request->transaction_id);
+        $transaction->remain = $transaction->remain-  $installment->amount;
+        $installment->remain = $transaction->remain;
+        $transaction->installments()->save($installment);
+        return redirect()->back();
     }
 
     private function daysBetween(Carbon $start_date, Carbon $end_date = null)
     {
         $end_date = (!empty($end_date) ? $end_date : Carbon::now());
-        $holidays = Holiday::all()->pluck('date')->toArray();
+        $holidays = Holiday::whereBetween('date', [$start_date, $end_date])->get()->pluck('date')->toArray();
         $days = CarbonPeriod::create($start_date, 'P1D', $end_date)
             ->filter(function ($date) use ($holidays) {
                 return $date->dayOfWeek != Carbon::SATURDAY && !in_array($date, $holidays);
@@ -81,7 +99,7 @@ class ReportController extends Controller
     private function dayCountFromPurchased(Carbon $purchased_date, Carbon $toDate = null)
     {
         $toDate = (!empty($toDate) ? $toDate : Carbon::now());
-        $holidays = Holiday::all()->pluck('date')->toArray();
+        $holidays = Holiday::whereBetween('date', [$purchased_date, $toDate])->get()->pluck('date')->toArray();
         $difference = $purchased_date->diffInDaysFiltered(function ($date) use ($holidays) {
             return $date->dayOfWeek != Carbon::SATURDAY && !in_array($date, $holidays);
         }, $toDate);
