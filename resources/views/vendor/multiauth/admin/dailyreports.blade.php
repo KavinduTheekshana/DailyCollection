@@ -7,13 +7,13 @@
 		<!-- Title -->
 		<div class="row heading-bg">
 			<div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-				<h5 class="txt-dark">Reports</h5>
+				<h5 class="txt-dark">Daily Reports</h5>
 			</div>
 			<!-- Breadcrumb -->
 			<div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
 				<ol class="breadcrumb">
 					<li><a href="index.html">Dashboard</a></li>
-					<li class="active"><span>Reports</span> </li>
+					<li class="active"><span>Daily Reports</span> </li>
 				</ol>
 			</div> <!-- /Breadcrumb -->
 		</div>
@@ -34,8 +34,48 @@
 				<div class="panel panel-default card-view">
 					<div class="panel-heading">
 						<div class="pull-left">
-							<h6 class="panel-title txt-dark">Not Completed Transactions List For Reports</h6>
+
+								
+												<form class="form-inline">
+												   <div class="form-group mr-35">
+														<h6 class="panel-title txt-dark">Genarate Reports</h6>
+													</div>
+
+													<div class="input-group form-group mr-55">
+															{{-- <input type="text" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Route"> --}}
+															<select class="form-control select2" name="route">
+																	@foreach ($route as $item)
+																	
+																	<option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->route}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</option>
+					
+																	@endforeach
+					
+																</select>
+															<span class="input-group-btn">
+															<button type="button" class="btn btn-success "><span class="btn-text">submit</span></button>
+															</span> 
+														</div>
+
+														
+											
+													
+												</form>
+					
+
+							{{-- <div class="row pl-15 pr-15">
+							<h6 class="panel-title txt-dark">Genarate Reports</h6>
+							<div class="input-group mb-15">
+								<input type="email" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Email">
+								<span class="input-group-btn">
+								<button type="button" class="btn btn-success btn-anim"><i class="icon-rocket"></i><span class="btn-text">submit</span></button>
+								</span> 
+							</div>
+							</div> --}}
 						</div>
+
+						<button type="button" class="btn btn-warning  pull-right"><span class="btn-text">Download Report</span></button>
+
+
 						<div class="clearfix"></div>
 					</div>
 
@@ -55,121 +95,22 @@
 									<tr>
 										<th class="text-center">ID</th>
 										<th class="text-center">Name</th>
-										<th class="text-center">NIC</th>
-										<th class="text-center">Type</th>
-										<th class="text-center">DueDate</th>
-										<th class="text-center">Remain</th>
+										<th class="text-center">Address</th>
+										<th class="text-center">Phone</th>
 										<th class="text-center">Installment</th>
-
-										<th class="text-center">Actions</th>
+										<th class="text-center"></th>
 									</tr>
 								</thead>
 								<tbody style="text-align: center">
-									@foreach($data as $item)
-									<tr>
-										<td>{{$item->id}}</td>
-										<td>{{$item->cname}}</td>
-										<td>{{$item->cnic}}V</td>
-										<td>
-											@if($item->paymenttype==='weekly')
-											<span style="padding: 5px 15px" class="label label-danger">Weekly</span>
-											@elseif($item->paymenttype==='daily')
-											<span style="padding: 5px 15px" class="label label-primary">Daily</span>
-											@endif
-										</td>
-										<td>{{$item->duedate}}</td>
-										<td>{{$item->remain}}</td>
-										<td>{{$item->installment}}</td>
-										{{-- <td>
-											@if($item->status===1)
-											<span style="padding: 5px 15px" class="label label-success">Active</span>
-											@elseif($item->status===0)
-											<span style="padding: 5px 15px" class="label label-warning">Blocked</span>
-											@endif
-										</td>  --}}
-
-
-										<td>
-											<a href="#" id="view_msg" name="view_msg" type="button"
-												style="padding: 10px"
-												class="view btn btn-warning btn-icon-anim btn-square"
-												data-toggle="modal" data-target="#responsive-modal"
-												data-modelid="{{$item->id}}" data-modelcname="{{$item->cname}}"
-												data-modelcnic="{{$item->cnic}}V"
-												data-modelcaddress="{{$item->caddress}}"
-												data-modelcmobile="{{$item->cmobile}}"
-												data-modelclanline="{{$item->clanline}}"
-												data-modelroute="{{$item->route}}" data-modelg1name="{{$item->g1name}}"
-												data-modelg1nic="{{$item->g1nic}}"
-												data-modelg1address="{{$item->g1address}}"
-												data-modelg1mobile="{{$item->g1mobile}}"
-												data-modelg1lanline="{{$item->g1lanline}}"
-												data-modelg2name="{{$item->g2name}}" data-modelg2nic="{{$item->g2nic}}"
-												data-modelg2address="{{$item->g2address}}"
-												data-modelg2mobile="{{$item->g2mobile}}"
-												data-modelg2lanline="{{$item->g2lanline}}"><i class="fa fa-eye"></i></a>
-
-											<a href="viewtransactions/{{$item->id}}" type="button"
-												style="padding: 10px" class="btn btn-success btn-icon-anim btn-square">
-												<i class="icon-arrow-right-circle"></i></a>
 
 
 
-											{{-- <a href="#" id="edit_msg" name="edit_msg" type="button"
-												style="padding: 10px"
-												class="edit btn btn-success btn-icon-anim btn-square"
-												data-toggle="modal" data-target="#editmodel"
-												data-modelremain="{{$item->remain}}"><i class="icon-arrow-right-circle"></i></a> --}}
-
-
-											{{-- <a href="#" id="editx_msg" name="editx_msg" type="button"
-												style="padding: 10px" class="btn btn-danger btn-icon-anim btn-square"
-												data-toggle="modal" data-target="#editmodel"
-												data-modelremainbalance="{{$item->cnic}}">
-											<i class="icon-check"></i></a> --}}
 
 
 
-											{{-- @if($item->status===1)
-											<a href="blockcustomer/{{$item->id}}" type="button" style="padding: 10px"
-											class="btn btn-warning btn-icon-anim btn-square"><i
-												class="icon-lock"></i></a>
-											@elseif($item->status===0)
-											<a href="unblockcustomer/{{$item->id}}" type="button" style="padding: 10px"
-												class="btn btn-success btn-icon-anim btn-square"><i
-													class="icon-lock-open"></i></a>
-											@endif
 
-											<a href="#" id="edit_msg" name="edit_msg" type="button"
-												style="padding: 10px"
-												class="edit btn btn-default btn-icon-anim btn-square"
-												data-toggle="modal" data-target="#editmodel"
-												data-modelid="{{$item->id}}" data-modelname="{{$item->name}}"
-												data-modeladdress="{{$item->address}}" data-modelnic="{{$item->nic}}"
-												data-modelmobile="{{$item->mobile}}"
-												data-modellanline="{{$item->lanline}}"><i class="fa fa-pencil"></i></a>
-
-											<button Onclick="deleteData({{$item->id}})"
-												class="btn btn-danger btn-icon-anim btn-square"><i
-													class="icon-trash"></i></button>
-
-
-											@if($item->rolename==='super')
-											<a href="deleteroute/{{$item->adminid}}" type="button"
-												style="padding: 6px 12px" class="btn btn-success">View
-												Profile</a>
-											@elseif($item->rolename==='user')
-											<a href="updateuser/{{$item->adminid}}" type="button"
-												style="padding: 6px 12px" class="btn btn-warning">Update</a>
-											<button style="padding: 6px 12px" class="btn btn-danger"
-												Onclick="deleteData({{$item->adminid}})">Delete</button>
-											@endif --}}
-
-
-
-										</td>
-									</tr>
-									@endforeach
+			
+									
 								</tbody>
 							</table>
 
