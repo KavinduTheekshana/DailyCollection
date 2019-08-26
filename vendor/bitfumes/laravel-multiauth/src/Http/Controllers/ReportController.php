@@ -28,11 +28,15 @@ class ReportController extends Controller
 
     public function viewTransactions(Transaction $transaction)
     {
+        $type = $transaction->paymenttype;
         $profile = Auth::user();
         $customer = $transaction->transaction_customer;
         $purchased_date = Carbon::parse($transaction->datepurchased);
-        $days = array_reverse($this->daysBetween($purchased_date));
         $installments = $transaction->installments;
+//return $holidays = Holiday::all();
+
+        $days = ($type === 'daily')?$this->daysBetween($purchased_date):$this->daysBetween($purchased_date,null,'weekly');
+        $days=array_reverse($days);
 
         $data=new Collection();
         foreach ($days as $day){
@@ -85,15 +89,35 @@ class ReportController extends Controller
         return redirect()->back();
     }
 
-    private function daysBetween(Carbon $start_date, Carbon $end_date = null)
+    private function daysBetween(Carbon $start_date, Carbon $end_date = null,$type='daily')
     {
         $end_date = (!empty($end_date) ? $end_date : Carbon::now());
+        $days = CarbonPeriod::create($start_date, 'P1D', $end_date);
         $holidays = Holiday::whereBetween('date', [$start_date, $end_date])->get()->pluck('date')->toArray();
-        $days = CarbonPeriod::create($start_date, 'P1D', $end_date)
-            ->filter(function ($date) use ($holidays) {
-                return $date->dayOfWeek != Carbon::SATURDAY && !in_array($date, $holidays);
-            });
+
+        $days = ($type=='daily')?$this->daysInPeriod($days,$holidays):$this->weeksInPeriod($days,$holidays);
         return $days->toArray();
+    }
+
+    private function daysInPeriod(CarbonPeriod $days,$holidays){
+        return $days  ->filter(function ($date) use ($holidays) {
+            return $date->dayOfWeek != Carbon::SUNDAY && !in_array($date, $holidays);
+        });
+    }
+
+    private function weeksInPeriod(CarbonPeriod $days,$holidays){
+        $weeks = $days->setDateInterval('1w');
+        $weekDays =collect();
+        foreach ($weeks as $weekDay){
+            if ($weekDay->dayOfWeek == Carbon::SUNDAY){
+                $weekDay = $weekDay->addDay();
+            }
+            if(in_array($weekDay, $holidays)){
+                $weekDay = $weekDay->addDay();
+            }
+            $weekDays->add($weekDay);
+        }
+        return $weekDays;
     }
 
     private function dayCountFromPurchased(Carbon $purchased_date, Carbon $toDate = null)
@@ -101,7 +125,7 @@ class ReportController extends Controller
         $toDate = (!empty($toDate) ? $toDate : Carbon::now());
         $holidays = Holiday::whereBetween('date', [$purchased_date, $toDate])->get()->pluck('date')->toArray();
         $difference = $purchased_date->diffInDaysFiltered(function ($date) use ($holidays) {
-            return $date->dayOfWeek != Carbon::SATURDAY && !in_array($date, $holidays);
+            return $date->dayOfWeek != Carbon::SUNDAY && !in_array($date, $holidays);
         }, $toDate);
         return $difference;
     }

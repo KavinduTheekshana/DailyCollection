@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="479826f1-7020-41ed-a48f-3f9c14262300" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Transaction.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Transaction.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/viewtransactions.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/viewtransactions.blade.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routes/admin.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/admin.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/ReportController.php" afterDir="false" />
     </list>
@@ -20,6 +17,20 @@
     <execution>
       <executable />
     </execution>
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -154,6 +165,7 @@
       <workItem from="1564210557981" duration="792000" />
       <workItem from="1566494646287" duration="9863000" />
       <workItem from="1566576133876" duration="5496000" />
+      <workItem from="1566838201899" duration="2750000" />
     </task>
     <servers />
   </component>
