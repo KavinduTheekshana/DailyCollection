@@ -28,29 +28,34 @@ class ReportController extends Controller
 
     public function viewTransactions(Transaction $transaction)
     {
-        $type = $transaction->paymenttype;
-        $profile = Auth::user();
-        $customer = $transaction->transaction_customer;
-        $purchased_date = Carbon::parse($transaction->datepurchased);
-        $installments = $transaction->installments;
-//return $holidays = Holiday::all();
+        if ($transaction->remain <= 0){
+            $type = $transaction->paymenttype;
+            $profile = Auth::user();
+            $customer = $transaction->transaction_customer;
+            $purchased_date = Carbon::parse($transaction->datepurchased);
+            $installments = $transaction->installments;
 
-        $days = ($type === 'daily')?$this->daysBetween($purchased_date):$this->daysBetween($purchased_date,null,'weekly');
-        $days=array_reverse($days);
+            $days = ($type === 'daily')?$this->daysBetween($purchased_date):$this->daysBetween($purchased_date,null,'weekly');
+            $days=array_reverse($days);
 
-        $data=new Collection();
-        foreach ($days as $day){
-            $flag=true;
-            foreach ($installments as $installment){
-                if ($day == Carbon::parse($installment->date)){
-                   $data->add($installment);
-                   $flag=false;
+            $data=new Collection();
+            foreach ($days as $day){
+                $flag=true;
+                foreach ($installments as $installment){
+                    if ($day == Carbon::parse($installment->date)){
+                        $data->add($installment);
+                        $flag=false;
+                    }
+                }
+                if ($flag){
+                    $data->add($day);
                 }
             }
-            if ($flag){
-                $data->add($day);
-            }
+        }else{
+            $data=[];
         }
+
+
         return view('vendor.multiauth.admin.viewtransactions', compact('profile', 'transaction','customer','data'));
     }
 
@@ -78,15 +83,15 @@ class ReportController extends Controller
 
     public function makeInstallment(Request $request)
     {
+        Transaction::$FIRE_EVENTS=true;
         $installment = new Installment();
         $installment->date = Carbon::parse($request->date)->format('Y-m-d');
         $installment->amount = $request->amount;
-
         $transaction=Transaction::find($request->transaction_id);
-        $transaction->remain = $transaction->remain-  $installment->amount;
+        $transaction->remain = $transaction->remain - $installment->amount;
         $installment->remain = $transaction->remain;
         $transaction->installments()->save($installment);
-        return redirect()->back();
+        return redirect()->route('admin.home');
     }
 
     private function daysBetween(Carbon $start_date, Carbon $end_date = null,$type='daily')
