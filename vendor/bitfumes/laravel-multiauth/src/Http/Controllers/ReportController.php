@@ -30,27 +30,29 @@ class ReportController extends Controller
     {
         $customer = $transaction->transaction_customer;
         $profile = Auth::user();
-        if ($transaction->remain <= 0){
+        if ($transaction->remain >= 0){
             $type = $transaction->paymenttype;
             $purchased_date = Carbon::parse($transaction->datepurchased);
-            $installments = $transaction->installments;
+            $installments = $transaction->installments()->dueToToday()->get();
 
-            $days = ($type === 'daily')?$this->daysBetween($purchased_date):$this->daysBetween($purchased_date,null,'weekly');
-            $days=array_reverse($days);
+//            $days = ($type === 'daily')?$this->daysBetween($purchased_date):$this->daysBetween($purchased_date,null,'weekly');
+//            $days=array_reverse($days);
+//
+//            $data=new Collection();
+//            foreach ($days as $day){
+//                $flag=true;
+//                foreach ($installments as $installment){
+//                    if ($day == Carbon::parse($installment->date)){
+//                        $data->add($installment);
+//                        $flag=false;
+//                    }
+//                }
+//                if ($flag){
+//                    $data->add($day);
+//                }
+//            }
 
-            $data=new Collection();
-            foreach ($days as $day){
-                $flag=true;
-                foreach ($installments as $installment){
-                    if ($day == Carbon::parse($installment->date)){
-                        $data->add($installment);
-                        $flag=false;
-                    }
-                }
-                if ($flag){
-                    $data->add($day);
-                }
-            }
+            $data=$installments;
         }else{
             $data=[];
         }
@@ -84,9 +86,10 @@ class ReportController extends Controller
     public function makeInstallment(Request $request)
     {
         Transaction::$FIRE_EVENTS=true;
-        $installment = new Installment();
-        $installment->date = Carbon::parse($request->date)->format('Y-m-d');
+        $installment =Installment::find($request->instalment_id);
+        $installment->payment_date = Carbon::parse($request->date)->format('Y-m-d');
         $installment->amount = $request->amount;
+        $installment->status =1;
         $transaction=Transaction::find($request->transaction_id);
         $transaction->remain = $transaction->remain - $installment->amount;
         $installment->remain = $transaction->remain;

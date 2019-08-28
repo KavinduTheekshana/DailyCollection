@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Customer;
+use App\Holiday;
+use App\Installment;
 use App\Transaction;
 use Auth;
 use Carbon\carbon;
+use Carbon\CarbonPeriod;
 use DB;
 use Illuminate\Http\Request;
 
@@ -117,12 +120,18 @@ class TransactionsController extends Controller
                 $transaction->duedate = $request->input('duedate');
 
                 $transaction->save();
+
+
+                $this->setInstallmentDates($transaction);
+
                 return back()->with('status', 'New Transaction Details Added Sucessfully');
             }
 
         }
 
     }
+
+
 
     public function transactionslistcompleted()
     {
@@ -278,5 +287,67 @@ class TransactionsController extends Controller
         //    }
 
     }
+
+
+    public function makeInstallment(Request $request)
+    {
+        Transaction::$FIRE_EVENTS=true;
+        $installment = new Installment();
+        $installment->date = Carbon::parse($request->date)->format('Y-m-d');
+        $installment->amount = $request->amount;
+        $transaction=Transaction::find($request->transaction_id);
+        $transaction->remain = $transaction->remain - $installment->amount;
+        $installment->remain = $transaction->remain;
+        $transaction->installments()->save($installment);
+        return redirect()->route('admin.home');
+    }
+
+    private function daysBetween(Carbon $start_date, Carbon $end_date = null,$type='daily')
+    {
+        $end_date = (!empty($end_date) ? $end_date : Carbon::now());
+        $days = CarbonPeriod::create($start_date, 'P1D', $end_date);
+        $holidays = Holiday::whereBetween('date', [$start_date, $end_date])->get()->pluck('date')->toArray();
+
+        $days = ($type=='daily')?$this->daysInPeriod($days,$holidays):$this->weeksInPeriod($days,$holidays);
+        return $days->toArray();
+    }
+
+    private function daysInPeriod(CarbonPeriod $days,$holidays){
+        return $days  ->filter(function ($date) use ($holidays) {
+            return $date->dayOfWeek != Carbon::SUNDAY && !in_array($date, $holidays);
+        });
+    }
+
+    private function weeksInPeriod(CarbonPeriod $days,$holidays){
+        $weeks = $days->setDateInterval('1w');
+        $weekDays =collect();
+        foreach ($weeks as $weekDay){
+            if ($weekDay->dayOfWeek == Carbon::SUNDAY){
+                $weekDay = $weekDay->addDay();
+            }
+            if(in_array($weekDay, $holidays)){
+                $weekDay = $weekDay->addDay();
+            }
+            $weekDays->add($weekDay);
+        }
+        return $weekDays;
+    }
+
+    private function setInstallmentDates(Transaction $transaction){
+        $purchased_date = Carbon::parse($transaction->datepurchased);
+        $type =$transaction->paymenttype;
+        $days = ($type === 'daily')?$this->daysBetween($purchased_date):$this->daysBetween($purchased_date,null,'weekly');
+        foreach ($days as $day){
+            Transaction::$FIRE_EVENTS=false;
+            $installment = new Installment();
+            $installment->payment_date = $day->format('Y-m-d');
+            $installment->amount = $transaction->installment;
+            $installment->remain = $transaction->remain;
+            $transaction->installments()->save($installment);
+        }
+        Transaction::$FIRE_EVENTS=true;
+    }
+
+
 
 }

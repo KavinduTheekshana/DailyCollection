@@ -66,16 +66,17 @@
 										<input type="hidden" name="transaction_id" value="{{$transaction->id}}">
                                         @foreach($data as $day)
                                             <tr>
-                                                <td>{{(empty($day->id))?$day->format('d-m-Y'):$day->date}}</td>
+                                                <td>{{$day->payment_date}}</td>
                                                 <input type="hidden" name="date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
-                                                <td>status</td>
-                                                <td>{{(empty($day->id))?$transaction->remain:$day->remain}}</td>
-                                                <td>{{$transaction->installment}}</td>
+                                                <input type="hidden" name="instalment_id" value="{{ $day->id }}">
+                                                <td>{{(!empty($day->status==1))?'paid':'not paid'}}</td>
+                                                <td>{{$day->remain}}</td>
+                                                <td>{{$day->amount}}</td>
                                                 <td>
-                                                    <input type="text" class="form-control" value="{{ (!empty($day->id))?$day->amount:null }}" required name="amount" {{ ($day != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty($day->id))?'disabled':null}}>
+                                                    <input type="text" class="form-control" value="{{ (!empty($day->status==1))?$day->amount:null }}" required name="amount" {{ (\Carbon\Carbon::parse($day->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty($day->status==1))?'disabled':null}}>
                                                 </td>
                                                 <td>
-                                                    <input type="submit" value="make payement" style="padding: 10px" class="btn btn-success " {{($day != \Carbon\Carbon::today())?'disabled':null}}>
+                                                    <input type="submit" value="make payement" style="padding: 10px" class="btn btn-success " {{ (\Carbon\Carbon::parse($day->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty($day->status==1))?'disabled':null}}>
                                                 </td>
                                             </tr>
                                         @endforeach

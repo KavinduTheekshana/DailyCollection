@@ -14,11 +14,12 @@ class CreateReportTable extends Migration
     public function up()
     {
         Schema::create('installments', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->integer('id',true);
             $table->string('transaction_id');
-            $table->date('date');
-            $table->double('amount');
-            $table->double('remain');
+            $table->date('payment_date');
+            $table->double('amount')->nullable();
+            $table->double('remain')->nullable();
+            $table->double('status')->default(0);
             $table->timestamps();
         });
     }
