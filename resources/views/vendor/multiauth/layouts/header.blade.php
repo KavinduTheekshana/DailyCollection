@@ -407,7 +407,7 @@
                             <a href="{{route('admin.transactionslistcompleted')}}">Completed</a>
                         </li>
                         <li>
-                            <a href="{{route('admin.transactionslistnotcompleted')}}">Not Coustomers</a>
+                            <a href="{{route('admin.transactionslistnotcompleted')}}">Not Completed</a>
                         </li>
                     </ul>
                 </li>
@@ -420,6 +420,19 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
+
+
+                <li>
+                    <a href="{{route('admin.dailyreports')}}">
+                        <div class="pull-left"><i class="zmdi zmdi-file-text mr-20"></i><span
+                                class="right-nav-text">Daily Reports</span></div>
+                        <div class="clearfix"></div>
+                    </a>
+                </li>
+
+
+                
+
 
                 {{-- <li>
                     <a href="{{route('admin.transactionslist')}}">
