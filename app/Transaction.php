@@ -18,6 +18,10 @@ class Transaction extends Model
         return $this->hasMany(Installment::class);
     }
 
+    public function customerData(){
+        return $this->belongsTo(Customer::class,'customer');
+    }
+
     public function complete(){
         if($this::$FIRE_EVENTS) {
             Transaction::$FIRE_EVENTS = false;

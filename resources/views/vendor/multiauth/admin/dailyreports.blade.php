@@ -102,8 +102,15 @@
                                     </tr>
                                     </thead>
                                     <tbody style="text-align: center">
-
-
+                                    @foreach($transactions as $r)
+                                        <tr>
+                                        <td><a href="viewtransactions/{{$r->transaction->id}}">click here to pay</a> </td>
+                                        <td>{{ $r->transaction->customerData->name}}</td>
+                                        <td>{{ $r->transaction->customerData->address}}</td>
+                                        <td>{{ $r->transaction->customerData->mobile}}</td>
+                                        <td>{{ $r->transaction->installment}}</td>
+                                        </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
 

@@ -73,7 +73,7 @@
                                                 <td>{{$day->remain}}</td>
                                                 <td>{{$day->amount}}</td>
                                                 <td>
-                                                    <input type="text" class="form-control" value="{{ (!empty($day->status==1))?$day->amount:null }}" required name="amount" {{ (\Carbon\Carbon::parse($day->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty($day->status==1))?'disabled':null}}>
+                                                    <input type="text" class="form-control" value="{{ ($day->status == 1)?$day->amount:null }}" required name="amount" {{ (\Carbon\Carbon::parse($day->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty($day->status==1))?'disabled':null}}>
                                                 </td>
                                                 <td>
                                                     <input type="submit" value="make payement" style="padding: 10px" class="btn btn-success " {{ (\Carbon\Carbon::parse($day->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty($day->status==1))?'disabled':null}}>

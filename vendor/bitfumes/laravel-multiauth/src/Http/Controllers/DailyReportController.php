@@ -30,12 +30,10 @@ class DailyReportController extends Controller
     public function show(Request $request)
     {
 
-        return $this->transactionWithTodayInstallment();
-
-        return $date;
+        $transactions = $this->transactionWithTodayInstallment();
         $route = Route::all();
         $profile = Auth::user();
-        return view('vendor.multiauth.admin.dailyreports', ['route' => $route, 'profile' => $profile]);
+        return view('vendor.multiauth.admin.dailyreports',compact('transactions','route','profile'));
     }
 
     private function transactionWithTodayInstallment()
@@ -44,15 +42,12 @@ class DailyReportController extends Controller
         $referenceTimeHour = 15;
 
         if ($referenceTimeHour > $today->hour){
-            //before 3.00 pm
-
+            $dueInstallmemts = Installment::whereDate('payment_date',Carbon::now()->format('Y-m-d'))
+                ->whereStatus(0)->with(['transaction','transaction.customerData'])->get();
         }else{
-            //after 3.00pm
-
+            $dueInstallmemts = Installment::whereDate('payment_date',Carbon::yesterday()->format('Y-m-d'))
+                ->whereStatus(0)->with(['transaction','transaction.customerData'])->get();
         }
-
-        $dueInstallmemts = Installment::whereDate('payment_date',Carbon::now()->format('Y-m-d'))
-            ->whereStatus(0)->get();
 
         return $dueInstallmemts;
 
