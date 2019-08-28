@@ -28,10 +28,10 @@ class ReportController extends Controller
 
     public function viewTransactions(Transaction $transaction)
     {
+        $customer = $transaction->transaction_customer;
+        $profile = Auth::user();
         if ($transaction->remain <= 0){
             $type = $transaction->paymenttype;
-            $profile = Auth::user();
-            $customer = $transaction->transaction_customer;
             $purchased_date = Carbon::parse($transaction->datepurchased);
             $installments = $transaction->installments;
 
