@@ -65,3 +65,6 @@ Route::get('viewtransactions/{transaction}', 'ReportController@viewtransactions'
 Route::post('make-installment', 'ReportController@makeInstallment')->name('report.payment');
 
 Route::get('/dailyreports', 'DailyReportController@show')->name('admin.dailyreports');
+
+Route::get('/debug', 'DailyReportController@debug');
+

@@ -70,5 +70,8 @@ class DailyReportController extends Controller
         });
     }
 
+    public function debug(){
+
+    }
 
 }
