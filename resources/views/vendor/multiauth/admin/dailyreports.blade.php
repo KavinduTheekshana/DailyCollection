@@ -35,17 +35,18 @@
                             <div class="pull-left">
 
 
-                                <form class="form-inline">
+
                                     <div class="form-group mr-35">
                                         <h6 class="panel-title txt-dark">Genarate Reports</h6>
                                     </div>
 
                                     <div class="input-group form-group mr-55">
                                         {{-- <input type="text" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Route"> --}}
+                                        <form action="{{url(route('admin.dailyreports'))}}">
                                         <select class="form-control select2" name="route">
                                             @foreach ($route as $item)
 
-                                                <option>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->route}}
+                                                <option  value="{{$item->route}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->route}}
                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </option>
 
@@ -53,9 +54,10 @@
 
                                         </select>
                                         <span class="input-group-btn">
-															<button type="button" class="btn btn-success "><span
+															<button type="submit" class="btn btn-success "><span
                                                                         class="btn-text">submit</span></button>
 															</span>
+                                        </form>
                                     </div>
 
 

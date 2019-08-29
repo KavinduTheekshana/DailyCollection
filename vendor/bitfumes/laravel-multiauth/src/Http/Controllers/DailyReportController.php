@@ -29,28 +29,14 @@ class DailyReportController extends Controller
 
     public function show(Request $request)
     {
-
-        $transactions = $this->transactionWithTodayInstallment();
+        $filterRoute = $request->route;
+        $transactions = Installment::transactionWithTodayInstallment()->get();
+        if ($filterRoute){
+            $transactions = Installment::transactionWithTodayInstallment($filterRoute)->get();
+        }
         $route = Route::all();
         $profile = Auth::user();
         return view('vendor.multiauth.admin.dailyreports',compact('transactions','route','profile'));
-    }
-
-    private function transactionWithTodayInstallment()
-    {
-        $today =Carbon::now();
-        $referenceTimeHour = 15;
-
-        if ($referenceTimeHour > $today->hour){
-            $dueInstallmemts = Installment::whereDate('payment_date',Carbon::now()->format('Y-m-d'))
-                ->whereStatus(0)->with(['transaction','transaction.customerData'])->get();
-        }else{
-            $dueInstallmemts = Installment::whereDate('payment_date',Carbon::yesterday()->format('Y-m-d'))
-                ->whereStatus(0)->with(['transaction','transaction.customerData'])->get();
-        }
-
-        return $dueInstallmemts;
-
     }
 
     private function daysBetween(Carbon $start_date, Carbon $end_date = null, $type = 'daily')
@@ -69,6 +55,7 @@ class DailyReportController extends Controller
             return $date->dayOfWeek != Carbon::SUNDAY && !in_array($date, $holidays);
         });
     }
+
 
     public function debug(){
 
