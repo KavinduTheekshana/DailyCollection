@@ -14,7 +14,7 @@ class Installment extends Model
 
     public function scopeDueToToday($query)
     {
-        return $query->whereStatus(0)
+        return $query/*->whereStatus(0)*/
             ->whereDate('payment_date', '<=', Carbon::now()->format('Y-m-d'));
     }
 

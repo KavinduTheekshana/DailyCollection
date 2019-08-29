@@ -105,12 +105,25 @@
                                     </thead>
                                     <tbody style="text-align: center">
                                     @foreach($transactions as $r)
+
                                         <tr>
                                         <td><a href="viewtransactions/{{$r->transaction->id}}">click here to pay</a> </td>
                                         <td>{{ $r->transaction->customerData->name}}</td>
                                         <td>{{ $r->transaction->customerData->address}}</td>
                                         <td>{{ $r->transaction->customerData->mobile}}</td>
                                         <td>{{ $r->transaction->installment}}</td>
+                                            <form role="form" method="POST" action="{{route('report.payment')}}">
+                                                @csrf
+                                                <td>
+                                                    <input type="text" class="form-control" value="{{ ( $r->status == 1)? $r->amount:null }}" required name="amount" {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
+                                                </td>
+                                                <td>
+                                                    <input type="hidden" name="date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
+                                                    <input type="hidden" name="instalment_id" value="{{$r->id}}">
+                                                    <input type="hidden" name="transaction_id" value="{{$r->transaction->id}}">
+                                                    <input type="submit" value="make payement" style="padding: 10px" class="btn btn-success " {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
+                                                </td>
+                                            </form>
                                         </tr>
                                     @endforeach
                                     </tbody>
