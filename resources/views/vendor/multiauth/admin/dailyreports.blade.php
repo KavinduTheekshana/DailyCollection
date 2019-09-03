@@ -32,21 +32,22 @@
                 <div class="col-sm-12">
                     <div class="panel panel-default card-view">
                         <div class="panel-heading">
+                            <form action="{{url(route('admin.dailyreports'))}}">
                             <div class="pull-left">
 
 
+                                <div class="form-group mr-35">
+                                    <h6 class="panel-title txt-dark">Genarate Reports</h6>
+                                </div>
 
-                                    <div class="form-group mr-35">
-                                        <h6 class="panel-title txt-dark">Genarate Reports</h6>
-                                    </div>
+                                <div class="input-group form-group mr-55">
+                                    {{-- <input type="text" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Route"> --}}
 
-                                    <div class="input-group form-group mr-55">
-                                        {{-- <input type="text" id="example-input2-group2" name="example-input2-group2" class="form-control" placeholder="Route"> --}}
-                                        <form action="{{url(route('admin.dailyreports'))}}">
                                         <select class="form-control select2" name="route">
+                                            <option value="all">All </option>
                                             @foreach ($route as $item)
 
-                                                <option  value="{{$item->route}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->route}}
+                                                <option value="{{$item->route}}">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{{$item->route}}
                                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                                 </option>
 
@@ -57,11 +58,8 @@
 															<button type="submit" class="btn btn-success "><span
                                                                         class="btn-text">submit</span></button>
 															</span>
-                                        </form>
-                                    </div>
 
-
-                                </form>
+                                </div>
 
 
                                 {{-- <div class="row pl-15 pr-15">
@@ -75,8 +73,10 @@
                                 </div> --}}
                             </div>
 
-                            <button type="button" class="btn btn-warning  pull-right"><span class="btn-text">Download Report</span>
+                            <button type="submit" name="pdf" value="pdf" class="btn btn-warning  pull-right"><span
+                                        class="btn-text">Download Report</span>
                             </button>
+                            </form>
 
 
                             <div class="clearfix"></div>
@@ -107,21 +107,27 @@
                                     @foreach($transactions as $r)
 
                                         <tr>
-                                        <td><a href="viewtransactions/{{$r->transaction->id}}">click here to pay</a> </td>
-                                        <td>{{ $r->transaction->customerData->name}}</td>
-                                        <td>{{ $r->transaction->customerData->address}}</td>
-                                        <td>{{ $r->transaction->customerData->mobile}}</td>
-                                        <td>{{ $r->transaction->installment}}</td>
+                                            <td><a href="viewtransactions/{{$r->transaction->id}}">click here to pay</a>
+                                            </td>
+                                            <td>{{ $r->transaction->customerData->name}}</td>
+                                            <td>{{ $r->transaction->customerData->address}}</td>
+                                            <td>{{ $r->transaction->customerData->mobile}}</td>
+                                            <td>{{ $r->transaction->installment}}</td>
                                             <form role="form" method="POST" action="{{route('report.payment')}}">
                                                 @csrf
                                                 <td>
-                                                    <input type="text" class="form-control" value="{{ ( $r->status == 1)? $r->amount:null }}" required name="amount" {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
+                                                    <input type="text" class="form-control"
+                                                           value="{{ ( $r->status == 1)? $r->amount:null }}" required
+                                                           name="amount" {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
                                                 </td>
                                                 <td>
-                                                    <input type="hidden" name="date" value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
+                                                    <input type="hidden" name="date"
+                                                           value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
                                                     <input type="hidden" name="instalment_id" value="{{$r->id}}">
-                                                    <input type="hidden" name="transaction_id" value="{{$r->transaction->id}}">
-                                                    <input type="submit" value="make payement" style="padding: 10px" class="btn btn-success " {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
+                                                    <input type="hidden" name="transaction_id"
+                                                           value="{{$r->transaction->id}}">
+                                                    <input type="submit" value="make payement" style="padding: 10px"
+                                                           class="btn btn-success " {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
                                                 </td>
                                             </form>
                                         </tr>

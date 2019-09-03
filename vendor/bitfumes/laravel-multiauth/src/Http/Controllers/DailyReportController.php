@@ -5,8 +5,8 @@ namespace Bitfumes\Multiauth\Http\Controllers;
 use App\Holiday;
 use App\Installment;
 use App\Route;
-use App\Transaction;
 use Auth;
+use Barryvdh\DomPDF\Facade as PDF;
 use Carbon\Carbon;
 use Carbon\CarbonPeriod;
 use DB;
@@ -29,14 +29,19 @@ class DailyReportController extends Controller
 
     public function show(Request $request)
     {
+        $pdf = $request->pdf;
         $filterRoute = $request->route;
         $transactions = Installment::transactionWithTodayInstallment()->get();
-        if ($filterRoute){
+        if ($filterRoute!='all') {
             $transactions = Installment::transactionWithTodayInstallment($filterRoute)->get();
         }
         $route = Route::all();
         $profile = Auth::user();
-        return view('vendor.multiauth.admin.dailyreports',compact('transactions','route','profile'));
+        if (!empty($pdf)) {
+            return $this->generateDailyReportPdf($filterRoute, $transactions);
+        }
+
+        return view('vendor.multiauth.admin.dailyreports', compact('transactions', 'route', 'profile'));
     }
 
     private function daysBetween(Carbon $start_date, Carbon $end_date = null, $type = 'daily')
@@ -57,8 +62,22 @@ class DailyReportController extends Controller
     }
 
 
-    public function debug(){
+    private function generateDailyReportPdf($route, $transactions)
+    {
+        $today = Carbon::now();
+        $referenceTimeHour = 15;
+        $date = ($referenceTimeHour > $today->hour) ? Carbon::now()->format('Y-m-d') : Carbon::yesterday()->format('Y-m-d');
+        $route = (is_null($route)) ? 'All' : $route;
+        $data = ['date' => $date, 'route' => $route, 'transactions' => $transactions];
+        $pdf = PDF::loadView('vendor.multiauth.pdf.daily-transaction', $data);
+        return $pdf->download($date.' daily-report.pdf');
+//        return $pdf->stream();
+    }
+
+    public function debug()
+    {
 
     }
+
 
 }

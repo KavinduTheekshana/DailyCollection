@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="479826f1-7020-41ed-a48f-3f9c14262300" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/pdf/daily-transaction.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/BikeApplication.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/BikeApplication.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/php.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.json" beforeDir="false" afterPath="$PROJECT_DIR$/composer.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/composer.lock" beforeDir="false" afterPath="$PROJECT_DIR$/composer.lock" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/dailyreports.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/vendor/multiauth/admin/dailyreports.blade.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/ReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/ReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/DailyReportController.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/bitfumes/laravel-multiauth/src/Http/Controllers/DailyReportController.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_classmap.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_namespaces.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_psr4.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/autoload_static.php" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/autoload_static.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/composer/installed.json" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/composer/installed.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -124,6 +134,11 @@
       <path value="$PROJECT_DIR$/vendor/hamcrest/hamcrest-php" />
       <path value="$PROJECT_DIR$/vendor/maximebf/debugbar" />
       <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-debugbar" />
+      <path value="$PROJECT_DIR$/vendor/sabberworm/php-css-parser" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-svg-lib" />
+      <path value="$PROJECT_DIR$/vendor/phenx/php-font-lib" />
+      <path value="$PROJECT_DIR$/vendor/dompdf/dompdf" />
+      <path value="$PROJECT_DIR$/vendor/barryvdh/laravel-dompdf" />
     </include_path>
   </component>
   <component name="ProjectId" id="1PpfoNjkzQeR5VHXAGCuSUTi3C5" />
@@ -168,7 +183,9 @@
       <workItem from="1566838201899" duration="5405000" />
       <workItem from="1566920125860" duration="2511000" />
       <workItem from="1566998121951" duration="14953000" />
-      <workItem from="1567102851092" duration="4677000" />
+      <workItem from="1567102851092" duration="5046000" />
+      <workItem from="1567410359051" duration="3000" />
+      <workItem from="1567532891526" duration="4111000" />
     </task>
     <servers />
   </component>
