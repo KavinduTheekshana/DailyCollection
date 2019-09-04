@@ -329,7 +329,9 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
+                
 
+                @admin('admin')
                 <li>
                     <a href="javascript:void(0);" data-toggle="collapse" data-target="#users">
                         <div class="pull-left"><i class="zmdi zmdi-account mr-20"></i><span class="right-nav-text">Users
@@ -347,6 +349,9 @@
                         </li>
                     </ul>
                 </li>
+                @endadmin
+
+
 
                 <li>
                     <a href="{{route('admin.routes')}}">
@@ -412,7 +417,8 @@
                     </ul>
                 </li>
 
-
+            {{-- @admin('user')
+            @endadmin --}}
                 <li>
                     <a href="{{route('admin.reports')}}">
                         <div class="pull-left"><i class="zmdi zmdi-file-text mr-20"></i><span
@@ -420,7 +426,7 @@
                         <div class="clearfix"></div>
                     </a>
                 </li>
-
+             
 
                 <li>
                     <a href="{{route('admin.dailyreports')}}">
@@ -453,6 +459,22 @@
                 <li>
                     <hr class="light-grey-hr mb-10" />
                 </li>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{{--                 
                 <li class="navigation-header">
                     <span>component</span>
                     <i class="zmdi zmdi-more"></i>
@@ -807,7 +829,7 @@
                             </ul>
                         </li>
                     </ul>
-                </li>
+                </li> --}}
             </ul>
         </div>
         <!-- /Left Sidebar Menu -->

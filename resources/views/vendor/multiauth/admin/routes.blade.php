@@ -21,6 +21,8 @@
 		<!-- /Title -->
 
 		<!-- Row -->
+
+	
 		<div class="row">
 			<div class="col-sm-12">
 				<div class="panel panel-default card-view">
@@ -81,7 +83,7 @@
 			</div>
 
 		</div>
-
+	
 
 		<br>
 

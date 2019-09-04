@@ -83,7 +83,7 @@
 										</td>
 										<td>
 											@if($item->rolename==='super')
-											<a href="deleteroute/{{$item->adminid}}" type="button" style="padding: 6px 12px" class="btn btn-success">View
+											<a href="admin/profile" type="button" style="padding: 6px 12px" class="btn btn-success">View
 												Profile</a>
 											@elseif($item->rolename==='user')
 											<a href="updateuser/{{$item->adminid}}" type="button" style="padding: 6px 12px" class="btn btn-warning">Update</a>
