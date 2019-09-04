@@ -543,7 +543,7 @@
 		function myFunctioncustomer() {
 			$.ajax({
 	type: "GET",
-	url: 'http://www.kcdailycollection.com/api/valid_nic',
+	url: '{{url(route('valid_nic'))}}',
 	data: {nic:$('#cnic').val()},
 	headers: {
 	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -601,7 +601,7 @@
 
 				$.ajax({
 	type: "GET",
-	url: 'http://www.kcdailycollection.com/api/valid_nic',
+	url: '{{url(route('valid_nic'))}}',
 	data: {nic:$('#g1nic').val()},
 	headers: {
 	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
@@ -664,7 +664,7 @@ function myFunctionsecondguarantor() {
 
 				$.ajax({
 	type: "GET",
-	url: 'http://www.kcdailycollection.com/api/valid_nic',
+	url: '{{url(route('valid_nic'))}}',
 	data: {nic:$('#g2nic').val()},
 	headers: {
 	'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
