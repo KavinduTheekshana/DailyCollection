@@ -89,11 +89,11 @@
 
 
 												@admin('admin')	
-											@if($item->status===1)
+											@if($item->status==1)
 											<a href="blockcustomer/{{$item->id}}" type="button" style="padding: 10px"
 												class="btn btn-warning btn-icon-anim btn-square"><i
 													class="icon-lock"></i></a>
-											@elseif($item->status===0)
+											@elseif($item->status==0)
 											<a href="unblockcustomer/{{$item->id}}" type="button" style="padding: 10px"
 												class="btn btn-success btn-icon-anim btn-square"><i
 													class="icon-lock-open"></i></a>
@@ -113,11 +113,11 @@
 													class="icon-trash"></i></button>
 
 
-											@if($item->rolename=='super')
+											@if($item->rolename==='super')
 											<a href="deleteroute/{{$item->adminid}}" type="button"
 												style="padding: 6px 12px" class="btn btn-success">View
 												Profile</a>
-											@elseif($item->rolename=='user')
+											@elseif($item->rolename==='user')
 											<a href="updateuser/{{$item->adminid}}" type="button"
 												style="padding: 6px 12px" class="btn btn-warning">Update</a>
 											<button style="padding: 6px 12px" class="btn btn-danger"
