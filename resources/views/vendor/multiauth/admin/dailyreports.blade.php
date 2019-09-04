@@ -113,6 +113,9 @@
                                             <td>{{ $r->transaction->customerData->address}}</td>
                                             <td>{{ $r->transaction->customerData->mobile}}</td>
                                             <td>{{ $r->transaction->installment}}</td>
+
+
+                                            @admin('admin')
                                             <form role="form" method="POST" action="{{route('report.payment')}}">
                                                 @csrf
                                                 <td>
@@ -130,6 +133,7 @@
                                                            class="btn btn-success " {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
                                                 </td>
                                             </form>
+                                            @endadmin
                                         </tr>
                                     @endforeach
                                     </tbody>
