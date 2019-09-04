@@ -29,7 +29,7 @@ Route::post('/addroute', 'RoutesController@addroute');
 Route::post('/addholiday', 'HolidaysController@addholiday');
 
 Route::post('/submitcustomers', 'TransactionsController@submitcustomers');
-Route::post('/submitcustomers2', 'CustomerController@submitcustomers2');
+Route::post('/submitcustomers2', 'CustomerController@submitcustomers');
 Route::post('/editcustomers', 'CustomerController@editcustomers');
 
 Route::get('deleteroute/{id}', 'RoutesController@deleteroute');
