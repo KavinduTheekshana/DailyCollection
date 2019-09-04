@@ -88,7 +88,7 @@
 												data-modellanline="{{$item->lanline}}"><i class="fa fa-eye"></i></a>
 
 
-
+												@admin('admin')	
 											@if($item->status===1)
 											<a href="blockcustomer/{{$item->id}}" type="button" style="padding: 10px"
 												class="btn btn-warning btn-icon-anim btn-square"><i
@@ -107,9 +107,9 @@
 												data-modeladdress="{{$item->address}}" data-modelnic="{{$item->nic}}"
 												data-modelmobile="{{$item->mobile}}"
 												data-modellanline="{{$item->lanline}}"><i class="fa fa-pencil"></i></a>
-
+												@endadmin
 											<button Onclick="deleteData({{$item->id}})"
-												class="btn btn-danger btn-icon-anim btn-square"><i
+												class="btn btn-danger btn-icon-anim btn-square disabled"><i
 													class="icon-trash"></i></button>
 
 

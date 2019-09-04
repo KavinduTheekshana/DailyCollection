@@ -60,7 +60,7 @@
 							<div class="form-wrap">
 
 								<form role="form" method="POST"
-									action="{{action('CustomerController@submitcustomers')}}"
+									action="{{action('CustomerController@submitcustomers2')}}"
 									enctype="multipart/form-data">
 
 									@csrf

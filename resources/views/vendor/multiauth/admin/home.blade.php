@@ -68,6 +68,9 @@
 					</div>
 				</div>
 			</div>
+			
+			
+			@admin('admin')
 			<div class="col-lg-3 col-md-6 col-sm-6 col-xs-12">
 				<div class="panel panel-default card-view pa-0 bg-gold">
 					<div class="panel-wrapper collapse in">
@@ -112,6 +115,8 @@
 					</div>
 				</div>
 			</div>
+			@endadmin
+
 		</div>
 		<!-- /Row -->
 		<!-- Row -->

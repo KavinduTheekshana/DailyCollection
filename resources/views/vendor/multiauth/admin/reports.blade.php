@@ -109,10 +109,11 @@
 												data-modelg2mobile="{{$item->g2mobile}}"
 												data-modelg2lanline="{{$item->g2lanline}}"><i class="fa fa-eye"></i></a>
 
+												@admin('admin')
 											<a href="viewtransactions/{{$item->id}}" type="button"
 												style="padding: 10px" class="btn btn-success btn-icon-anim btn-square">
 												<i class="icon-arrow-right-circle"></i></a>
-
+												@endadmin
 
 
 											{{-- <a href="#" id="edit_msg" name="edit_msg" type="button"

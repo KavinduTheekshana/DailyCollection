@@ -23,7 +23,7 @@ class ReportController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->middleware('role:super', ['only' => 'show']);
+        // $this->middleware('role:super', ['only' => 'show']);
     }
 
     public function viewTransactions(Transaction $transaction)
