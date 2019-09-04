@@ -24,7 +24,7 @@ class CustomerController extends Controller
         $this->middleware('role:super', ['only' => 'show']);
     }
 
-    public function submitcustomers(Request $request)
+    public function submitcustomers2(Request $request)
     {
 
         $this->validate($request, [
