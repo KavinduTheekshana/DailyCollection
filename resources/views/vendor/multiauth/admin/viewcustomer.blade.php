@@ -113,11 +113,11 @@
 													class="icon-trash"></i></button>
 
 
-											@if($item->rolename==='super')
+											@if($item->rolename=='super')
 											<a href="deleteroute/{{$item->adminid}}" type="button"
 												style="padding: 6px 12px" class="btn btn-success">View
 												Profile</a>
-											@elseif($item->rolename==='user')
+											@elseif($item->rolename=='user')
 											<a href="updateuser/{{$item->adminid}}" type="button"
 												style="padding: 6px 12px" class="btn btn-warning">Update</a>
 											<button style="padding: 6px 12px" class="btn btn-danger"

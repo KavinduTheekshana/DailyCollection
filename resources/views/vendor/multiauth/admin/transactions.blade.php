@@ -514,7 +514,7 @@
 		$('input[type="number"]').on('keydown, keyup', function () {
   var select=$( "#select" ).val();
   var texInputValue = $('#amount').val();
-  var amount = parseInt(texInputValue) + parseInt((texInputValue*10)/100);
+  var amount = parseInt(texInputValue) + parseInt((texInputValue*20)/100);
   $('#totalincome').val(amount.toFixed(2));
   if (select=='daily') {
 	
