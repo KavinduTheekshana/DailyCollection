@@ -22,7 +22,7 @@ class TransactionsController extends Controller
     public function __construct()
     {
         $this->middleware('auth:admin');
-        $this->middleware('role:super', ['only' => 'show']);
+        // $this->middleware('role:super', ['only' => 'show']);
     }
 
     public function submitcustomers(Request $request)
