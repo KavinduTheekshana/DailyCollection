@@ -2,35 +2,39 @@
 
 namespace App;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Model;
 
 
 class Transaction extends Model
 {
 
+    const weekend = Carbon::MONDAY;
     public static $FIRE_EVENTS = true;
 
-    public function transaction_customer(){
-        return $this->belongsTo(Customer::class,'customer');
+    public function transaction_customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer');
     }
 
-    public function installments(){
+    public function installments()
+    {
         return $this->hasMany(Installment::class);
     }
 
-    public function customerData(){
-        return $this->belongsTo(Customer::class,'customer');
+    public function customerData()
+    {
+        return $this->belongsTo(Customer::class, 'customer');
     }
 
-    public function complete(){
-        if($this::$FIRE_EVENTS) {
+    public function complete()
+    {
+        if ($this::$FIRE_EVENTS) {
             Transaction::$FIRE_EVENTS = false;
             $this->status = 1;
             $this->save();
         }
     }
-
-
 
 
 }

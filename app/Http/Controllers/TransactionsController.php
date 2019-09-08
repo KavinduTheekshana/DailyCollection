@@ -300,7 +300,7 @@ class TransactionsController extends Controller
 
     private function daysInPeriod(CarbonPeriod $days,$holidays){
         return $days  ->filter(function ($date) use ($holidays) {
-            return $date->dayOfWeek != Carbon::SUNDAY && !in_array($date, $holidays);
+            return $date->dayOfWeek != Transaction::weekend && !in_array($date, $holidays);
         });
     }
 
@@ -308,7 +308,7 @@ class TransactionsController extends Controller
         $weeks = $days->setDateInterval('1w');
         $weekDays =collect();
         foreach ($weeks as $weekDay){
-            if ($weekDay->dayOfWeek == Carbon::SUNDAY){
+            if ($weekDay->dayOfWeek == Transaction::weekend){
                 $weekDay = $weekDay->addDay();
             }
             if(in_array($weekDay, $holidays)){

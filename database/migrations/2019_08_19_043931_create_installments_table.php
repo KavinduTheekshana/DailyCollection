@@ -18,6 +18,7 @@ class CreateInstallmentsTable extends Migration
             $table->string('transaction_id');
             $table->date('payment_date');
             $table->double('amount')->nullable();
+            $table->double('paid_amount')->nullable();
             $table->double('remain')->nullable();
             $table->double('status')->default(0);
             $table->timestamps();
