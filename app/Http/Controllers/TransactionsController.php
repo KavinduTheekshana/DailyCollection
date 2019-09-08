@@ -67,35 +67,7 @@ class TransactionsController extends Controller
             })
             ->count();
 
-        // $customercount1 = DB::table('transactions')
-        //     ->where('firstguarantor', $firstguarantor)
-        //     ->where('status', false)
-        //     ->orwhere(['secondguarantor' => $firstguarantor, 'status' => false])
-        //     ->orWhere(function ($query) use ($firstguarantor) {
-        //         $query->where('secondguarantor', '=', $firstguarantor)
-        //             ->where('status', '=', false);
-        //     })
-        //     ->count();
-
-        // dd($customercount1);
-
-        // $firstguarantorcountfirst = DB::table('transactions')->where(['firstguarantor' => $firstguarantor])->count();
-        // $secondguarantorcountfirst = DB::table('transactions')->where(['secondguarantor' => $firstguarantor])->count();
-
-        // $firstguarantorcountsecond = DB::table('transactions')->where(['firstguarantor' => $secondguarantor])->count();
-        // $secondguarantorcountsecond = DB::table('transactions')->where(['secondguarantor' => $secondguarantor])->count();
-
-        // $guarantorcountsumfirst = $firstguarantorcountfirst + $secondguarantorcountfirst;
-        // $guarantorcountsumsecond = $firstguarantorcountsecond + $secondguarantorcountsecond;
-
-        // $customercount1 = DB::table('transactions')->where(['firstguarantor' => $firstguarantor])->orwhere(['secondguarantor' => $firstguarantor])->count();
-        // $customercount2 = DB::table('transactions')->where(['firstguarantor' => $secondguarantor])->orwhere(['secondguarantor' => $secondguarantor])->count();
-
-        // if ($customercount1 >= 2 || $customercount2 >= 2) {
-        //     dd('if');
-        // } else {
-        //     dd('else');
-        // }
+ 
 
         $customercount = DB::table('transactions')->where(['customer' => $customer, 'status' => false])->count();
 
@@ -205,6 +177,20 @@ class TransactionsController extends Controller
                 $now->addDays(1);
             }
         }
+        $date1 = Carbon::parse($now);
+        $string = $date1->englishDayOfWeek;
+        if ($string == "Sunday") {
+            $now->addDays(1);
+        }
+        foreach ($holidays as $holiday) {
+            $holidayDate = new Carbon($holiday->date);
+            $date2 = Carbon::parse($holidayDate)->toDateString();
+            $now2 = Carbon::parse($now)->toDateString();
+            if ($now2 == $date2) {
+                $now->addDays(1);
+            }
+        }
+        
         return $now->toDateString();
 
         // $now = new Carbon();
