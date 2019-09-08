@@ -33,7 +33,13 @@ class Transaction extends Model
             Transaction::$FIRE_EVENTS = false;
             $this->status = 1;
             $this->save();
+            $this->deleteInstalments($this);
         }
+    }
+
+    public function deleteInstalments($transaction){
+       $installments = Installment::whereBetween('payment_date',[Carbon::now(),$transaction->duedate])->whereStatus(0)->get()->pluck('id');
+       Installment::destroy($installments);
     }
 
 

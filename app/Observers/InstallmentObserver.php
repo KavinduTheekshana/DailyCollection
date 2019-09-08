@@ -14,9 +14,7 @@ class InstallmentObserver
      */
     public function created(Installment $installment)
     {
-        $transaction = $installment->transaction;
-        $transaction->remain = $installment->remain;
-        $transaction->save();
+
     }
 
     /**
@@ -27,7 +25,9 @@ class InstallmentObserver
      */
     public function updated(Installment $installment)
     {
-        //
+        $transaction = $installment->transaction;
+        $transaction->remain = $installment->remain;
+        $transaction->save();
     }
 
     /**

@@ -67,7 +67,7 @@ class TransactionsController extends Controller
             })
             ->count();
 
- 
+
 
         $customercount = DB::table('transactions')->where(['customer' => $customer, 'status' => false])->count();
 
@@ -190,7 +190,7 @@ class TransactionsController extends Controller
                 $now->addDays(1);
             }
         }
-        
+
         return $now->toDateString();
 
         // $now = new Carbon();
@@ -281,6 +281,7 @@ class TransactionsController extends Controller
         $installment = new Installment();
         $installment->date = Carbon::parse($request->date)->format('Y-m-d');
         $installment->amount = $request->amount;
+        $installment->paid_amount = $request->amount;
         $transaction=Transaction::find($request->transaction_id);
         $transaction->remain = $transaction->remain - $installment->amount;
         $installment->remain = $transaction->remain;
