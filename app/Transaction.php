@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 class Transaction extends Model
 {
 
-    const weekend = Carbon::MONDAY;
+    const weekend = Carbon::SUNDAY;
     public static $FIRE_EVENTS = true;
 
     public function transaction_customer()

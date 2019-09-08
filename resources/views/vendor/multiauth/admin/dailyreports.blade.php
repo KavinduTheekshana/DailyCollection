@@ -107,7 +107,9 @@
                                     @foreach($transactions as $r)
 
                                         <tr>
-                                            <td><a href="viewtransactions/{{$r->transaction->id}}">click here to pay</a>
+                                            {{-- <td><a href="viewtransactions/{{$r->transaction->id}}">click here to pay</a>
+                                            </td> --}}
+                                            <td>{{$r->transaction->id}}
                                             </td>
                                             <td>{{ $r->transaction->customerData->name}}</td>
                                             <td>{{ $r->transaction->customerData->address}}</td>
