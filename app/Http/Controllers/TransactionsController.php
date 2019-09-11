@@ -85,7 +85,7 @@ class TransactionsController extends Controller
                 $transaction->secondguarantor = $request->input('second_guaranter_id');
                 $transaction->paymenttype = $request->input('payment_type');
                 $transaction->amount = $request->input('amount');
-                $transaction->remain = $request->input('amount');
+                $transaction->remain = $request->input('totalincome');
                 $transaction->installment = $request->input('installment');
                 $transaction->totalincome = $request->input('totalincome');
                 $transaction->datepurchased = $request->input('datepurchased');
