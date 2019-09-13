@@ -115,7 +115,7 @@
                                             <td>{{ $r->transaction->customerData->name}}</td>
                                             <td>{{ $r->transaction->customerData->address}}</td>
                                             <td>{{ $r->transaction->customerData->mobile}}</td>
-                                            <td>{{ $r->transaction->installment}}</td>
+                                            <td>{{ $r->amount}}</td>
 
                                             <td>{{ $r->payment_date}}</td>
                                             @admin('admin')
