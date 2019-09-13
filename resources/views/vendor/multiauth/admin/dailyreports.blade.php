@@ -123,8 +123,9 @@
                                                 <td>
                                                     <input type="text" class="form-control"
                                                            value="{{ ( $r->status == 1)? $r->amount:null }}" required
-                                                           name="amount" {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
+                                                           name="amount" {{ ((\Carbon\Carbon::parse( $r->payment_date) == \Carbon\Carbon::today()) || (\Carbon\Carbon::parse( $r->payment_date) == \Carbon\Carbon::yesterday())  )?null:'disabled'}} {{ (!empty( $r->status==1))?'disabled':null}}>
                                                 </td>
+
                                                 <td>
                                                     <input type="hidden" name="date"
                                                            value="{{ \Carbon\Carbon::now()->format('d-m-Y') }}">
@@ -133,7 +134,7 @@
                                                            value="{{$r->transaction->id}}">
 {{--                                                    {{dd(\Carbon\Carbon::parse( $r->payment_date).'   -   '.\Carbon\Carbon::today())}}--}}
                                                     <input type="submit" value="make payement" style="padding: 10px"
-                                                           class="btn btn-success " {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
+                                                           class="btn btn-success "  {{ ((\Carbon\Carbon::parse( $r->payment_date) == \Carbon\Carbon::today()) || (\Carbon\Carbon::parse( $r->payment_date) == \Carbon\Carbon::yesterday())  )?null:'disabled'}}>
                                                 </td>
                                             </form>
                                             @endadmin
