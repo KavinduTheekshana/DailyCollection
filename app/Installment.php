@@ -21,7 +21,7 @@ class Installment extends Model
     public function scopeTransactionWithTodayInstallment($query,$route =null)
     {
         $today = Carbon::now();
-        $referenceTimeHour = 15;
+        $referenceTimeHour = 14;
         if ($referenceTimeHour < $today->hour) {
             if ($route){
                 $dueInstallmemts = Installment::WhereHas('transaction', function ($query)  use ($route){

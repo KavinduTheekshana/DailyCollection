@@ -77,6 +77,7 @@ class DailyReportController extends Controller
 
     public function debug()
     {
+        dd(carbon::now());
         $dueInstalmemts = Installment::whereDate('payment_date', Carbon::yesterday()->format('Y-m-d'))
             ->whereStatus(0)->with(['transaction'])->get();
 
