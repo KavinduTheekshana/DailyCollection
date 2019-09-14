@@ -33,6 +33,7 @@ class InstallmentCalculation extends Command
     public function __construct()
     {
         parent::__construct();
+        $this->croneLog($this->signature);
     }
 
     /**
