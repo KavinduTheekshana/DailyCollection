@@ -2,6 +2,8 @@
 
 namespace Illuminate\Console;
 
+use App\CroneLog;
+use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
 use Illuminate\Support\Traits\Macroable;
 use Illuminate\Contracts\Support\Arrayable;
@@ -628,5 +630,13 @@ class Command extends SymfonyCommand
     public function setLaravel($laravel)
     {
         $this->laravel = $laravel;
+    }
+
+
+    public function croneLog($crone_name){
+        $crone = new CroneLog();
+        $crone->job_name =$crone_name;
+        $crone->run_at = Carbon::now();
+        $crone->save();
     }
 }
