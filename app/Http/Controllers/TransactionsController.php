@@ -321,7 +321,7 @@ class TransactionsController extends Controller
     }
 
     private function setInstallmentDates(Transaction $transaction){
-        $purchased_date = Carbon::parse($transaction->datepurchased);
+        $purchased_date = Carbon::parse($transaction->datepurchased)->addDay();
         $due_date = Carbon::parse($transaction->duedate);
         $type =$transaction->paymenttype;
         $days = ($type === 'daily')?$this->daysBetween($purchased_date,$due_date):$this->daysBetween($purchased_date,$due_date,'weekly');
