@@ -131,6 +131,7 @@
                                                     <input type="hidden" name="instalment_id" value="{{$r->id}}">
                                                     <input type="hidden" name="transaction_id"
                                                            value="{{$r->transaction->id}}">
+{{--                                                    {{dd(\Carbon\Carbon::parse( $r->payment_date).'   -   '.\Carbon\Carbon::today())}}--}}
                                                     <input type="submit" value="make payement" style="padding: 10px"
                                                            class="btn btn-success " {{ (\Carbon\Carbon::parse( $r->payment_date) != \Carbon\Carbon::today())?'disabled':null}} {{ (!empty( $r->status==1))?'disabled':null}}>
                                                 </td>

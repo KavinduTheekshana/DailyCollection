@@ -22,8 +22,7 @@ class Installment extends Model
     {
         $today = Carbon::now();
         $referenceTimeHour = 15;
-
-        if ($referenceTimeHour > $today->hour) {
+        if ($referenceTimeHour < $today->hour) {
             if ($route){
                 $dueInstallmemts = Installment::WhereHas('transaction', function ($query)  use ($route){
                     $query->where('route', '=', $route);

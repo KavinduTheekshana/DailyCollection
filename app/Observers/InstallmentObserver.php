@@ -28,6 +28,14 @@ class InstallmentObserver
         $transaction = $installment->transaction;
         $transaction->remain = $installment->remain;
         $transaction->save();
+
+        $installments = Installment::whereTransactionId($installment->transaction->id)
+            ->whereDate('payment_date','>',$installment->payment_date)->get();
+
+        foreach ($installments as $i){
+            $i->remain = $installment->remain;
+            $i->save();
+        }
     }
 
     /**
