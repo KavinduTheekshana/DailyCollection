@@ -100,7 +100,7 @@
                                         <th class="text-center">Address</th>
                                         <th class="text-center">Phone</th>
                                         <th class="text-center">Installment</th>
-                                        <th class="text-center">InstallmentDATE</th>
+                                        {{-- <th class="text-center">InstallmentDATE</th> --}}
                                         <th class="text-center"></th>
                                     </tr>
                                     </thead>
@@ -117,7 +117,7 @@
                                             <td>{{ $r->transaction->customerData->mobile}}</td>
                                             <td>{{ $r->amount}}</td>
 
-                                            <td>{{ $r->payment_date}}</td>
+                                            {{-- <td>{{ $r->payment_date}}</td> --}}
                                             @admin('admin')
                                             <form role="form" method="POST" action="{{route('report.payment')}}">
                                                 @csrf
