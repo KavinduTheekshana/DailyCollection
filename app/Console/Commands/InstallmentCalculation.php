@@ -46,35 +46,37 @@ class InstallmentCalculation extends Command
         $dueInstalmemts = Installment::whereDate('payment_date', Carbon::yesterday()->format('Y-m-d'))
             ->whereStatus(0)->with(['transaction'])->get();
 
-        foreach ($dueInstalmemts as $instalmemt) {
-            if ($instalmemt->transaction->paymenttype == 'daily') {
-                $allInstallmentsAfterToday = Installment::whereDate('payment_date', '>', Carbon::yesterday()->format('Y-m-d'))
-                    ->whereStatus(0)->whereTransactionId($instalmemt->transaction_id)->first();
-                $allInstallmentsAfterToday->amount = $allInstallmentsAfterToday->amount + $instalmemt->transaction->installment;
-                $allInstallmentsAfterToday->save();
-            } else {
-                return $this->addDayForWeeklyPayment($instalmemt);
-            }
+        if (!empty($dueInstalmemts) && sizeof($dueInstalmemts) > 0) {
+            foreach ($dueInstalmemts as $instalmemt) {
+                if ($instalmemt->transaction->paymenttype == 'daily') {
+                    $allInstallmentsAfterToday = Installment::whereDate('payment_date', '>', Carbon::yesterday()->format('Y-m-d'))
+                        ->whereStatus(0)->whereTransactionId($instalmemt->transaction_id)->first();
+                    $allInstallmentsAfterToday->amount = $allInstallmentsAfterToday->amount + $instalmemt->transaction->installment;
+                    $allInstallmentsAfterToday->save();
+                } else {
+                    return $this->addDayForWeeklyPayment($instalmemt);
+                }
 
-        }
+            }
+        } 
     }
 
     private function addDayForWeeklyPayment(Installment $installment)
     {
         $duePaymentDate = Carbon::parse($installment->payment_date);
-        $nextPaymentDueDate =  Installment::whereTransactionId($installment->transaction_id)
-            ->whereDate('payment_date','>',$duePaymentDate)->orderBy('payment_date')->first();
+        $nextPaymentDueDate = Installment::whereTransactionId($installment->transaction_id)
+            ->whereDate('payment_date', '>', $duePaymentDate)->orderBy('payment_date')->first();
         $nextPaymentDate = $this->nextValidDay($duePaymentDate);
-        if ($nextPaymentDate <= $nextPaymentDueDate->payment_date){
-            Transaction::$FIRE_EVENTS=true;
+        if ($nextPaymentDate <= $nextPaymentDueDate->payment_date) {
+            Transaction::$FIRE_EVENTS = true;
             $installment = new Installment();
             $installment->payment_date = Carbon::parse($nextPaymentDate)->format('Y-m-d');
-            $transaction=Transaction::find($nextPaymentDueDate->transaction_id);
-            $installment->amount =  $transaction->installment;
+            $transaction = Transaction::find($nextPaymentDueDate->transaction_id);
+            $installment->amount = $transaction->installment;
             $installment->remain = $transaction->remain;
             $transaction->installments()->save($installment);
 
-        }else{
+        } else {
             $nextPaymentDueDate->amount = $nextPaymentDueDate->amount + $installment->transaction->installment;
             $nextPaymentDueDate->save();
         }
