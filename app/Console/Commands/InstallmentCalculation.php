@@ -51,14 +51,16 @@ class InstallmentCalculation extends Command
                 if ($instalmemt->transaction->paymenttype == 'daily') {
                     $allInstallmentsAfterToday = Installment::whereDate('payment_date', '>', Carbon::yesterday()->format('Y-m-d'))
                         ->whereStatus(0)->whereTransactionId($instalmemt->transaction_id)->first();
-                    $allInstallmentsAfterToday->amount = $allInstallmentsAfterToday->amount + $instalmemt->transaction->installment;
+                    $previousRecord = Installment::whereId(($allInstallmentsAfterToday->id)-1)->whereStatus(0)->whereTransactionId($instalmemt->transaction_id)->first();
+
+                    $allInstallmentsAfterToday->amount = $allInstallmentsAfterToday->amount + $previousRecord->amount;
                     $allInstallmentsAfterToday->save();
                 } else {
                     return $this->addDayForWeeklyPayment($instalmemt);
                 }
 
             }
-        } 
+        }
     }
 
     private function addDayForWeeklyPayment(Installment $installment)
