@@ -117,7 +117,7 @@
                                             <td>{{ $r->transaction->customerData->mobile}}</td>
                                             <td>{{ $r->amount}}</td>
 
-                                            {{-- <td>{{ $r->payment_date}}</td> --}}
+                                            <!-- {{-- <td>{{ $r->payment_date}}</td> --}} -->
                                             @admin('admin')
                                             <form role="form" method="POST" action="{{route('report.payment')}}">
                                                 @csrf
